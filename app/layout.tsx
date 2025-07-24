@@ -2,8 +2,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'KingpiN Vision Forge | Coming Soon',
-  description: 'A Coming Soon page for KingpiN Vision Forge',
+  title: 'Kingpin Coming Soon',
+  description: 'A sleek, modern coming soon page with smooth scrolling and email capture',
+  keywords: 'coming soon, email capture, smooth scrolling, modern design',
 };
 
 export default function RootLayout({
