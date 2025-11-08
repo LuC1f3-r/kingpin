@@ -1,0 +1,22 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="halo" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0%" stop-color="#13E0B2" stop-opacity="0.45" />
+      <stop offset="60%" stop-color="#6F00FF" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#05060A" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#05060A" />
+  <circle cx="600" cy="320" r="320" fill="url(#halo)" />
+  <g stroke="#13E0B2" stroke-width="1" fill="none" opacity="0.8">
+    <path d="M200 400 Q600 200 1000 400" />
+    <path d="M200 460 Q600 260 1000 460" />
+    <path d="M200 520 Q600 320 1000 520" />
+  </g>
+  <g stroke="#6F00FF" stroke-width="2" opacity="0.5">
+    <circle cx="600" cy="360" r="260" />
+    <circle cx="600" cy="360" r="220" />
+    <circle cx="600" cy="360" r="180" />
+  </g>
+  <circle cx="600" cy="360" r="90" fill="rgba(242,238,228,0.08)" stroke="#13E0B2" stroke-width="3" />
+</svg>

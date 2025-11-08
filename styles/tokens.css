@@ -1,0 +1,50 @@
+:root {
+  /* Derived from DESIGN_REFERENCE_URL: https://spool-schema-39702339.figma.site/ */
+  --kp-bg: #03020b;
+  --kp-bg-secondary: #040d1d;
+  --kp-surface: #071427;
+  --kp-panel: rgba(10, 22, 38, 0.92);
+  --kp-ivory: #f5efe4;
+  --kp-muted: #96a6c6;
+  --kp-teal: #13e0b2;
+  --kp-violet: #8c4bff;
+  --kp-magenta: #ff4df3;
+  --kp-iris: #9df7ff;
+  --kp-warning: #ffb347;
+  --kp-glass: rgba(255, 255, 255, 0.06);
+  --kp-grid: rgba(19, 224, 178, 0.16);
+
+  --kp-radius: 22px;
+  --kp-radius-lg: 32px;
+  --kp-blur: 32px;
+
+  --font-heading: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-hero: clamp(2.5rem, 6vw, 5.8rem);
+  --text-display: clamp(1.8rem, 3.6vw, 3.2rem);
+  --text-body: 1rem;
+  --text-label: 0.82rem;
+
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --shadow-neon: 0 0 55px rgba(19, 224, 178, 0.45);
+  --shadow-violet: 0 0 55px rgba(111, 0, 255, 0.45);
+  --shadow-inner: inset 0 0 60px rgba(140, 75, 255, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --shadow-neon: none;
+    --shadow-violet: none;
+    --shadow-inner: none;
+  }
+}

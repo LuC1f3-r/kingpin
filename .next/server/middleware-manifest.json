@@ -1,6 +1,56 @@
 {
-  "sortedMiddleware": [],
-  "middleware": {},
-  "functions": {},
-  "version": 2
+  "version": 3,
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge-runtime-webpack.js",
+        "server/middleware.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "^/.*$",
+          "originalSource": "/:path*"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "5i5pK1vIiol/Q8t/7qoahPPRr6f/91ClFS9kC0Aobw8="
+      }
+    }
+  },
+  "functions": {
+    "/(site)/page": {
+      "files": [
+        "server/server-reference-manifest.js",
+        "server/app/(site)/page_client-reference-manifest.js",
+        "server/middleware-build-manifest.js",
+        "server/middleware-react-loadable-manifest.js",
+        "server/next-font-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/edge-runtime-webpack.js",
+        "server/app/(site)/page.js"
+      ],
+      "name": "app/(site)/page",
+      "page": "/(site)/page",
+      "matchers": [
+        {
+          "regexp": "^/$",
+          "originalSource": "/"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "5i5pK1vIiol/Q8t/7qoahPPRr6f/91ClFS9kC0Aobw8="
+      }
+    }
+  },
+  "sortedMiddleware": [
+    "/"
+  ]
 }

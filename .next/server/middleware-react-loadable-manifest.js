@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"components/hero/NeuralHero.tsx -> ./OrbScene\":{\"id\":\"components/hero/NeuralHero.tsx -> ./OrbScene\",\"files\":[\"static/chunks/_app-pages-browser_components_hero_OrbScene_tsx.js\"]}}"
