@@ -1,1 +1,21 @@
+# Dependencies
 node_modules
+
+# Next.js build outputs
+.next
+out
+
+# Production builds
+dist
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+.DS_Store
+*.log
+.vercel
