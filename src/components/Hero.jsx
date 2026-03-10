@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
@@ -17,6 +17,28 @@ const Hero = () => {
   const isLoading = loadedVideos < preloadTarget;
   const nextVideoRef = useRef(null);
   const videoFrameRef = useRef(null);
+
+  useEffect(() => {
+    if (!isLoading) return;
+
+    const { body, documentElement } = document;
+    const previousBodyOverflow = body.style.overflow;
+    const previousBodyHeight = body.style.height;
+    const previousHtmlOverflow = documentElement.style.overflow;
+    const previousHtmlHeight = documentElement.style.height;
+
+    body.style.overflow = "hidden";
+    body.style.height = "100%";
+    documentElement.style.overflow = "hidden";
+    documentElement.style.height = "100%";
+
+    return () => {
+      body.style.overflow = previousBodyOverflow;
+      body.style.height = previousBodyHeight;
+      documentElement.style.overflow = previousHtmlOverflow;
+      documentElement.style.height = previousHtmlHeight;
+    };
+  }, [isLoading]);
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -86,7 +108,7 @@ const Hero = () => {
   return (
     <div className="relative h-dvh min-h-screen w-screen overflow-x-hidden">
       {isLoading && (
-        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
+        <div className="flex-center fixed inset-0 z-[200] overflow-hidden bg-violet-50">
           <div className="three-body">
             <div className="three-body__dot"></div>
             <div className="three-body__dot"></div>
