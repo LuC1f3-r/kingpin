@@ -122,10 +122,10 @@ const Footer = () => (
           <ColHead>Contact</ColHead>
           <div className="flex flex-col gap-3">
             <a
-              href="mailto:hello@kingpinvisionforge.com"
+              href="mailto:kingpinvisionforge@gmail.com"
               className="font-general text-sm text-white/40 transition-colors duration-300 hover:text-white"
             >
-              hello@kingpinvisionforge.com
+              kingpinvisionforge@gmail.com
             </a>
             <a
               href="#contact"
