@@ -207,25 +207,67 @@
   margin-left: 2rem;
 }
 
-/* Electric pulsating button animation */
-@keyframes electric-pulse {
-  0%, 100% {
-    box-shadow: 0 0 6px #60a5fa, 0 0 14px #3b82f6, 0 0 26px #2563eb;
-    border-color: rgba(96, 165, 250, 0.7);
-  }
-  33% {
-    box-shadow: 0 0 10px #a78bfa, 0 0 22px #8b5cf6, 0 0 44px #7c3aed;
-    border-color: rgba(167, 139, 250, 0.85);
-  }
-  66% {
-    box-shadow: 0 0 14px #fff, 0 0 28px #93c5fd, 0 0 56px #3b82f6;
-    border-color: rgba(255, 255, 255, 0.9);
-  }
+/* ── ElectricBorder component styles ─────────────────────────────────────── */
+.eb-root {
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+  display: inline-flex;
 }
 
-.electric-btn {
-  border: 1px solid rgba(96, 165, 250, 0.6);
-  animation: electric-pulse 1.4s ease-in-out infinite;
+.eb-canvas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.eb-canvas {
+  display: block;
+}
+
+.eb-content {
+  position: relative;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.eb-layers {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.eb-glow-1 {
+  border: 2px solid color-mix(in oklch, var(--electric-border-color) 60%, transparent);
+  filter: blur(1px);
+}
+
+.eb-glow-2 {
+  border: 2px solid var(--electric-border-color);
+  filter: blur(4px);
+}
+
+.eb-background-glow {
+  z-index: -1;
+  transform: scale(1.1);
+  filter: blur(28px);
+  opacity: 0.28;
+  background: linear-gradient(-30deg, var(--electric-border-color), transparent, var(--electric-border-color));
 }
 
 /* Keep your custom keyframes at the bottom */
