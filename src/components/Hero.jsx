@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import Button from "./Button";
+import ElectricBorder from "./ElectricBorder";
 import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -66,12 +67,14 @@ const Hero = () => {
               <br />
               transformed into a seamless ecosystem.
             </p>
-            <Button
-              id="watch-trailer"
-              title="Explore More"
-              rightIcon={<TiLocationArrow />}
-              containerClass="!bg-blue-500 flex-center gap-1 electric-btn"
-            />
+            <ElectricBorder color="#4fb7dd" speed={0.2} chaos={0.04} borderRadius={9999}>
+              <Button
+                id="watch-trailer"
+                title="Explore More"
+                rightIcon={<TiLocationArrow />}
+                containerClass="!bg-blue-500 flex-center gap-1"
+              />
+            </ElectricBorder>
           </div>
         </div>
       </div>

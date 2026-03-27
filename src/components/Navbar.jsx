@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
+import ElectricBorder from "./ElectricBorder";
 import { TiLocationArrow } from "react-icons/ti";
 import { useWindowScroll } from "react-use";
 import gsap from "gsap";
 
-const navItems = ["About", "Services", "Projects"];
+const navItems = ["About", "Services", "Products"];
 
 const Navbar = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -87,12 +88,16 @@ const Navbar = () => {
               ))}
             </div>
 
-            <Button
-              id="product-button"
-              title="Products"
-              rightIcon={<TiLocationArrow />}
-              containerClass="!bg-blue-500 md:flex hidden items-center justify-center gap-1 ml-8 electric-btn"
-            />
+            <div className="ml-8 hidden md:block">
+              <ElectricBorder color="#0bbcf2ff" speed={0.2} chaos={0.05} borderRadius={9999}>
+                <Button
+                  id="product-button"
+                  title="Contact Us"
+                  rightIcon={<TiLocationArrow />}
+                  containerClass="!bg-blue-500 flex items-center justify-center gap-1"
+                />
+              </ElectricBorder>
+            </div>
             {/* <button
               onClick={toggleAudioIndicator}
               className="ml-10 flex items-center space-x-0.5"
