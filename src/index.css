@@ -21,6 +21,19 @@
   font-family: "zentry-regular";
   src: url("/fonts/zentry-regular.woff2") format("woff2");
 }
+/* ── Remap display font (replaces Zentry for all font-zentry uses) ─────────── */
+@font-face {
+  font-family: "remap";
+  src: url("/fonts/remap-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "remap";
+  src: url("/fonts/remap-bold.woff2") format("woff2");
+  font-weight: 700 900;
+  font-display: swap;
+}
 
 /* 2. Theme Block (MUST be top-level in v4) */
 @theme {
@@ -29,16 +42,32 @@
   --font-general: "general", sans-serif;
   --font-robert-medium: "robert-medium", sans-serif;
   --font-robert: "robert-regular", sans-serif;
-  --font-zentry: "zentry-regular", sans-serif;
+  --font-zentry: "remap", "zentry-regular", sans-serif;
 
-  /* Colors */
-  --color-blue-50: #dfdff0;
-  --color-blue-75: #dfdff2;
-  --color-blue-100: #f0f2fa;
+  /* Colors — unified blue/black system */
+  --color-blue-50:  #eef2ff;   /* cool near-white (primary text on dark) */
+  --color-blue-75:  #eef2ff;
+  --color-blue-100: #eef2ff;
   --color-blue-200: #010101;
-  --color-blue-300: #4fb7dd;
-  --color-yellow-100: #8e983f;
-  --color-yellow-300: #edff66;
+  --color-blue-300: #4fb7dd;   /* single accent blue */
+}
+
+/* ── KVF elevation tokens ──────────────────────────────────────────────────── */
+:root {
+  --kvf-root:          #020609;   /* Hero, Products, Footer */
+  --kvf-section:       #060d14;   /* About, Services, Claims, Testimonials */
+  --kvf-card:          #0d1825;   /* Service cards, Testimonial cards */
+  --kvf-surface:       #132035;   /* Hover / elevated */
+
+  --kvf-accent:        #4fb7dd;
+  --kvf-accent-soft:   rgba(79,183,221,0.12);
+  --kvf-accent-dim:    rgba(79,183,221,0.35);
+  --kvf-accent-glow:   rgba(79,183,221,0.08);
+
+  --kvf-text-primary:  #eef2ff;
+  --kvf-border:        rgba(79,183,221,0.08);
+  --kvf-border-subtle: rgba(255,255,255,0.05);
+  --kvf-border-glow:   rgba(79,183,221,0.22);
 }
 
 /* 3. Base Styles */
@@ -46,14 +75,20 @@
   body {
     @apply font-circular-web;
     width: 100dvw;
-    background-color: #dfdff0;
+    background-color: #020609;
     overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #4fb7dd;
+    color: #020609;
   }
 }
 
 /* Use @utility to register it properly for @apply */
 @utility border-hsla {
-  @apply border border-white/20;
+  @apply border;
+  border-color: rgba(79,183,221,0.08);
 }
 
 .nav-hover-btn {
@@ -61,7 +96,10 @@
 }
 
 .floating-nav {
-  @apply rounded-lg border border-white/15 bg-black/40 shadow-lg backdrop-blur-md;
+  @apply rounded-lg backdrop-blur-xl;
+  border: 1px solid rgba(79,183,221,0.10);
+  background-color: rgba(2,6,9,0.78);
+  box-shadow: 0 0 40px rgba(79,183,221,0.04), 0 8px 32px rgba(0,0,0,0.5);
 }
 
 .absolute-center {
@@ -83,6 +121,7 @@
 
 .hero-heading {
   @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-[6rem] lg:text-[10rem];
+  letter-spacing: -0.03em;
 }
 
 .subhero-heading {
@@ -138,7 +177,7 @@
 
 .gallery-img-container {
   @apply size-64 overflow-hidden;
-  background-color: #5724ff; /* Violet fallback */
+  background-color: var(--kvf-section);
 }
 
 .gallery-img {
@@ -179,9 +218,8 @@
 .marquee-wrap {
   overflow: hidden;
   width: 100%;
-  background-color: #010101;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #020609;
+  border-bottom: 1px solid rgba(79,183,221,0.08);
   padding: 18px 0;
 }
 
@@ -196,7 +234,7 @@
   font-size: 1.1rem;
   font-weight: 900;
   text-transform: uppercase;
-  color: #edff66;
+  color: rgba(238,242,255,0.65);
   padding: 0 2rem;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -422,11 +460,17 @@
   height: 100%;
 }
 
+/* Subtle blue dot-grid texture for dark sections */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, rgba(79,183,221,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
 /* Uiverse component stays here */
 .three-body {
   --uib-size: 35px;
   --uib-speed: 0.8s;
-  --uib-color: #5d3fd3;
+  --uib-color: #4fb7dd;
   position: relative;
   display: inline-block;
   height: var(--uib-size);

@@ -83,7 +83,7 @@ const Process = () => {
     <section
       ref={sectionRef}
       id="process"
-      className="w-screen bg-[#dfdff0] px-10 pb-28 pt-24 md:px-16 lg:px-20"
+      className="w-screen bg-[#f0f5ff] px-10 pb-28 pt-24 md:px-16 lg:px-20"
     >
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <div ref={headerRef} className="mb-20">

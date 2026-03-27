@@ -57,7 +57,7 @@ const services = [
 ];
 
 const glowBase = {
-  backgroundColor: '#131315',
+  backgroundColor: '#0d1825',
   borderRadius:    4,
   glowRadius:      45,
   glowIntensity:   1.1,
@@ -75,12 +75,12 @@ const CardBody = ({ Icon, title, desc, accent }) => (
     <Icon size={30} style={{ color: accent }} />
     <div>
       <h3
-        className="mb-3 font-zentry text-xl font-black uppercase text-white"
+        className="mb-3 font-zentry text-xl font-black uppercase text-[#eef2ff]"
         style={{ fontFeatureSettings: '"ss01" on' }}
       >
         {title}
       </h3>
-      <p className="font-robert text-sm leading-relaxed text-white/40">
+      <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/40">
         {desc}
       </p>
     </div>
@@ -156,15 +156,15 @@ const Services = () => {
     <section
       ref={sectionRef}
       id="services"
-      className="flex min-h-screen w-screen flex-col bg-[#0c0c0f] px-10 py-24 md:px-16 lg:px-20"
+      className="flex min-h-screen w-screen flex-col bg-[#060d14] px-10 py-24 md:px-16 lg:px-20"
     >
       {/* ── Header ───────────────────────────────────────────────────────── */}
       <div ref={headerRef} className="mb-10 shrink-0">
-        <p className="mb-4 font-general text-[10px] uppercase tracking-[0.28em] text-white/30">
+        <p className="mb-4 font-general text-[10px] uppercase tracking-[0.28em] text-[#eef2ff]/30">
           Core Capabilities
         </p>
         <h2
-          className="font-zentry text-5xl font-black uppercase leading-none text-white lg:text-6xl xl:text-7xl"
+          className="font-zentry text-5xl font-black uppercase leading-none text-[#eef2ff] lg:text-6xl xl:text-7xl"
           style={{ fontFeatureSettings: '"ss01" on' }}
         >
           Forging The{" "}

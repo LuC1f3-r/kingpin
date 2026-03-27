@@ -127,7 +127,7 @@ const Claims = () => {
         className="relative w-screen overflow-hidden px-10 pb-32 pt-28 md:px-16 lg:px-24"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 68% 50%, rgba(59,130,246,0.07) 0%, #080a0e 65%)",
+            "radial-gradient(ellipse 70% 55% at 68% 50%, rgba(79,183,221,0.05) 0%, #060d14 65%)",
         }}
       >
         {/* PROOF label */}
@@ -148,7 +148,7 @@ const Claims = () => {
           className="mb-24 flex flex-col items-center text-center"
         >
           <span
-            className="block font-zentry font-black uppercase leading-[0.9] text-white"
+            className="block font-zentry font-black uppercase leading-[0.9] text-[#eef2ff]"
             style={{
               fontFeatureSettings: '"ss01" on',
               fontSize: "clamp(3.8rem, 9.5vw, 8.5rem)",
@@ -170,7 +170,7 @@ const Claims = () => {
         {/* Stats row */}
         <div
           ref={statsRef}
-          className="grid grid-cols-1 divide-y divide-white/[0.07] md:grid-cols-3 md:divide-x md:divide-y-0"
+          className="grid grid-cols-1 divide-y divide-[#4fb7dd]/[0.08] md:grid-cols-3 md:divide-x md:divide-y-0"
         >
           {stats.map((stat, i) => (
             <div
@@ -179,7 +179,7 @@ const Claims = () => {
             >
               {/* Giant number */}
               <div
-                className="flex items-start font-zentry font-black leading-none text-white"
+                className="flex items-start font-zentry font-black leading-none text-[#eef2ff]"
                 style={{
                   fontFeatureSettings: '"ss01" on',
                   fontSize: "clamp(4.5rem, 11vw, 9.5rem)",
@@ -197,7 +197,7 @@ const Claims = () => {
               </div>
 
               {/* Label */}
-              <p className="font-general text-[11px] uppercase tracking-[0.3em] text-white/30">
+              <p className="font-general text-[11px] uppercase tracking-[0.3em] text-[#eef2ff]/30">
                 {stat.label}
               </p>
             </div>
@@ -208,18 +208,18 @@ const Claims = () => {
       {/* ════════════════════════════════════════════════════════
           SECTION 2 — Client strip
       ════════════════════════════════════════════════════════ */}
-      <section className="relative w-screen border-t border-white/[0.05] bg-[#080a0e]">
+      <section className="relative w-screen bg-[#060d14]" style={{ borderTop: '1px solid rgba(79,183,221,0.06)' }}>
         {/* Left accent bar */}
-        <div className="absolute left-0 top-0 h-full w-[3px] bg-[#4fb7dd]/35" />
+        <div className="absolute left-0 top-0 h-full bg-[#4fb7dd]/35" />
 
         <div
           ref={clientRef}
-          className="flex flex-wrap items-center justify-between gap-y-6 px-14 py-16 md:flex-nowrap md:gap-y-0"
+          className="flex flex-wrap items-center justify-between gap-y-6 px-10 py-14 md:flex-nowrap md:gap-y-0"
         >
           {clients.map((name) => (
             <span
               key={name}
-              className="font-general text-[11px] uppercase tracking-[0.55em] text-white/20 transition-colors duration-500 hover:text-white/50"
+              className="font-zentry text-[24px] uppercase tracking-[0.55em] text-[#eef2ff]/20 transition-colors duration-500 hover:text-[#eef2ff]/55"
             >
               {name}
             </span>

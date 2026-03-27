@@ -124,7 +124,7 @@ const About = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="relative w-screen overflow-hidden bg-[#0c0c0f]"
+      className="relative w-screen overflow-hidden bg-[#060d14]"
     >
       {/* ── TOP BLOCK — pinned full-viewport height ───────────────────────── */}
       <div
@@ -135,7 +135,7 @@ const About = () => {
         <div ref={imageWrapperRef} className="absolute inset-0 z-10">
           <img
             ref={imageRef}
-            src="/img/about.webp"
+            src="/img/about.jpg"
             alt="KVF Forge"
             className="size-full object-cover"
           />
@@ -154,7 +154,7 @@ const About = () => {
           </div>
 
           <h2
-            className="mb-6 font-zentry text-5xl font-black uppercase leading-[1.05] text-white lg:text-6xl xl:text-[4.5rem]"
+            className="mb-6 font-zentry text-5xl font-black uppercase leading-[1.05] text-[#eef2ff] lg:text-6xl xl:text-[4.5rem]"
             style={{ fontFeatureSettings: '"ss01" on' }}
           >
             The Forge: Where
@@ -164,7 +164,7 @@ const About = () => {
             <span className="text-[#4fb7dd]">Infrastructure.</span>
           </h2>
 
-          <p className="max-w-[400px] font-robert text-sm leading-relaxed text-white/45">
+          <p className="max-w-[400px] font-robert text-sm leading-relaxed text-[#eef2ff]/50">
             Every brand and idea begins as raw material. In the Forge, we
             subject these concepts to intense analytical pressure and
             technical refinement. We don't just build websites; we construct
@@ -176,53 +176,65 @@ const About = () => {
             flex-1 on each card guarantees all four are identical width. */}
         <div ref={cardsRowRef} className="absolute bottom-14 left-10 right-10 z-20 flex gap-4 lg:bottom-16 lg:left-20 lg:right-20">
           {/* Refinement */}
-          <div className="feature-card flex-1 rounded-2xl border border-white/[0.07] bg-white/[0.04] p-5 backdrop-blur-md">
-            <TbAdjustmentsHorizontal className="mb-2.5 text-[#edff66]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-white/65">
+          <div
+            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+          >
+            <TbAdjustmentsHorizontal className="mb-2.5 text-[#4fb7dd]" size={20} />
+            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
               Refinement
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-white/30">
+            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
               Stripping away the non-essential to reveal the core competitive
               engine.
             </p>
           </div>
 
           {/* Hardening */}
-          <div className="feature-card flex-1 rounded-2xl border border-white/[0.07] bg-white/[0.04] p-5 backdrop-blur-md">
-            <TbShieldCheck className="mb-2.5 text-[#edff66]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-white/65">
+          <div
+            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+          >
+            <TbShieldCheck className="mb-2.5 text-[#4fb7dd]" size={20} />
+            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
               Hardening
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-white/30">
+            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
               Stress-testing architectures for global scale and high-traffic
               resilience.
             </p>
           </div>
 
           {/* Precise Assembly */}
-          <div className="feature-card flex-1 rounded-2xl border border-white/[0.07] bg-white/[0.04] p-5 backdrop-blur-md">
+          <div
+            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+          >
             <div className="mb-3 flex items-center gap-2">
               <TbTerminal2 className="text-[#4fb7dd]" size={13} />
-              <span className="font-general text-[8.5px] uppercase tracking-widest text-white/35">
+              <span className="font-general text-[8.5px] uppercase tracking-widest text-[#eef2ff]/35">
                 System Core Active.exe
               </span>
             </div>
-            <TbCpu className="mb-2.5 text-[#edff66]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-white/65">
+            <TbCpu className="mb-2.5 text-[#4fb7dd]" size={20} />
+            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
               Precise Assembly
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-white/30">
+            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
               Component-driven engineering designed for rapid market iteration.
             </p>
           </div>
 
           {/* Data Flow */}
-          <div className="feature-card flex-1 rounded-2xl border border-white/[0.07] bg-white/[0.04] p-5 backdrop-blur-md">
+          <div
+            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+          >
             <TbArrowsExchange2 className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-white/65">
+            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
               Data Flow
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-white/30">
+            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
               Optimizing conversion pathways through algorithmic precision.
             </p>
           </div>
@@ -232,25 +244,26 @@ const About = () => {
       {/* ── BOTTOM: 3 Protocol Cards ──────────────────────────────────────── */}
       <div
         ref={protocolRef}
-        className="border-t border-white/[0.07] px-10 pb-24 pt-14 md:px-16 lg:px-20"
+        className="border-t px-10 pb-24 pt-14 md:px-16 lg:px-20"
+        style={{ borderColor: 'rgba(79,183,221,0.08)' }}
       >
-        <div className="grid grid-cols-1 divide-y divide-white/[0.07] md:grid-cols-3 md:divide-x md:divide-y-0">
+        <div className="grid grid-cols-1 divide-y divide-[#4fb7dd]/[0.06] md:grid-cols-3 md:divide-x md:divide-y-0">
           {bottomCards.map((card) => (
             <div
               key={card.index}
               className="protocol-card flex flex-col justify-between px-8 py-10 opacity-0 first:pl-0 last:pr-0"
             >
               <div>
-                <p className="mb-5 font-general text-[9px] uppercase tracking-[0.22em] text-white/25">
+                <p className="mb-5 font-general text-[9px] uppercase tracking-[0.22em] text-[#eef2ff]/25">
                   {card.index} / {card.category}
                 </p>
                 <h3
-                  className="mb-4 font-zentry text-2xl font-black uppercase leading-tight text-white lg:text-[1.6rem]"
+                  className="mb-4 font-zentry text-2xl font-black uppercase leading-tight text-[#eef2ff] lg:text-[1.6rem]"
                   style={{ fontFeatureSettings: '"ss01" on' }}
                 >
                   {card.title}
                 </h3>
-                <p className="max-w-xs font-robert text-sm leading-relaxed text-white/35">
+                <p className="max-w-xs font-robert text-sm leading-relaxed text-[#eef2ff]/40">
                   {card.desc}
                 </p>
               </div>

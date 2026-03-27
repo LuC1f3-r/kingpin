@@ -15,7 +15,7 @@ import { useEffect, useRef, useCallback } from 'react';
  */
 const ElectricBorder = ({
   children,
-  color = '#0c41e2ff',
+  color = '#4fb7dd',
   speed = 2.2,
   chaos = 0.05,
   variant = 'continuous',
@@ -149,11 +149,11 @@ const ElectricBorder = ({
 
     const octaves      = 10;
     const lacunarity   = 1.6;
-    const gain         = 0.7;
-    const amplitude    = chaos;
-    const frequency    = 10;
+    const gain         = 0.9;
+    const amplitude    = variant === 'disconnected' ? chaos * 0.7 : chaos;
+    const frequency    = variant === 'disconnected' ? 8 : 10;
     const baseFlatness = 0;
-    const displacement = 60;
+    const displacement = variant === 'disconnected' ? 36 : 60;
     const borderOffset = 60;
 
     const updateSize = () => {
@@ -215,70 +215,93 @@ const ElectricBorder = ({
       }
 
       if (variant === 'disconnected') {
-        const centerX     = left + borderWidth / 2;
-        const centerY     = top + borderHeight / 2;
-        const flickerSeed = Math.floor(timeRef.current * 12);
+        const centerX   = left + borderWidth / 2;
+        const centerY   = top + borderHeight / 2;
+        const boltCount = approxPerimeter > 280 ? 3 : 2;
+        const bolts     = Array.from({ length: boltCount }, (_, boltIndex) => {
+          const seed   = (boltIndex + 1) * 37.19;
+          const center = (randomUnit(seed) + timeRef.current * (0.18 + randomUnit(seed + 1.7) * 0.24)) % 1;
+          const span   = 0.1 + randomUnit(seed + 2.8) * 0.07;
 
-        const drawLightningPass = (lineWidth, alpha, blur) => {
+          return { center, seed, span };
+        });
+
+        const wrapDistance = (a, b) => {
+          const diff = Math.abs(a - b);
+          return Math.min(diff, 1 - diff);
+        };
+
+        const drawBoltPass = (baseWidth, alphaScale, blurScale) => {
           ctx.save();
-          ctx.lineWidth   = lineWidth;
-          ctx.globalAlpha = alpha;
           ctx.shadowColor = color;
-          ctx.shadowBlur  = blur;
 
-          let cursor = 0;
+          for (let i = 0; i < points.length - 1; i++) {
+            const progress = (i + 0.5) / sampleCount;
+            let energy = 0;
 
-          while (cursor < points.length - 1) {
-            const seed          = flickerSeed * 131 + cursor * 17;
-            const segmentLength = Math.max(4, Math.floor(5 + randomUnit(seed + 1.1) * 16));
-            const gapLength     = Math.max(2, Math.floor(2 + randomUnit(seed + 2.2) * 10));
-            const shouldDraw    = randomUnit(seed + 3.3) > 0.2;
+            bolts.forEach((bolt) => {
+              const distance = wrapDistance(progress, bolt.center);
+              const radius   = bolt.span * 0.5;
 
-            if (shouldDraw) {
-              const end = Math.min(cursor + segmentLength, points.length - 1);
+              if (distance > radius) return;
 
-              ctx.beginPath();
-              ctx.moveTo(points[cursor].x, points[cursor].y);
+              const falloff = 1 - distance / radius;
+              const pulse   = 0.72 + Math.abs(noise2D(progress * 9 + bolt.seed, timeRef.current * 1.8 + bolt.seed)) * 0.45;
+              energy = Math.max(energy, Math.pow(falloff, 1.8) * pulse);
+            });
 
-              for (let i = cursor + 1; i <= end; i++) {
-                ctx.lineTo(points[i].x, points[i].y);
-              }
+            if (energy < 0.16) continue;
 
-              ctx.stroke();
-
-              if (segmentLength > 7 && randomUnit(seed + 4.4) > 0.58) {
-                const branchIndex  = Math.min(end, cursor + Math.max(1, Math.floor(segmentLength * randomUnit(seed + 5.5))));
-                const branchStart  = points[branchIndex];
-                const outwardX     = branchStart.x - centerX;
-                const outwardY     = branchStart.y - centerY;
-                const vectorLength = Math.hypot(outwardX, outwardY) || 1;
-                const nx           = outwardX / vectorLength;
-                const ny           = outwardY / vectorLength;
-                const px           = -ny;
-                const py           = nx;
-                const branchLength = 10 + randomUnit(seed + 6.6) * 20;
-                const branchBend   = (randomUnit(seed + 7.7) - 0.5) * 16;
-                const midX         = branchStart.x + nx * (branchLength * 0.45) + px * branchBend;
-                const midY         = branchStart.y + ny * (branchLength * 0.45) + py * branchBend;
-                const tipX         = branchStart.x + nx * branchLength + px * (branchBend * 1.35);
-                const tipY         = branchStart.y + ny * branchLength + py * (branchBend * 1.35);
-
-                ctx.beginPath();
-                ctx.moveTo(branchStart.x, branchStart.y);
-                ctx.lineTo(midX, midY);
-                ctx.lineTo(tipX, tipY);
-                ctx.stroke();
-              }
-            }
-
-            cursor += segmentLength + gapLength;
+            ctx.beginPath();
+            ctx.globalAlpha = Math.min(1, energy * alphaScale);
+            ctx.lineWidth   = baseWidth + energy * (baseWidth * 0.8);
+            ctx.shadowBlur  = 5 + energy * blurScale;
+            ctx.moveTo(points[i].x, points[i].y);
+            ctx.lineTo(points[i + 1].x, points[i + 1].y);
+            ctx.stroke();
           }
 
           ctx.restore();
         };
 
-        drawLightningPass(3.2, 0.18, 16);
-        drawLightningPass(1.5, 0.95, 5);
+        drawBoltPass(1.8, 0.18, 12);
+        drawBoltPass(0.9, 0.75, 4);
+
+        ctx.save();
+        ctx.shadowColor = color;
+
+        bolts.forEach((bolt, boltIndex) => {
+          const branchSeed = bolt.seed + Math.floor(timeRef.current * 2.2) * 13 + boltIndex;
+          if (randomUnit(branchSeed + 4.1) < 0.68) return;
+
+          const anchorProgress = (bolt.center + (randomUnit(branchSeed + 5.4) - 0.5) * bolt.span * 0.32 + 1) % 1;
+          const anchorIndex    = Math.min(points.length - 2, Math.floor(anchorProgress * (points.length - 1)));
+          const branchStart    = points[anchorIndex];
+          const outwardX       = branchStart.x - centerX;
+          const outwardY       = branchStart.y - centerY;
+          const vectorLength   = Math.hypot(outwardX, outwardY) || 1;
+          const nx             = outwardX / vectorLength;
+          const ny             = outwardY / vectorLength;
+          const px             = -ny;
+          const py             = nx;
+          const branchLength   = 8 + randomUnit(branchSeed + 6.7) * 12;
+          const branchBend     = (randomUnit(branchSeed + 7.9) - 0.5) * 10;
+          const midX           = branchStart.x + nx * (branchLength * 0.48) + px * branchBend;
+          const midY           = branchStart.y + ny * (branchLength * 0.48) + py * branchBend;
+          const tipX           = branchStart.x + nx * branchLength + px * (branchBend * 1.1);
+          const tipY           = branchStart.y + ny * branchLength + py * (branchBend * 1.1);
+
+          ctx.beginPath();
+          ctx.globalAlpha = 0.22 + randomUnit(branchSeed + 8.6) * 0.14;
+          ctx.lineWidth   = 0.8 + randomUnit(branchSeed + 9.5) * 0.35;
+          ctx.shadowBlur  = 4;
+          ctx.moveTo(branchStart.x, branchStart.y);
+          ctx.lineTo(midX, midY);
+          ctx.lineTo(tipX, tipY);
+          ctx.stroke();
+        });
+
+        ctx.restore();
       } else {
         ctx.beginPath();
 
@@ -306,7 +329,7 @@ const ElectricBorder = ({
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       resizeObserver.disconnect();
     };
-  }, [color, speed, chaos, variant, borderRadius, octavedNoise, getRoundedRectPoint, randomUnit]);
+  }, [color, speed, chaos, variant, borderRadius, noise2D, octavedNoise, getRoundedRectPoint, randomUnit]);
 
   const cssVars = {
     '--electric-border-color': color,
@@ -327,15 +350,13 @@ const ElectricBorder = ({
       </div>
 
       {/* Static glow layers */}
-      <div className="eb-layers">
-        {variant === 'continuous' && (
-          <>
-            <div className="eb-glow-1" />
-            <div className="eb-glow-2" />
-          </>
-        )}
-        <div className="eb-background-glow" />
-      </div>
+      {variant === 'continuous' && (
+        <div className="eb-layers">
+          <div className="eb-glow-1" />
+          <div className="eb-glow-2" />
+          <div className="eb-background-glow" />
+        </div>
+      )}
 
       {/* Actual content */}
       <div className="eb-content">{children}</div>

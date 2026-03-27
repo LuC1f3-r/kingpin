@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Button from "./Button";
 import ElectricBorder from "./ElectricBorder";
+import HeroBg from "./HeroBg";
 import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -43,27 +44,10 @@ const Hero = () => {
       <div
         id="video-frame"
         ref={videoFrameRef}
-        className="relative z-10 h-dvh w-screen overflow-hidden bg-[#05050f]"
+        className="relative z-10 h-dvh w-screen overflow-hidden bg-[#020609]"
       >
-        {/* ── Spline 3D scene ── */}
-        {/* eslint-disable-next-line react/no-unknown-property */}
-        <spline-viewer
-          url="https://prod.spline.design/w8BVk0AiqpVaV7YX/scene.splinecode"
-          class="absolute inset-0 h-full w-full"
-          loading="lazy"
-        />
-
-        {/* ── Hide "Built with Spline" watermark ──
-            The badge sits in the bottom-left corner (~160 × 36 px).
-            A left-anchored gradient fades from the scene bg to transparent
-            so it blends naturally without a hard edge.                     */}
-        <div
-          className="pointer-events-none absolute bottom-0 left-0 z-30 h-12 w-52"
-          style={{
-            background:
-              "linear-gradient(to right, #05050f 55%, transparent 100%)",
-          }}
-        />
+        {/* ── Futuristic blue cellular dot grid background ── */}
+        <HeroBg />
 
         {/* ── Hero text + CTA ── */}
         <div className="absolute left-0 top-0 z-40 size-full">
@@ -71,7 +55,7 @@ const Hero = () => {
             <h1 className="special-font hero-heading text-blue-100">
               <b>K</b>ingpi<b>n</b>
             </h1>
-            <h1 className="special-font subhero-heading text-blue-100">
+            <h1 className="special-font subhero-heading bg-gradient-to-r from-[#eef2ff] to-[#4fb7dd] bg-clip-text text-transparent">
               Vision Forge
             </h1>
             <p className="mb-5 max-w-100 font-robert text-blue-100">
@@ -91,7 +75,7 @@ const Hero = () => {
                 id="watch-trailer"
                 title="Explore More"
                 rightIcon={<TiLocationArrow />}
-                containerClass="!bg-blue-500 hover:!bg-blue-50 flex-center gap-1"
+                containerClass="!bg-[#4fb7dd] !text-[#020609] hover:!bg-[#4fb7dd]/90 flex-center gap-1"
               />
             </ElectricBorder>
           </div>

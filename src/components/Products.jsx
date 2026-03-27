@@ -50,7 +50,7 @@ const BentoCard = ({ src, title, description, tag, isComingSoon }) => (
       className="absolute left-0 top-0 size-full object-cover object-center"
     />
     {/* dark gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-[#020609]/80 via-[#020609]/20 to-transparent" />
 
     <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
       <div>
@@ -143,7 +143,7 @@ const Products = () => {
   );
 
   return (
-    <section ref={sectionRef} id="products" className="bg-black pb-52">
+    <section ref={sectionRef} id="products" className="bg-[#020609] pb-52">
       <div className="container mx-auto px-3 md:px-10">
 
         {/* ── Header ─────────────────────────────────────────────────────── */}
@@ -227,7 +227,7 @@ const Products = () => {
 
           {/* More coming soon */}
           <BentoTilt className="bento-tilt_2">
-            <div className="flex size-full flex-col justify-between bg-[#0bbcf2] p-5">
+            <div className="flex size-full flex-col justify-between bg-[#4fb7dd] p-5">
               <h1
                 className="bento-title special-font max-w-64 text-black"
                 style={{ fontFeatureSettings: '"ss01" on' }}

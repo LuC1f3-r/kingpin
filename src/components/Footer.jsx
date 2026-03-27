@@ -47,7 +47,7 @@ const NavLink = ({ href, children }) => (
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 const Footer = () => (
-  <footer className="w-screen bg-[#060608]">
+  <footer className="w-screen bg-[#020609]">
 
     {/* Top hairline */}
     <div className="h-px w-full bg-white/[0.07]" />

@@ -89,12 +89,12 @@ const Navbar = () => {
             </div>
 
             <div className="ml-8 hidden md:block">
-              <ElectricBorder color="#0bbcf2ff" speed={0.2} chaos={0.04} variant="disconnected" borderRadius={9999}>
+              <ElectricBorder color="#4fb7dd" speed={0.2} chaos={0.04} variant="disconnected" borderRadius={9999}>
                 <Button
                   id="product-button"
                   title="Contact Us"
                   rightIcon={<TiLocationArrow />}
-                  containerClass="!bg-blue-500 flex items-center justify-center gap-1"
+                  containerClass="!bg-[#4fb7dd] !text-[#020609] flex items-center justify-center gap-1"
                 />
               </ElectricBorder>
             </div>

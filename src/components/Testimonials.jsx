@@ -100,11 +100,11 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
   const blurPx  = distance === 0 ? 0   : distance === 1 ? 3   : 7;
   const opacity = distance === 0 ? 1   : distance === 1 ? 0.4 : 0.18;
   const bdrClr  = isActive
-    ? "rgba(79,183,221,0.55)"
-    : "rgba(255,255,255,0.06)";
+    ? "rgba(79,183,221,0.50)"
+    : "rgba(79,183,221,0.06)";
   const bgClr   = isActive
-    ? "rgba(255,255,255,0.07)"
-    : "rgba(255,255,255,0.025)";
+    ? "rgba(13,24,37,0.95)"
+    : "rgba(6,13,20,0.80)";
   const shadow  = isActive
     ? "0 0 50px rgba(79,183,221,0.22), 0 0 16px rgba(79,183,221,0.12)"
     : "none";
@@ -142,7 +142,7 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
       </span>
 
       {/* Quote text */}
-      <p className="mt-4 flex-1 font-circular-web text-[15px] leading-relaxed text-white/65">
+      <p className="mt-4 flex-1 font-circular-web text-[15px] leading-relaxed text-[#eef2ff]/65">
         {quote}
       </p>
 
@@ -168,10 +168,10 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
           {initial}
         </div>
         <div>
-          <p className="font-general text-[12px] font-semibold uppercase tracking-wider text-white/80">
+          <p className="font-general text-[12px] font-semibold uppercase tracking-wider text-[#eef2ff]/80">
             {name}
           </p>
-          <p className="font-general text-[10px] tracking-wide text-white/35">
+          <p className="font-general text-[10px] tracking-wide text-[#eef2ff]/35">
             {role}
           </p>
         </div>
@@ -230,17 +230,17 @@ const Testimonials = () => {
     <section
       ref={sectionRef}
       id="testimonials"
-      className="flex h-dvh flex-col justify-between overflow-hidden bg-[#0a0c10] pb-14 pt-20"
+      className="flex h-dvh flex-col justify-between overflow-hidden bg-[#060d14] pb-14 pt-20"
     >
       {/* ── Header ───────────────────────────────────────────────────────── */}
       <div className="px-10 md:px-16 lg:px-20">
-        <p className="mb-3 font-general text-[10px] uppercase tracking-[0.28em] text-white/30">
+        <p className="mb-3 font-general text-[10px] uppercase tracking-[0.28em] text-[#eef2ff]/30">
           Client Voices
         </p>
         <AnimatedTitle
           title="What our cl<b>i</b>ents <br /> are say<b>i</b>ng"
           sectionId="#testimonials"
-          containerClass="text-white"
+          containerClass="text-[#eef2ff]"
         />
       </div>
 
