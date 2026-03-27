@@ -4,7 +4,7 @@ import { TiLocationArrow } from "react-icons/ti";
 import { useWindowScroll } from "react-use";
 import gsap from "gsap";
 
-const navItems = ["Nexus", "Prologue", "Roadmap", "About", "Contact"];
+const navItems = ["About", "Services", "Projects"];
 
 const Navbar = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -16,9 +16,11 @@ const Navbar = () => {
   const audioElementRef = useRef(null);
   const navContainerRef = useRef(null);
 
-  const { y: currentScrollY} = useWindowScroll();
+  const { y: currentScrollY } = useWindowScroll();
 
-   useEffect(() => {
+  useEffect(() => {
+    if (!navContainerRef.current) return;
+
     if (currentScrollY === 0) {
       // Topmost position: show navbar without floating-nav
       setIsNavVisible(true);
@@ -50,6 +52,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    if (!audioElementRef.current) return;
     if (isAudioPlaying) {
       audioElementRef.current.play();
     } else {
@@ -67,13 +70,9 @@ const Navbar = () => {
           {/* Logo and Product button */}
           <div className="flex items-center gap-7">
             <img src="/img/logo.png" alt="logo" className="w-10" />
-
-            <Button
-              id="product-button"
-              title="Products"
-              rightIcon={<TiLocationArrow />}
-              containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
-            />
+            <span className="font-general text-xs uppercase text-white tracking-wider">
+              Kingpin Vision Forge
+            </span>
           </div>
           <div className="flex h-full items-center">
             <div className="hidden md:block">
@@ -88,7 +87,13 @@ const Navbar = () => {
               ))}
             </div>
 
-            <button
+            <Button
+              id="product-button"
+              title="Products"
+              rightIcon={<TiLocationArrow />}
+              containerClass="!bg-blue-500 md:flex hidden items-center justify-center gap-1 ml-8 electric-btn"
+            />
+            {/* <button
               onClick={toggleAudioIndicator}
               className="ml-10 flex items-center space-x-0.5"
             >
@@ -98,14 +103,14 @@ const Navbar = () => {
                 src="/audio/loop.mp3"
                 loop
               />
-                {[1, 2, 3, 4].map((bar) => (
-                  <div
-                    key={bar}
-                    className={`indicator-line ${isIndicatorActive ? "active" : ""}`}
-                    style={{ animationDelay: `${bar * 0.1}s` }}
-                  ></div>
-                ))}
-            </button>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((bar) => (
+                <div
+                  key={bar}
+                  className={`indicator-line ${isIndicatorActive ? "active" : ""}`}
+                  style={{ animationDelay: `${bar * 0.1}s` }}
+                ></div>
+              ))}
+            </button> */}
           </div>
         </nav>
       </header>

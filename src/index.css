@@ -61,7 +61,7 @@
 }
 
 .floating-nav {
-  @apply bg-black rounded-lg border;
+  @apply rounded-lg border border-white/15 bg-black/40 shadow-lg backdrop-blur-md;
 }
 
 .absolute-center {
@@ -82,7 +82,11 @@
 }
 
 .hero-heading {
-  @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-[6rem] lg:text-[12rem];
+  @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-[6rem] lg:text-[10rem];
+}
+
+.subhero-heading {
+  @apply uppercase font-zentry font-black text-3xl sm:right-10 sm:text-5xl md:text-[5rem] lg:text-[8rem];
 }
 
 .about-subtext {
@@ -164,6 +168,64 @@
 .indicator-line.active {
   animation: indicator-line 0.5s ease infinite;
   animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
+/* Marquee scrolling strip */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-wrap {
+  overflow: hidden;
+  width: 100%;
+  background-color: #010101;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 22s linear infinite;
+}
+
+.marquee-item {
+  font-family: var(--font-zentry);
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #edff66;
+  padding: 0 2rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.marquee-sep {
+  color: #4fb7dd;
+  margin-left: 2rem;
+}
+
+/* Electric pulsating button animation */
+@keyframes electric-pulse {
+  0%, 100% {
+    box-shadow: 0 0 6px #60a5fa, 0 0 14px #3b82f6, 0 0 26px #2563eb;
+    border-color: rgba(96, 165, 250, 0.7);
+  }
+  33% {
+    box-shadow: 0 0 10px #a78bfa, 0 0 22px #8b5cf6, 0 0 44px #7c3aed;
+    border-color: rgba(167, 139, 250, 0.85);
+  }
+  66% {
+    box-shadow: 0 0 14px #fff, 0 0 28px #93c5fd, 0 0 56px #3b82f6;
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.electric-btn {
+  border: 1px solid rgba(96, 165, 250, 0.6);
+  animation: electric-pulse 1.4s ease-in-out infinite;
 }
 
 /* Keep your custom keyframes at the bottom */

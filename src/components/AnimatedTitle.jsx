@@ -24,8 +24,9 @@ const AnimatedTitle = ({ title, containerClass = "" }) => {
           stagger: 0.03,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+            start: "top 85%",
+            end: "top 15%",
+            scrub: 0.8,
           },
         },
       );
