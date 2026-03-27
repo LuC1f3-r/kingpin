@@ -43,17 +43,29 @@ const Hero = () => {
       <div
         id="video-frame"
         ref={videoFrameRef}
-        className="relative z-10 h-dvh w-screen overflow-hidden bg-blue-75"
+        className="relative z-10 h-dvh w-screen overflow-hidden bg-[#05050f]"
       >
-        <video
-          src="/videos/hero-1.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute left-0 top-0 size-full object-cover object-center"
+        {/* ── Spline 3D scene ── */}
+        {/* eslint-disable-next-line react/no-unknown-property */}
+        <spline-viewer
+          url="https://prod.spline.design/w8BVk0AiqpVaV7YX/scene.splinecode"
+          class="absolute inset-0 h-full w-full"
+          loading="lazy"
         />
 
+        {/* ── Hide "Built with Spline" watermark ──
+            The badge sits in the bottom-left corner (~160 × 36 px).
+            A left-anchored gradient fades from the scene bg to transparent
+            so it blends naturally without a hard edge.                     */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 z-30 h-12 w-52"
+          style={{
+            background:
+              "linear-gradient(to right, #05050f 55%, transparent 100%)",
+          }}
+        />
+
+        {/* ── Hero text + CTA ── */}
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-70 px-5 sm:px-10">
             <h1 className="special-font hero-heading text-blue-100">
@@ -63,16 +75,23 @@ const Hero = () => {
               Vision Forge
             </h1>
             <p className="mb-5 max-w-100 font-robert text-blue-100">
-              Reimagining digital infrastructure. The architecture of tomorrow begins your business operations,
+              Reimagining digital infrastructure. The architecture of tomorrow
+              begins your business operations,
               <br />
               transformed into a seamless ecosystem.
             </p>
-            <ElectricBorder color="#4fb7dd" speed={0.2} chaos={0.04} borderRadius={9999}>
+            <ElectricBorder
+              color="#4fb7dd"
+              speed={0.2}
+              chaos={0.09}
+              variant="disconnected"
+              borderRadius={9999}
+            >
               <Button
                 id="watch-trailer"
                 title="Explore More"
                 rightIcon={<TiLocationArrow />}
-                containerClass="!bg-blue-500 flex-center gap-1"
+                containerClass="!bg-blue-500 hover:!bg-blue-50 flex-center gap-1"
               />
             </ElectricBorder>
           </div>

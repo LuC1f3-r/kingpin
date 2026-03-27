@@ -2,14 +2,14 @@ import About from './components/About'
 import Claims from './components/Claims'
 import Contact from './components/Contact'
 import Description from './components/Description'
-import Features from './components/Features'
+import Products from './components/Products'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import Navbar from './components/Navbar'
 import Process from './components/Process'
 import Services from './components/Services'
-import Story from './components/Story'
+import Testimonials from './components/Testimonials'
 
 const App = () => {
   return (
@@ -21,9 +21,9 @@ const App = () => {
       <About />
       <Services />
       <Process />
-      <Features />
+      <Products />
       <Claims />
-      <Story />
+      <Testimonials />
       <Contact />
       <Footer />
     </main>

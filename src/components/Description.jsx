@@ -48,7 +48,7 @@ const Description = () => {
 
         {/* Two-line animated heading */}
         <AnimatedTitle
-          title="We don't just build —<br />we <b>d</b>ominate."
+          title="We don't just build<br />we <b>d</b>ominate."
           containerClass="!text-black text-center !text-4xl md:!text-5xl lg:!text-6xl"
         />
 
@@ -58,7 +58,7 @@ const Description = () => {
           className="mt-8 max-w-xl font-robert text-sm leading-relaxed text-black/60 md:text-base"
         >
           From scalable software to razor-sharp brand identities, KVF
-          engineers every layer of your digital presence — built to lead,
+          engineers every layer of your digital presence that's built to lead,
           never to follow.
         </p>
       </div>

@@ -9,6 +9,7 @@ import {
   TbShieldCheck,
   TbDeviceMobileCode,
 } from "react-icons/tb";
+import BorderGlow from "./BorderGlow";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -17,91 +18,133 @@ const services = [
     Icon: TbTerminal2,
     title: "Web Dev",
     desc: "High-performance, bespoke web environments built on bleeding-edge tech stacks for maximum authority.",
+    colors:    ['#4fb7dd', '#22d3ee', '#3b82f6'],
+    glowColor: '196 72 65',
+    accent:    '#4fb7dd',
   },
   {
     Icon: TbStack2,
     title: "SaaS Engineering",
     desc: "Architecting multi-tenant platforms designed for aggressive scale and seamless vertical integration.",
+    colors:    ['#a855f7', '#7c3aed', '#c084fc'],
+    glowColor: '272 72 65',
+    accent:    '#a855f7',
   },
   {
     Icon: TbCloud,
     title: "Cloud Architecture",
     desc: "Distributed global systems utilizing serverless paradigms and elastic load balancing for 99.99% uptime.",
+    colors:    ['#10b981', '#06b6d4', '#34d399'],
+    glowColor: '160 72 55',
+    accent:    '#10b981',
   },
   {
     Icon: TbShieldCheck,
     title: "Brand Systems",
     desc: "Developing visual identities that project power, establishing dominance in crowded market sectors.",
+    colors:    ['#f472b6', '#e879f9', '#fb7185'],
+    glowColor: '326 85 72',
+    accent:    '#f472b6',
   },
   {
     Icon: TbDeviceMobileCode,
     title: "App Ecosystems",
     desc: "Native and cross-platform mobile experiences engineered for the modern sovereign user. Zero friction, total control.",
+    colors:    ['#fbbf24', '#f97316', '#fb923c'],
+    glowColor: '38 90 65',
+    accent:    '#fbbf24',
   },
 ];
+
+const glowBase = {
+  backgroundColor: '#131315',
+  borderRadius:    4,
+  glowRadius:      45,
+  glowIntensity:   1.1,
+  coneSpread:      28,
+  edgeSensitivity: 25,
+  fillOpacity:     0.45,
+};
+
+const CardBody = ({ Icon, title, desc, accent }) => (
+  <div className="relative flex h-full flex-col gap-7 p-[2.2rem]">
+    <div
+      className="absolute inset-y-0 left-0 w-[3px] rounded-l-sm opacity-50"
+      style={{ backgroundColor: accent }}
+    />
+    <Icon size={30} style={{ color: accent }} />
+    <div>
+      <h3
+        className="mb-3 font-zentry text-xl font-black uppercase text-white"
+        style={{ fontFeatureSettings: '"ss01" on' }}
+      >
+        {title}
+      </h3>
+      <p className="font-robert text-sm leading-relaxed text-white/40">
+        {desc}
+      </p>
+    </div>
+  </div>
+);
 
 const Services = () => {
   const sectionRef  = useRef(null);
   const headerRef   = useRef(null);
-  const gridRef     = useRef(null);
-  const widgetRef   = useRef(null);
+  const topRowRef   = useRef(null);
+  const botRowRef   = useRef(null);
 
   useGSAP(
     () => {
-      // Initial states
-      gsap.set(headerRef.current.children, { opacity: 0, y: 30 });
-      gsap.set(gridRef.current.children,   { opacity: 0, y: 50 });
-      gsap.set(widgetRef.current,          { opacity: 0, y: 30 });
-
-      // Header scrubs in
+      /* ── Header ── */
       gsap.fromTo(
         headerRef.current.children,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 28 },
         {
           opacity: 1,
           y: 0,
+          duration: 0.7,
           ease: "power2.out",
-          stagger: 0.2,
+          stagger: 0.15,
           scrollTrigger: {
             trigger: headerRef.current,
-            start: "top 80%",
-            end: "top 40%",
-            scrub: 0.8,
+            start: "top 88%",
+            toggleActions: "play none none none",
           },
         },
       );
 
-      // Service cards stagger up
+      /* ── Top row cards (children of the grid div) ── */
       gsap.fromTo(
-        gridRef.current.children,
+        topRowRef.current.children,
         { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          ease: "power2.out",
+          duration: 0.6,
+          ease: "power3.out",
           stagger: 0.12,
           scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 80%",
-            end: "top 10%",
-            scrub: 0.8,
+            trigger: topRowRef.current,
+            start: "top 88%",
+            toggleActions: "play none none none",
           },
         },
       );
 
-      // Widget fades in
+      /* ── Bottom row cards ── */
       gsap.fromTo(
-        widgetRef.current,
-        { opacity: 0, y: 30 },
+        botRowRef.current.children,
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          ease: "power2.out",
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0.15,
           scrollTrigger: {
-            trigger: widgetRef.current,
-            start: "top 85%",
-            end: "top 50%",
-            scrub: 0.8,
+            trigger: botRowRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
           },
         },
       );
@@ -113,10 +156,10 @@ const Services = () => {
     <section
       ref={sectionRef}
       id="services"
-      className="w-screen bg-[#0c0c0f] px-10 pb-28 pt-24 md:px-16 lg:px-20"
+      className="flex min-h-screen w-screen flex-col bg-[#0c0c0f] px-10 py-24 md:px-16 lg:px-20"
     >
-      {/* ── Header ─────────────────────────────────────────────────────────── */}
-      <div ref={headerRef} className="mb-16">
+      {/* ── Header ───────────────────────────────────────────────────────── */}
+      <div ref={headerRef} className="mb-10 shrink-0">
         <p className="mb-4 font-general text-[10px] uppercase tracking-[0.28em] text-white/30">
           Core Capabilities
         </p>
@@ -129,84 +172,48 @@ const Services = () => {
         </h2>
       </div>
 
-      {/* ── Service cards grid ─────────────────────────────────────────────── */}
-      {/* Top row: 3 cards */}
-      <div
-        ref={gridRef}
-        className="grid grid-cols-1 border-t border-white/[0.06] md:grid-cols-3"
-      >
-        {services.slice(0, 3).map(({ Icon, title, desc }) => (
-          <div
-            key={title}
-            className="group flex flex-col gap-6 border-b border-r border-white/[0.06] p-8 transition-colors duration-300 hover:bg-white/[0.02] last:border-r-0"
-          >
-            <Icon size={28} className="text-[#4fb7dd]" />
-            <div>
-              <h3
-                className="mb-3 font-zentry text-xl font-black uppercase text-white"
-                style={{ fontFeatureSettings: '"ss01" on' }}
-              >
-                {title}
-              </h3>
-              <p className="font-robert text-sm leading-relaxed text-white/40">
-                {desc}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <div className="flex flex-1 flex-col gap-4">
 
-      {/* Bottom row: 2 cards + widget */}
-      <div className="grid grid-cols-1 border-b border-white/[0.06] md:grid-cols-3">
-        {services.slice(3).map(({ Icon, title, desc }) => (
-          <div
-            key={title}
-            className="group flex flex-col gap-6 border-b border-r border-white/[0.06] p-8 transition-colors duration-300 hover:bg-white/[0.02] md:border-b-0"
-          >
-            <Icon size={28} className="text-[#4fb7dd]" />
-            <div>
-              <h3
-                className="mb-3 font-zentry text-xl font-black uppercase text-white"
-                style={{ fontFeatureSettings: '"ss01" on' }}
-              >
-                {title}
-              </h3>
-              <p className="font-robert text-sm leading-relaxed text-white/40">
-                {desc}
-              </p>
-            </div>
-          </div>
-        ))}
-
-        {/* Live status widget */}
+        {/* Top row — 3 equal cards */}
         <div
-          ref={widgetRef}
-          className="flex flex-col justify-between border-r-0 p-8"
+          ref={topRowRef}
+          className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-3"
         >
-          <div className="flex items-center justify-between">
-            <span className="font-general text-[9px] uppercase tracking-[0.22em] text-white/25">
-              Active_Connections
-            </span>
-            <span className="font-general text-[9px] uppercase tracking-[0.12em] text-[#4fb7dd]">
-              Secure
-            </span>
-          </div>
-
-          <div className="space-y-3">
-            {[82, 61, 74].map((pct, i) => (
-              <div key={i} className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
-                <div
-                  className="h-full rounded-full bg-[#4fb7dd]/50"
-                  style={{ width: `${pct}%` }}
-                />
-              </div>
-            ))}
-          </div>
-
-          <p className="font-robert text-[11px] leading-relaxed text-white/20">
-            All systems operational. Distributed infrastructure standing by.
-          </p>
+          {services.slice(0, 3).map(({ Icon, title, desc, colors, glowColor, accent }) => (
+            <BorderGlow
+              key={title}
+              colors={colors}
+              glowColor={glowColor}
+              {...glowBase}
+            >
+              <CardBody Icon={Icon} title={title} desc={desc} accent={accent} />
+            </BorderGlow>
+          ))}
         </div>
+
+        {/* Bottom row — 1 col + 2-col wide */}
+        <div
+          ref={botRowRef}
+          className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-3"
+        >
+          <BorderGlow
+            colors={services[3].colors}
+            glowColor={services[3].glowColor}
+            {...glowBase}
+          >
+            <CardBody {...services[3]} />
+          </BorderGlow>
+
+          <BorderGlow
+            colors={services[4].colors}
+            glowColor={services[4].glowColor}
+            {...glowBase}
+            className="md:col-span-2"
+          >
+            <CardBody {...services[4]} />
+          </BorderGlow>
+        </div>
+
       </div>
     </section>
   );

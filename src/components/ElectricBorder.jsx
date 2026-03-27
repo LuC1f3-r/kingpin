@@ -8,6 +8,7 @@ import { useEffect, useRef, useCallback } from 'react';
  *   color        {string}  Border color           default "#4fb7dd"
  *   speed        {number}  Animation speed        default 1
  *   chaos        {number}  Displacement amount    default 0.12
+ *   variant      {string}  "continuous" | "disconnected"
  *   borderRadius {number}  Border radius in px    default 9999 (pill)
  *   className    {string}  Extra classes on wrapper
  *   style        {object}  Extra styles on wrapper
@@ -17,6 +18,7 @@ const ElectricBorder = ({
   color = '#0c41e2ff',
   speed = 2.2,
   chaos = 0.05,
+  variant = 'continuous',
   borderRadius = 9999,
   className = '',
   style = {},
@@ -29,6 +31,7 @@ const ElectricBorder = ({
 
   // ── Noise helpers ──────────────────────────────────────────────────────────
   const random = useCallback((x) => (Math.sin(x * 12.9898) * 43758.5453) % 1, []);
+  const randomUnit = useCallback((x) => Math.abs(random(x)), [random]);
 
   const noise2D = useCallback(
     (x, y) => {
@@ -196,8 +199,7 @@ const ElectricBorder = ({
 
       const approxPerimeter = 2 * (borderWidth + borderHeight) + 2 * Math.PI * radius;
       const sampleCount     = Math.floor(approxPerimeter / 2);
-
-      ctx.beginPath();
+      const points = [];
 
       for (let i = 0; i <= sampleCount; i++) {
         const progress = i / sampleCount;
@@ -209,11 +211,84 @@ const ElectricBorder = ({
         const dx = point.x + xNoise * displacement;
         const dy = point.y + yNoise * displacement;
 
-        i === 0 ? ctx.moveTo(dx, dy) : ctx.lineTo(dx, dy);
+        points.push({ x: dx, y: dy });
       }
 
-      ctx.closePath();
-      ctx.stroke();
+      if (variant === 'disconnected') {
+        const centerX     = left + borderWidth / 2;
+        const centerY     = top + borderHeight / 2;
+        const flickerSeed = Math.floor(timeRef.current * 12);
+
+        const drawLightningPass = (lineWidth, alpha, blur) => {
+          ctx.save();
+          ctx.lineWidth   = lineWidth;
+          ctx.globalAlpha = alpha;
+          ctx.shadowColor = color;
+          ctx.shadowBlur  = blur;
+
+          let cursor = 0;
+
+          while (cursor < points.length - 1) {
+            const seed          = flickerSeed * 131 + cursor * 17;
+            const segmentLength = Math.max(4, Math.floor(5 + randomUnit(seed + 1.1) * 16));
+            const gapLength     = Math.max(2, Math.floor(2 + randomUnit(seed + 2.2) * 10));
+            const shouldDraw    = randomUnit(seed + 3.3) > 0.2;
+
+            if (shouldDraw) {
+              const end = Math.min(cursor + segmentLength, points.length - 1);
+
+              ctx.beginPath();
+              ctx.moveTo(points[cursor].x, points[cursor].y);
+
+              for (let i = cursor + 1; i <= end; i++) {
+                ctx.lineTo(points[i].x, points[i].y);
+              }
+
+              ctx.stroke();
+
+              if (segmentLength > 7 && randomUnit(seed + 4.4) > 0.58) {
+                const branchIndex  = Math.min(end, cursor + Math.max(1, Math.floor(segmentLength * randomUnit(seed + 5.5))));
+                const branchStart  = points[branchIndex];
+                const outwardX     = branchStart.x - centerX;
+                const outwardY     = branchStart.y - centerY;
+                const vectorLength = Math.hypot(outwardX, outwardY) || 1;
+                const nx           = outwardX / vectorLength;
+                const ny           = outwardY / vectorLength;
+                const px           = -ny;
+                const py           = nx;
+                const branchLength = 10 + randomUnit(seed + 6.6) * 20;
+                const branchBend   = (randomUnit(seed + 7.7) - 0.5) * 16;
+                const midX         = branchStart.x + nx * (branchLength * 0.45) + px * branchBend;
+                const midY         = branchStart.y + ny * (branchLength * 0.45) + py * branchBend;
+                const tipX         = branchStart.x + nx * branchLength + px * (branchBend * 1.35);
+                const tipY         = branchStart.y + ny * branchLength + py * (branchBend * 1.35);
+
+                ctx.beginPath();
+                ctx.moveTo(branchStart.x, branchStart.y);
+                ctx.lineTo(midX, midY);
+                ctx.lineTo(tipX, tipY);
+                ctx.stroke();
+              }
+            }
+
+            cursor += segmentLength + gapLength;
+          }
+
+          ctx.restore();
+        };
+
+        drawLightningPass(3.2, 0.18, 16);
+        drawLightningPass(1.5, 0.95, 5);
+      } else {
+        ctx.beginPath();
+
+        points.forEach((point, index) => {
+          index === 0 ? ctx.moveTo(point.x, point.y) : ctx.lineTo(point.x, point.y);
+        });
+
+        ctx.closePath();
+        ctx.stroke();
+      }
 
       animationRef.current = requestAnimationFrame(draw);
     };
@@ -231,7 +306,7 @@ const ElectricBorder = ({
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       resizeObserver.disconnect();
     };
-  }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);
+  }, [color, speed, chaos, variant, borderRadius, octavedNoise, getRoundedRectPoint, randomUnit]);
 
   const cssVars = {
     '--electric-border-color': color,
@@ -244,6 +319,7 @@ const ElectricBorder = ({
       ref={containerRef}
       className={`eb-root ${className}`}
       style={cssVars}
+      data-variant={variant}
     >
       {/* Canvas arc */}
       <div className="eb-canvas-container">
@@ -252,8 +328,12 @@ const ElectricBorder = ({
 
       {/* Static glow layers */}
       <div className="eb-layers">
-        <div className="eb-glow-1" />
-        <div className="eb-glow-2" />
+        {variant === 'continuous' && (
+          <>
+            <div className="eb-glow-1" />
+            <div className="eb-glow-2" />
+          </>
+        )}
         <div className="eb-background-glow" />
       </div>
 

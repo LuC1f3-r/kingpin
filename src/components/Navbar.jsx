@@ -71,7 +71,7 @@ const Navbar = () => {
           {/* Logo and Product button */}
           <div className="flex items-center gap-7">
             <img src="/img/logo.png" alt="logo" className="w-10" />
-            <span className="font-general text-xs uppercase text-white tracking-wider">
+            <span className="font-zentry text-xs uppercase text-white tracking-wider">
               Kingpin Vision Forge
             </span>
           </div>
@@ -89,7 +89,7 @@ const Navbar = () => {
             </div>
 
             <div className="ml-8 hidden md:block">
-              <ElectricBorder color="#0bbcf2ff" speed={0.2} chaos={0.05} borderRadius={9999}>
+              <ElectricBorder color="#0bbcf2ff" speed={0.2} chaos={0.04} variant="disconnected" borderRadius={9999}>
                 <Button
                   id="product-button"
                   title="Contact Us"

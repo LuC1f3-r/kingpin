@@ -31,7 +31,7 @@ const Contact = () => {
           />
         </div>
         <div className="flex flex-col items-center text-center">
-          <p className="special-font mt-10 w-full font-zentry text-5xl leading-[0.9] md:text-[6rem] ">
+          <p className="special-font mt-10 w-full font-zentry text-5xl leading-[0.9] md:text-[6rem] z-10">
             The <b>i</b>nternet is <b>c</b>rowded<br /> We build <b>s</b>ystems<br />t<b>h</b>at
             <b>w</b>in
           </p>
