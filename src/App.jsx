@@ -20,9 +20,9 @@ const App = () => {
     <main className='relative min-h-screen w-screen overflow-x-hidden'>
       {/* Loading screen sits fixed on top; whole app renders behind it so
           the hero is already loaded when the overlay fades out.            */}
-      {loading && (
+      {/* {loading && (
         <LoadingScreen onComplete={() => setLoading(false)} />
-      )}
+      )} */}
 
       <Navbar />
       <Hero />
