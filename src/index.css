@@ -39,29 +39,29 @@
   --font-zentry: "remap", "zentry-regular", sans-serif;
 
   /* Colors — unified blue/black system */
-  --color-blue-50:  #eef2ff;   /* cool near-white (primary text on dark) */
-  --color-blue-75:  #eef2ff;
+  --color-blue-50: #eef2ff; /* cool near-white (primary text on dark) */
+  --color-blue-75: #eef2ff;
   --color-blue-100: #eef2ff;
   --color-blue-200: #010101;
-  --color-blue-300: #4fb7dd;   /* single accent blue */
+  --color-blue-300: #4fb7dd; /* single accent blue */
 }
 
 /* ── KingpiN Vision Forge elevation tokens ──────────────────────────────────────────────────── */
 :root {
-  --KingpiN Vision Forge-root:          #020609;   /* Hero, Products, Footer */
-  --KingpiN Vision Forge-section:       #060d14;   /* About, Services, Claims, Testimonials */
-  --KingpiN Vision Forge-card:          #0d1825;   /* Service cards, Testimonial cards */
-  --KingpiN Vision Forge-surface:       #132035;   /* Hover / elevated */
+  --kvf-root: #020609; /* Hero, Products, Footer */
+  --kvf-section: #060d14; /* About, Services, Claims, Testimonials */
+  --kvf-card: #0d1825; /* Service cards, Testimonial cards */
+  --kvf-surface: #132035; /* Hover / elevated */
 
-  --KingpiN Vision Forge-accent:        #4fb7dd;
-  --KingpiN Vision Forge-accent-soft:   rgba(79,183,221,0.12);
-  --KingpiN Vision Forge-accent-dim:    rgba(79,183,221,0.35);
-  --KingpiN Vision Forge-accent-glow:   rgba(79,183,221,0.08);
+  --kvf-accent: #4fb7dd;
+  --kvf-accent-soft: rgba(79, 183, 221, 0.12);
+  --kvf-accent-dim: rgba(79, 183, 221, 0.35);
+  --kvf-accent-glow: rgba(79, 183, 221, 0.08);
 
-  --KingpiN Vision Forge-text-primary:  #eef2ff;
-  --KingpiN Vision Forge-border:        rgba(79,183,221,0.08);
-  --KingpiN Vision Forge-border-subtle: rgba(255,255,255,0.05);
-  --KingpiN Vision Forge-border-glow:   rgba(79,183,221,0.22);
+  --kvf-text-primary: #eef2ff;
+  --kvf-border: rgba(79, 183, 221, 0.08);
+  --kvf-border-subtle: rgba(255, 255, 255, 0.05);
+  --kvf-border-glow: rgba(79, 183, 221, 0.22);
 }
 
 /* 3. Base Styles */
@@ -82,7 +82,7 @@
 /* Use @utility to register it properly for @apply */
 @utility border-hsla {
   @apply border;
-  border-color: rgba(79,183,221,0.08);
+  border-color: rgba(79, 183, 221, 0.08);
 }
 
 .nav-shell {
@@ -90,8 +90,10 @@
 }
 
 .nav-shell:hover {
-  border-color: rgba(79,183,221,0.16);
-  box-shadow: 0 18px 42px rgba(0,0,0,0.42), 0 0 28px rgba(79,183,221,0.10);
+  border-color: rgba(79, 183, 221, 0.16);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(79, 183, 221, 0.1);
 }
 
 .nav-hover-btn {
@@ -107,9 +109,15 @@
   width: 100%;
   transform: scaleX(0);
   transform-origin: bottom right;
-  background: linear-gradient(90deg, rgba(79,183,221,0.1), rgba(79,183,221,0.95));
+  background: linear-gradient(
+    90deg,
+    rgba(79, 183, 221, 0.1),
+    rgba(79, 183, 221, 0.95)
+  );
   opacity: 0.8;
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease;
 }
 
 .nav-hover-btn:hover {
@@ -130,14 +138,16 @@
 
 .floating-nav {
   @apply rounded-lg backdrop-blur-xl;
-  border: 1px solid rgba(79,183,221,0.10);
-  background-color: rgba(2,6,9,0.78);
-  box-shadow: 0 0 40px rgba(79,183,221,0.04), 0 8px 32px rgba(0,0,0,0.5);
+  border: 1px solid rgba(79, 183, 221, 0.1);
+  background-color: rgba(2, 6, 9, 0.78);
+  box-shadow:
+    0 0 40px rgba(79, 183, 221, 0.04),
+    0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .cta-transition-btn {
   @apply relative isolate transition-[transform,box-shadow,background-color,color] duration-300 ease-[cubic-bezier(0.22_1_0.36_1)] will-change-transform;
-  box-shadow: 0 10px 24px rgba(79,183,221,0.16);
+  box-shadow: 0 10px 24px rgba(79, 183, 221, 0.16);
 }
 
 .cta-transition-btn::before {
@@ -147,10 +157,10 @@
   border-radius: inherit;
   background: linear-gradient(
     120deg,
-    rgba(255,255,255,0.24),
-    rgba(255,255,255,0.05) 34%,
-    rgba(255,255,255,0.02) 58%,
-    rgba(255,255,255,0.18)
+    rgba(255, 255, 255, 0.24),
+    rgba(255, 255, 255, 0.05) 34%,
+    rgba(255, 255, 255, 0.02) 58%,
+    rgba(255, 255, 255, 0.18)
   );
   opacity: 0.7;
   pointer-events: none;
@@ -160,7 +170,7 @@
 
 .cta-transition-btn:hover {
   transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 18px 36px rgba(79,183,221,0.24);
+  box-shadow: 0 18px 36px rgba(79, 183, 221, 0.24);
 }
 
 .cta-transition-btn:hover::before {
@@ -169,7 +179,10 @@
 
 .cta-transition-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(2,6,9,0.92), 0 0 0 4px rgba(79,183,221,0.34), 0 18px 36px rgba(79,183,221,0.24);
+  box-shadow:
+    0 0 0 2px rgba(2, 6, 9, 0.92),
+    0 0 0 4px rgba(79, 183, 221, 0.34),
+    0 18px 36px rgba(79, 183, 221, 0.24);
 }
 
 .absolute-center {
@@ -281,15 +294,19 @@
 
 /* Marquee scrolling strip */
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee-wrap {
   overflow: hidden;
   width: 100%;
   background-color: #020609;
-  border-bottom: 1px solid rgba(79,183,221,0.08);
+  border-bottom: 1px solid rgba(79, 183, 221, 0.08);
   padding: 18px 0;
 }
 
@@ -304,7 +321,7 @@
   font-size: 1.1rem;
   font-weight: 900;
   text-transform: uppercase;
-  color: rgba(238,242,255,0.65);
+  color: rgba(238, 242, 255, 0.65);
   padding: 0 2rem;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -361,7 +378,8 @@
 }
 
 .eb-glow-1 {
-  border: 2px solid color-mix(in oklch, var(--electric-border-color) 60%, transparent);
+  border: 2px solid
+    color-mix(in oklch, var(--electric-border-color) 60%, transparent);
   filter: blur(1px);
 }
 
@@ -375,7 +393,12 @@
   transform: scale(1.1);
   filter: blur(28px);
   opacity: 0.28;
-  background: linear-gradient(-30deg, var(--electric-border-color), transparent, var(--electric-border-color));
+  background: linear-gradient(
+    -30deg,
+    var(--electric-border-color),
+    transparent,
+    var(--electric-border-color)
+  );
 }
 
 /* Keep your custom keyframes at the bottom */
@@ -438,16 +461,19 @@
   background:
     linear-gradient(var(--card-bg, #131315) 0 100%) padding-box,
     linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,
-    var(--gradient-one)   border-box,
-    var(--gradient-two)   border-box,
+    var(--gradient-one) border-box,
+    var(--gradient-two) border-box,
     var(--gradient-three) border-box,
-    var(--gradient-four)  border-box,
-    var(--gradient-five)  border-box,
-    var(--gradient-six)   border-box,
+    var(--gradient-four) border-box,
+    var(--gradient-five) border-box,
+    var(--gradient-six) border-box,
     var(--gradient-seven) border-box,
-    var(--gradient-base)  border-box;
+    var(--gradient-base) border-box;
 
-  opacity: calc((var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
+  opacity: calc(
+    (var(--edge-proximity) - var(--color-sensitivity)) /
+      (100 - var(--color-sensitivity))
+  );
 
   mask-image: conic-gradient(
     from var(--cursor-angle) at center,
@@ -462,14 +488,14 @@
 .bg-glow-card::after {
   border: 1px solid transparent;
   background:
-    var(--gradient-one)   padding-box,
-    var(--gradient-two)   padding-box,
+    var(--gradient-one) padding-box,
+    var(--gradient-two) padding-box,
     var(--gradient-three) padding-box,
-    var(--gradient-four)  padding-box,
-    var(--gradient-five)  padding-box,
-    var(--gradient-six)   padding-box,
+    var(--gradient-four) padding-box,
+    var(--gradient-five) padding-box,
+    var(--gradient-six) padding-box,
     var(--gradient-seven) padding-box,
-    var(--gradient-base)  padding-box;
+    var(--gradient-base) padding-box;
 
   mask-image:
     linear-gradient(to bottom, black, black),
@@ -478,10 +504,20 @@
     radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%),
     radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%),
     radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%),
-    conic-gradient(from var(--cursor-angle) at center, transparent 5%, black 15%, black 85%, transparent 95%);
+    conic-gradient(
+      from var(--cursor-angle) at center,
+      transparent 5%,
+      black 15%,
+      black 85%,
+      transparent 95%
+    );
 
   mask-composite: subtract, add, add, add, add, add;
-  opacity: calc(var(--fill-opacity, 0.5) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
+  opacity: calc(
+    var(--fill-opacity, 0.5) *
+      (var(--edge-proximity) - var(--color-sensitivity)) /
+      (100 - var(--color-sensitivity))
+  );
   mix-blend-mode: soft-light;
 }
 
@@ -493,10 +529,16 @@
 
   mask-image: conic-gradient(
     from var(--cursor-angle) at center,
-    black 2.5%, transparent 10%, transparent 90%, black 97.5%
+    black 2.5%,
+    transparent 10%,
+    transparent 90%,
+    black 97.5%
   );
 
-  opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
+  opacity: calc(
+    (var(--edge-proximity) - var(--edge-sensitivity)) /
+      (100 - var(--edge-sensitivity))
+  );
   mix-blend-mode: plus-lighter;
 }
 
@@ -506,17 +548,17 @@
   inset: var(--glow-padding);
   border-radius: inherit;
   box-shadow:
-    inset 0 0 0 1px   var(--glow-color,    hsl(40deg 80% 80% / 100%)),
-    inset 0 0 1px 0   var(--glow-color-60, hsl(40deg 80% 80% / 60%)),
-    inset 0 0 3px 0   var(--glow-color-50, hsl(40deg 80% 80% / 50%)),
-    inset 0 0 6px 0   var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
-    inset 0 0 15px 0  var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
+    inset 0 0 0 1px var(--glow-color, hsl(40deg 80% 80% / 100%)),
+    inset 0 0 1px 0 var(--glow-color-60, hsl(40deg 80% 80% / 60%)),
+    inset 0 0 3px 0 var(--glow-color-50, hsl(40deg 80% 80% / 50%)),
+    inset 0 0 6px 0 var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
+    inset 0 0 15px 0 var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
     inset 0 0 25px 2px var(--glow-color-20, hsl(40deg 80% 80% / 20%)),
     inset 0 0 50px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%)),
-    0 0 1px 0   var(--glow-color-60, hsl(40deg 80% 80% / 60%)),
-    0 0 3px 0   var(--glow-color-50, hsl(40deg 80% 80% / 50%)),
-    0 0 6px 0   var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
-    0 0 15px 0  var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
+    0 0 1px 0 var(--glow-color-60, hsl(40deg 80% 80% / 60%)),
+    0 0 3px 0 var(--glow-color-50, hsl(40deg 80% 80% / 50%)),
+    0 0 6px 0 var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
+    0 0 15px 0 var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
     0 0 25px 2px var(--glow-color-20, hsl(40deg 80% 80% / 20%)),
     0 0 50px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%));
 }
@@ -532,7 +574,11 @@
 
 /* Subtle blue dot-grid texture for dark sections */
 .dot-grid-bg {
-  background-image: radial-gradient(circle, rgba(79,183,221,0.06) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgba(79, 183, 221, 0.06) 1px,
+    transparent 1px
+  );
   background-size: 28px 28px;
 }
 
