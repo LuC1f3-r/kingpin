@@ -164,7 +164,7 @@ const About = () => {
             <span className="text-[#4fb7dd]">Infrastructure.</span>
           </h2>
 
-          <p className="max-w-[400px] font-robert text-sm leading-relaxed text-[#eef2ff]/50">
+          <p className="max-w-[400px] font-robert text-sm leading-relaxed text-[#eef2ff]/70">
             Every brand and idea begins as raw material. In the Forge, we
             subject these concepts to intense analytical pressure and
             technical refinement. We don't just build websites; we construct
@@ -181,10 +181,10 @@ const About = () => {
             style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
           >
             <TbAdjustmentsHorizontal className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Refinement
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
+            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
               Stripping away the non-essential to reveal the core competitive
               engine.
             </p>
@@ -196,10 +196,10 @@ const About = () => {
             style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
           >
             <TbShieldCheck className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Hardening
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
+            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
               Stress-testing architectures for global scale and high-traffic
               resilience.
             </p>
@@ -212,15 +212,15 @@ const About = () => {
           >
             <div className="mb-3 flex items-center gap-2">
               <TbTerminal2 className="text-[#4fb7dd]" size={13} />
-              <span className="font-general text-[8.5px] uppercase tracking-widest text-[#eef2ff]/35">
+              <span className="font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
                 System Core Active.exe
               </span>
             </div>
             <TbCpu className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Precise Assembly
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
+            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
               Component-driven engineering designed for rapid market iteration.
             </p>
           </div>
@@ -231,10 +231,10 @@ const About = () => {
             style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
           >
             <TbArrowsExchange2 className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Data Flow
             </p>
-            <p className="font-robert text-[11px] leading-relaxed text-[#eef2ff]/25">
+            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
               Optimizing conversion pathways through algorithmic precision.
             </p>
           </div>
@@ -254,7 +254,7 @@ const About = () => {
               className="protocol-card flex flex-col justify-between px-8 py-10 opacity-0 first:pl-0 last:pr-0"
             >
               <div>
-                <p className="mb-5 font-general text-[9px] uppercase tracking-[0.22em] text-[#eef2ff]/25">
+                <p className="mb-5 font-general text-[10px] uppercase tracking-[0.22em] text-[#eef2ff]/55">
                   {card.index} / {card.category}
                 </p>
                 <h3
@@ -263,7 +263,7 @@ const About = () => {
                 >
                   {card.title}
                 </h3>
-                <p className="max-w-xs font-robert text-sm leading-relaxed text-[#eef2ff]/40">
+                <p className="max-w-xs font-robert text-sm leading-relaxed text-[#eef2ff]/65">
                   {card.desc}
                 </p>
               </div>

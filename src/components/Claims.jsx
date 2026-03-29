@@ -197,7 +197,7 @@ const Claims = () => {
               </div>
 
               {/* Label */}
-              <p className="font-general text-[11px] uppercase tracking-[0.3em] text-[#eef2ff]/30">
+              <p className="font-general text-[12px] uppercase tracking-[0.3em] text-[#eef2ff]/65">
                 {stat.label}
               </p>
             </div>

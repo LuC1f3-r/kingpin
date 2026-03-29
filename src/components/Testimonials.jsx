@@ -142,7 +142,7 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
       </span>
 
       {/* Quote text */}
-      <p className="mt-4 flex-1 font-circular-web text-[15px] leading-relaxed text-[#eef2ff]/65">
+      <p className="mt-4 flex-1 font-circular-web text-[15px] leading-relaxed text-[#eef2ff]/80">
         {quote}
       </p>
 
@@ -171,7 +171,7 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
           <p className="font-general text-[12px] font-semibold uppercase tracking-wider text-[#eef2ff]/80">
             {name}
           </p>
-          <p className="font-general text-[10px] tracking-wide text-[#eef2ff]/35">
+          <p className="font-general text-[11px] tracking-wide text-[#eef2ff]/65">
             {role}
           </p>
         </div>

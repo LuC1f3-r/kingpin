@@ -80,7 +80,7 @@ const CardBody = ({ Icon, title, desc, accent }) => (
       >
         {title}
       </h3>
-      <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/40">
+      <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
         {desc}
       </p>
     </div>

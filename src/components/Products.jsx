@@ -55,20 +55,20 @@ const BentoCard = ({ src, title, description, tag, isComingSoon }) => (
     <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
       <div>
         {tag && (
-          <span className="mb-3 inline-block font-general text-[9px] uppercase tracking-[0.22em] text-[#4fb7dd]/80">
+          <span className="mb-3 inline-block font-general text-[10px] uppercase tracking-[0.22em] text-[#4fb7dd]/80">
             {tag}
           </span>
         )}
         <h1 className="bento-title special-font">{title}</h1>
         {description && (
-          <p className="mt-3 max-w-64 font-robert text-xs leading-relaxed text-white/60 md:text-sm">
+          <p className="mt-3 max-w-64 font-robert text-xs leading-relaxed text-white/75 md:text-sm">
             {description}
           </p>
         )}
       </div>
 
       {isComingSoon && (
-        <span className="w-fit rounded-full border border-white/20 bg-white/10 px-3 py-1 font-general text-[9px] uppercase tracking-widest text-white/60 backdrop-blur-sm">
+        <span className="w-fit rounded-full border border-white/20 bg-white/10 px-3 py-1 font-general text-[10px] uppercase tracking-widest text-white/70 backdrop-blur-sm">
           Coming Soon
         </span>
       )}
@@ -148,7 +148,7 @@ const Products = () => {
 
         {/* ── Header ─────────────────────────────────────────────────────── */}
         <div ref={headerRef} className="px-5 py-32">
-          <p className="font-general text-[10px] uppercase tracking-[0.28em] text-[#4fb7dd]/70">
+          <p className="font-general text-[10px] uppercase tracking-[0.28em] text-[#4fb7dd]/85">
             Our Products
           </p>
           <p className="mt-4 font-zentry text-4xl font-black uppercase leading-none text-blue-50 md:text-5xl lg:text-6xl"
