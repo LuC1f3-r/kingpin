@@ -64,7 +64,7 @@ const Navbar = () => {
   return (
     <div
       ref={navContainerRef}
-      className="fixed inset-x-0 top-6 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
+      className="nav-shell fixed inset-x-0 top-6 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
     >
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
@@ -94,7 +94,7 @@ const Navbar = () => {
                   id="product-button"
                   title="Contact Us"
                   rightIcon={<TiLocationArrow />}
-                  containerClass="!bg-[#4fb7dd] !text-[#020609] flex items-center justify-center gap-1"
+                  containerClass="cta-transition-btn !bg-[#4fb7dd] !text-[#020609] hover:!bg-[#78c9e5] flex items-center justify-center gap-1"
                 />
               </ElectricBorder>
             </div>

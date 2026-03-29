@@ -75,7 +75,7 @@ const Hero = () => {
                 id="watch-trailer"
                 title="Explore More"
                 rightIcon={<TiLocationArrow />}
-                containerClass="!bg-[#4fb7dd] !text-[#020609] hover:!bg-[#4fb7dd]/90 flex-center gap-1"
+                containerClass="cta-transition-btn !bg-[#4fb7dd] !text-[#020609] hover:!bg-[#78c9e5] flex-center gap-1"
               />
             </ElectricBorder>
           </div>

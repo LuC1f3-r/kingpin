@@ -36,7 +36,22 @@ const Contact = () => {
             <b>w</b>in
           </p>
 
-          <Button title="Get in touch" containerClass="mt-10 cursor-pointer"/>
+          <p className="z-10 mt-6 max-w-3xl px-6 font-robert text-sm leading-relaxed text-blue-50/70 md:text-base">
+            KVF is a web development company in Bijapur, Karnataka building
+            custom websites, SaaS platforms, mobile apps, and brand systems
+            for businesses across Vijayapura, Bangalore, and India.
+          </p>
+
+          <p className="z-10 mt-4 max-w-3xl px-6 font-general text-[11px] uppercase tracking-[0.24em] text-[#4fb7dd]/75">
+            Looking for the best web development company in Bijapur or a
+            software development partner in Karnataka? Start with a
+            conversation.
+          </p>
+
+          <Button
+            title="Get in touch"
+            containerClass="cta-transition-btn mt-10 cursor-pointer hover:!bg-blue-50"
+          />
         </div>
       </div>
     </div>
