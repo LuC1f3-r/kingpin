@@ -58,12 +58,13 @@ const services = [
 
 const glowBase = {
   backgroundColor: '#0d1825',
-  borderRadius:    4,
-  glowRadius:      45,
-  glowIntensity:   1.1,
-  coneSpread:      28,
-  edgeSensitivity: 25,
+  borderRadius:    14,
+  glowRadius:      58,
+  glowIntensity:   2.5,
+  coneSpread:      37,
+  edgeSensitivity: 51,
   fillOpacity:     0.45,
+  animatedIntro: true
 };
 
 const CardBody = ({ Icon, title, desc, accent }) => (

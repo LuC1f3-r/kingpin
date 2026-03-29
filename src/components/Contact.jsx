@@ -37,7 +37,7 @@ const Contact = () => {
           </p>
 
           <p className="z-10 mt-6 max-w-3xl px-6 font-robert text-sm leading-relaxed text-blue-50/70 md:text-base">
-            KVF is a web development company in Bijapur, Karnataka building
+            KingpiN Vision Forge is a web development company in Bijapur, Karnataka building
             custom websites, SaaS platforms, mobile apps, and brand systems
             for businesses across Vijayapura, Bangalore, and India.
           </p>

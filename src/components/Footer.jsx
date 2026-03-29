@@ -60,7 +60,7 @@ const Footer = () => (
 
         {/* Logo + wordmark */}
         <div className="flex items-center gap-3">
-          <img src="/img/logo.png" alt="KVF logo" className="h-10 w-10 object-contain" />
+          <img src="/img/logo.png" alt="KingpiN Vision Forge logo" className="h-10 w-10 object-contain" />
           <div className="font-zentry font-black uppercase leading-none tracking-wide"
                style={{ fontFeatureSettings: '"ss01" on', fontSize: "1.15rem" }}>
             <span className="text-white">Kingpin </span>

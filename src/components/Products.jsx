@@ -169,7 +169,7 @@ const Products = () => {
             <BentoCard
               src="/videos/feature-1.mp4"
               tag="Flagship"
-              title={<>KVF <b>F</b>orge</>}
+              title={<>KingpiN Vision Forge <b>F</b>orge</>}
               description="Our all-in-one delivery platform — from architecture to launch, every project runs through a single unified pipeline built for zero compromise."
             />
           </BentoTilt>
@@ -180,34 +180,34 @@ const Products = () => {
           ref={gridRef}
           className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7"
         >
-          {/* KVF Nexus — tall left card */}
+          {/* KingpiN Vision Forge Nexus — tall left card */}
           <BentoTilt className="bento-tilt_1 col-span-2 row-span-1 md:col-span-1 md:row-span-2">
             <BentoCard
               src="/videos/feature-2.mp4"
               tag="SaaS"
-              title={<>KVF <b>N</b>exus</>}
+              title={<>KingpiN Vision Forge <b>N</b>exus</>}
               description="A modular SaaS infrastructure kit — multi-tenant, auto-scaling, and wired for enterprise from day one."
               isComingSoon
             />
           </BentoTilt>
 
-          {/* KVF Pulse */}
+          {/* KingpiN Vision Forge Pulse */}
           <BentoTilt className="bento-tilt_1 col-span-2 row-span-1 ms-32 md:col-span-1 md:ms-0">
             <BentoCard
               src="/videos/feature-3.mp4"
               tag="Analytics"
-              title={<>KVF <b>P</b>ulse</>}
+              title={<>KingpiN Vision Forge <b>P</b>ulse</>}
               description="Real-time performance intelligence — monitor, alert, and optimise across your entire digital stack."
               isComingSoon
             />
           </BentoTilt>
 
-          {/* KVF Vault */}
+          {/* KingpiN Vision Forge Vault */}
           <BentoTilt className="bento-tilt_1 col-span-2 me-14 md:col-span-1 md:me-0">
             <BentoCard
               src="/videos/feature-4.mp4"
               tag="Collaboration"
-              title={<>KVF <b>V</b>ault</>}
+              title={<>KingpiN Vision Forge <b>V</b>ault</>}
               description="A secure client portal for seamless handoffs, live previews, and encrypted asset delivery."
               isComingSoon
             />

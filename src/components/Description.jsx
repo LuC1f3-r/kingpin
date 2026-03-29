@@ -57,7 +57,7 @@ const Description = () => {
           ref={subRef}
           className="mt-8 max-w-xl font-robert text-sm leading-relaxed text-black/60 md:text-base"
         >
-          From scalable software to razor-sharp brand identities, KVF
+          From scalable software to razor-sharp brand identities, KingpiN Vision Forge
           engineers every layer of your digital presence that's built to lead,
           never to follow.
         </p>

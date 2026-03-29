@@ -136,7 +136,7 @@ const About = () => {
           <img
             ref={imageRef}
             src="/img/about.jpg"
-            alt="KVF Forge"
+            alt="KingpiN Vision Forge Forge"
             className="size-full object-cover"
           />
         </div>

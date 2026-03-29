@@ -17,7 +17,7 @@ const CYCLE_MS = 5000;
 const testimonials = [
   {
     quote:
-      "KVF didn't just build us a website — they engineered a growth machine. Within 90 days of launch, our conversion rate doubled and organic traffic tripled.",
+      "KingpiN Vision Forge didn't just build us a website — they engineered a growth machine. Within 90 days of launch, our conversion rate doubled and organic traffic tripled.",
     name: "Marcus Reid",
     role: "CEO, Vanguard Systems",
     initial: "M",
@@ -38,21 +38,21 @@ const testimonials = [
   },
   {
     quote:
-      "KVF built our entire digital presence from zero. The speed, the quality, the professionalism — genuinely unlike any agency we've ever worked with.",
+      "KingpiN Vision Forge built our entire digital presence from zero. The speed, the quality, the professionalism — genuinely unlike any agency we've ever worked with.",
     name: "Amara Osei",
     role: "CMO, Zenith Collective",
     initial: "A",
   },
   {
     quote:
-      "We came in with a rough idea and left with a product our investors couldn't stop talking about. KVF turned complete chaos into absolute clarity.",
+      "We came in with a rough idea and left with a product our investors couldn't stop talking about. KingpiN Vision Forge turned complete chaos into absolute clarity.",
     name: "Ryan Holloway",
     role: "Co-founder, Nexus Ventures",
     initial: "R",
   },
   {
     quote:
-      "Our mobile app went live on time, on budget, and with zero bugs at launch. That never happens. KVF made it happen — twice.",
+      "Our mobile app went live on time, on budget, and with zero bugs at launch. That never happens. KingpiN Vision Forge made it happen — twice.",
     name: "Lena Müller",
     role: "Product Lead, Orbit Mobile",
     initial: "L",

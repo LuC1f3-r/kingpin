@@ -46,22 +46,22 @@
   --color-blue-300: #4fb7dd;   /* single accent blue */
 }
 
-/* ── KVF elevation tokens ──────────────────────────────────────────────────── */
+/* ── KingpiN Vision Forge elevation tokens ──────────────────────────────────────────────────── */
 :root {
-  --kvf-root:          #020609;   /* Hero, Products, Footer */
-  --kvf-section:       #060d14;   /* About, Services, Claims, Testimonials */
-  --kvf-card:          #0d1825;   /* Service cards, Testimonial cards */
-  --kvf-surface:       #132035;   /* Hover / elevated */
+  --KingpiN Vision Forge-root:          #020609;   /* Hero, Products, Footer */
+  --KingpiN Vision Forge-section:       #060d14;   /* About, Services, Claims, Testimonials */
+  --KingpiN Vision Forge-card:          #0d1825;   /* Service cards, Testimonial cards */
+  --KingpiN Vision Forge-surface:       #132035;   /* Hover / elevated */
 
-  --kvf-accent:        #4fb7dd;
-  --kvf-accent-soft:   rgba(79,183,221,0.12);
-  --kvf-accent-dim:    rgba(79,183,221,0.35);
-  --kvf-accent-glow:   rgba(79,183,221,0.08);
+  --KingpiN Vision Forge-accent:        #4fb7dd;
+  --KingpiN Vision Forge-accent-soft:   rgba(79,183,221,0.12);
+  --KingpiN Vision Forge-accent-dim:    rgba(79,183,221,0.35);
+  --KingpiN Vision Forge-accent-glow:   rgba(79,183,221,0.08);
 
-  --kvf-text-primary:  #eef2ff;
-  --kvf-border:        rgba(79,183,221,0.08);
-  --kvf-border-subtle: rgba(255,255,255,0.05);
-  --kvf-border-glow:   rgba(79,183,221,0.22);
+  --KingpiN Vision Forge-text-primary:  #eef2ff;
+  --KingpiN Vision Forge-border:        rgba(79,183,221,0.08);
+  --KingpiN Vision Forge-border-subtle: rgba(255,255,255,0.05);
+  --KingpiN Vision Forge-border-glow:   rgba(79,183,221,0.22);
 }
 
 /* 3. Base Styles */
@@ -247,7 +247,7 @@
 
 .gallery-img-container {
   @apply size-64 overflow-hidden;
-  background-color: var(--kvf-section);
+  background-color: var(--KingpiN Vision Forge-section);
 }
 
 .gallery-img {
