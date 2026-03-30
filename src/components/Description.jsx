@@ -7,26 +7,46 @@ import AnimatedTitle from "./AnimatedTitle";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Description = () => {
-  const sectionRef = useRef(null);
-  const subRef = useRef(null);
+  const sectionRef  = useRef(null);
+  const eyebrowRef  = useRef(null);
+  const subRef      = useRef(null);
 
   useGSAP(
     () => {
-      if (!subRef.current) return;
+      if (!eyebrowRef.current || !subRef.current) return;
 
+      /* Eyebrow — slides up as the section first enters the viewport */
       gsap.fromTo(
-        subRef.current,
-        { opacity: 0, y: 30 },
+        eyebrowRef.current,
+        { opacity: 0, y: 14 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.55,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: subRef.current,
-            start: "top 85%",
-            end: "top 40%",
-            scrub: 0.8,
+            trigger: sectionRef.current,
+            start: "top 82%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+
+      /* Subheading — waits until the heading words have scrubbed through
+         (AnimatedTitle ends at "top 15%" on its own trigger, so waiting
+         until the section's top hits ~40% ensures the title is already done) */
+      gsap.fromTo(
+        subRef.current,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 38%",
+            toggleActions: "play none none none",
           },
         },
       );
@@ -42,7 +62,10 @@ const Description = () => {
       <div className="mx-auto flex max-w-4xl flex-col items-center px-6 text-center">
 
         {/* Eyebrow label */}
-        <p className="mb-4 font-general text-[10px] uppercase tracking-widest text-black/50">
+        <p
+          ref={eyebrowRef}
+          className="mb-4 font-general text-[10px] uppercase tracking-widest text-black/50"
+        >
           Our Philosophy
         </p>
 

@@ -135,7 +135,7 @@ const About = () => {
         <div ref={imageWrapperRef} className="absolute inset-0 z-10">
           <img
             ref={imageRef}
-            src="/img/about.jpg"
+            src="/img/about.gif"
             alt="KingpiN Vision Forge Forge"
             className="size-full object-cover"
           />

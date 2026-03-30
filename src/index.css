@@ -17,15 +17,18 @@
   font-family: "robert-regular";
   src: url("/fonts/robert-regular.woff2") format("woff2");
 }
+/* ── Giblastine — primary display / heading font ────────────────────────────── */
 @font-face {
-  font-family: "zentry-regular";
-  src: url("/fonts/zentry-regular.woff2") format("woff2");
+  font-family: "giblastine";
+  src: url("/fonts/giblastine-regular.woff2") format("woff2");
+  font-weight: 400 900;
+  font-display: swap;
 }
-/* ── Remap display font (replaces Zentry for all font-zentry uses) ─────────── */
+/* ── Valty — secondary display / subheading font ────────────────────────────── */
 @font-face {
-  font-family: "remap";
-  src: url("/fonts/remap-regular.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "valty";
+  src: url("/fonts/valty-regular.woff2") format("woff2");
+  font-weight: 400 900;
   font-display: swap;
 }
 
@@ -36,7 +39,7 @@
   --font-general: "general", sans-serif;
   --font-robert-medium: "robert-medium", sans-serif;
   --font-robert: "robert-regular", sans-serif;
-  --font-zentry: "remap", "zentry-regular", sans-serif;
+  --font-zentry: "giblastine", "valty", sans-serif;
 
   /* Colors — unified blue/black system */
   --color-blue-50: #eef2ff; /* cool near-white (primary text on dark) */

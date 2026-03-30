@@ -32,20 +32,10 @@ const Contact = () => {
         </div>
         <div className="flex flex-col items-center text-center">
           <p className="special-font mt-10 w-full font-zentry text-5xl leading-[0.9] md:text-[6rem] z-10">
-            The <b>i</b>nternet is <b>c</b>rowded<br /> We build <b>s</b>ystems<br />t<b>h</b>at
+            The <b>i</b>nternet is <b>c</b>rowded
+            <br /> We build <b>s</b>ystems
+            <br />t<b>h</b>at
             <b>w</b>in
-          </p>
-
-          <p className="z-10 mt-6 max-w-3xl px-6 font-robert text-sm leading-relaxed text-blue-50/70 md:text-base">
-            KingpiN Vision Forge is a web development company in Bijapur, Karnataka building
-            custom websites, SaaS platforms, mobile apps, and brand systems
-            for businesses across Vijayapura, Bangalore, and India.
-          </p>
-
-          <p className="z-10 mt-4 max-w-3xl px-6 font-general text-[11px] uppercase tracking-[0.24em] text-[#4fb7dd]/75">
-            Looking for the best web development company in Bijapur or a
-            software development partner in Karnataka? Start with a
-            conversation.
           </p>
 
           <Button

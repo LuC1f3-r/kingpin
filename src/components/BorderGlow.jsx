@@ -14,7 +14,7 @@ import { useRef, useCallback, useEffect } from 'react';
  *   coneSpread     {number}   gradient cone width 0-50              default 25
  *   edgeSensitivity{number}   how close to edge before glow shows   default 30
  *   fillOpacity    {number}   fill layer opacity                    default 0.5
- *   animated       {boolean}  play sweep animation on mount         default false
+ *   animated       {boolean|number} play sweep animation when truthy or when the value changes
  *   className      {string}   extra classes on wrapper
  *   style          {object}   extra styles on wrapper
  */
@@ -55,15 +55,29 @@ function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
 function easeInCubic(x) { return x * x * x; }
 
 function animateValue({ start = 0, end = 100, duration = 1000, delay = 0, ease = easeOutCubic, onUpdate, onEnd }) {
+  let cancelled = false;
+  let frameId = 0;
   const t0 = performance.now() + delay;
+
   function tick() {
+    if (cancelled) return;
     const elapsed = performance.now() - t0;
     const t = Math.min(elapsed / duration, 1);
     onUpdate(start + (end - start) * ease(t));
-    if (t < 1) requestAnimationFrame(tick);
+    if (t < 1) frameId = requestAnimationFrame(tick);
     else if (onEnd) onEnd();
   }
-  setTimeout(() => requestAnimationFrame(tick), delay);
+
+  const timeoutId = setTimeout(() => {
+    if (cancelled) return;
+    frameId = requestAnimationFrame(tick);
+  }, delay);
+
+  return () => {
+    cancelled = true;
+    clearTimeout(timeoutId);
+    if (frameId) cancelAnimationFrame(frameId);
+  };
 }
 
 const BorderGlow = ({
@@ -121,24 +135,42 @@ const BorderGlow = ({
   }, [getEdgeProximity, getCursorAngle]);
 
   useEffect(() => {
-    if (!animated || !cardRef.current) return;
+    if ((typeof animated === 'boolean' && !animated) || animated == null || !cardRef.current) {
+      return undefined;
+    }
+
     const card = cardRef.current;
     const angleStart = 110;
     const angleEnd = 465;
+
     card.classList.add('bg-sweep-active');
     card.style.setProperty('--cursor-angle', `${angleStart}deg`);
+    card.style.setProperty('--edge-proximity', '0');
 
-    animateValue({ duration: 500, onUpdate: v => card.style.setProperty('--edge-proximity', `${v}`) });
-    animateValue({ ease: easeInCubic, duration: 1500, end: 50, onUpdate: v => {
+    const stopEdgeIntro = animateValue({
+      duration: 500,
+      onUpdate: v => card.style.setProperty('--edge-proximity', `${v}`),
+    });
+    const stopAngleMid = animateValue({ ease: easeInCubic, duration: 1500, end: 50, onUpdate: v => {
       card.style.setProperty('--cursor-angle', `${(angleEnd - angleStart) * (v / 100) + angleStart}deg`);
     }});
-    animateValue({ ease: easeOutCubic, delay: 1500, duration: 2250, start: 50, end: 100, onUpdate: v => {
+    const stopAngleOutro = animateValue({ ease: easeOutCubic, delay: 1500, duration: 2250, start: 50, end: 100, onUpdate: v => {
       card.style.setProperty('--cursor-angle', `${(angleEnd - angleStart) * (v / 100) + angleStart}deg`);
     }});
-    animateValue({ ease: easeInCubic, delay: 2500, duration: 1500, start: 100, end: 0,
+    const stopEdgeOutro = animateValue({ ease: easeInCubic, delay: 2500, duration: 1500, start: 100, end: 0,
       onUpdate: v => card.style.setProperty('--edge-proximity', `${v}`),
       onEnd: () => card.classList.remove('bg-sweep-active'),
     });
+
+    return () => {
+      stopEdgeIntro();
+      stopAngleMid();
+      stopAngleOutro();
+      stopEdgeOutro();
+      card.classList.remove('bg-sweep-active');
+      card.style.setProperty('--edge-proximity', '0');
+      card.style.setProperty('--cursor-angle', '45deg');
+    };
   }, [animated]);
 
   return (

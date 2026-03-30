@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -64,7 +64,6 @@ const glowBase = {
   coneSpread:      37,
   edgeSensitivity: 51,
   fillOpacity:     0.45,
-  animatedIntro: true
 };
 
 const CardBody = ({ Icon, title, desc, accent }) => (
@@ -93,9 +92,18 @@ const Services = () => {
   const headerRef   = useRef(null);
   const topRowRef   = useRef(null);
   const botRowRef   = useRef(null);
+  const [glowCycle, setGlowCycle] = useState(null);
 
   useGSAP(
     () => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => setGlowCycle((value) => (value ?? 0) + 1),
+        onEnterBack: () => setGlowCycle((value) => (value ?? 0) + 1),
+      });
+
       /* ── Header ── */
       gsap.fromTo(
         headerRef.current.children,
@@ -186,6 +194,7 @@ const Services = () => {
               colors={colors}
               glowColor={glowColor}
               {...glowBase}
+              animated={glowCycle}
             >
               <CardBody Icon={Icon} title={title} desc={desc} accent={accent} />
             </BorderGlow>
@@ -201,6 +210,7 @@ const Services = () => {
             colors={services[3].colors}
             glowColor={services[3].glowColor}
             {...glowBase}
+            animated={glowCycle}
           >
             <CardBody {...services[3]} />
           </BorderGlow>
@@ -209,6 +219,7 @@ const Services = () => {
             colors={services[4].colors}
             glowColor={services[4].glowColor}
             {...glowBase}
+            animated={glowCycle}
             className="md:col-span-2"
           >
             <CardBody {...services[4]} />
