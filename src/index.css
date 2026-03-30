@@ -263,7 +263,7 @@
 
 .gallery-img-container {
   @apply size-64 overflow-hidden;
-  background-color: var(--KingpiN Vision Forge-section);
+  background-color: var(--kvf-section);
 }
 
 .gallery-img {
