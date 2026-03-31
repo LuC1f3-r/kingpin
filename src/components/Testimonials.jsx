@@ -7,7 +7,7 @@ import AnimatedTitle from "./AnimatedTitle";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 /* ── Constants ─────────────────────────────────────────────────────────────── */
-const CARD_W   = 420;   // px — 30% bigger than previous 320
+const CARD_W   = 420;   // px — max card width (actual width uses min() for mobile)
 const CARD_H   = 380;   // px — fixed height for uniform strip
 const GAP      = 28;    // px — gap between cards
 const TOTAL    = 7;
@@ -115,9 +115,9 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseLeave}
-      className="flex shrink-0 cursor-default flex-col justify-between rounded-2xl border p-8"
+      className="flex shrink-0 cursor-default flex-col justify-between rounded-2xl border p-6 sm:p-8"
       style={{
-        width:           `${CARD_W}px`,
+        width:           `min(${CARD_W}px, 90vw)`,
         height:          `${CARD_H}px`,
         borderColor:     bdrClr,
         backgroundColor: bgClr,
@@ -192,7 +192,9 @@ const Testimonials = () => {
   /* Helper: compute x so card[index] sits in the viewport center */
   const getX = (index) => {
     const cw = containerRef.current?.offsetWidth ?? window.innerWidth;
-    return cw / 2 - index * (CARD_W + GAP) - CARD_W / 2;
+    // On mobile the actual card width is 90% of viewport, capped at CARD_W
+    const actualCardW = Math.min(CARD_W, window.innerWidth * 0.9);
+    return cw / 2 - index * (actualCardW + GAP) - actualCardW / 2;
   };
 
   /* Position track — set instantly on mount, animate on every index change */
@@ -230,10 +232,10 @@ const Testimonials = () => {
     <section
       ref={sectionRef}
       id="testimonials"
-      className="flex h-dvh flex-col justify-between overflow-hidden bg-[#060d14] pb-14 pt-20"
+      className="flex min-h-dvh flex-col justify-between overflow-hidden bg-[#060d14] pb-14 pt-20"
     >
       {/* ── Header ───────────────────────────────────────────────────────── */}
-      <div className="px-10 md:px-16 lg:px-20">
+      <div className="px-5 sm:px-10 md:px-16 lg:px-20">
         <p className="mb-3 font-general text-[10px] uppercase tracking-[0.28em] text-[#eef2ff]/30">
           Client Voices
         </p>

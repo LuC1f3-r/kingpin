@@ -165,15 +165,15 @@ const Services = () => {
     <section
       ref={sectionRef}
       id="services"
-      className="flex min-h-screen w-screen flex-col bg-[#060d14] px-10 py-24 md:px-16 lg:px-20"
+      className="flex min-h-screen w-screen flex-col bg-[#060d14] px-5 py-16 sm:px-10 md:px-16 md:py-24 lg:px-20"
     >
       {/* ── Header ───────────────────────────────────────────────────────── */}
-      <div ref={headerRef} className="mb-10 shrink-0">
+      <div ref={headerRef} className="mb-8 shrink-0 md:mb-10">
         <p className="mb-4 font-general text-[10px] uppercase tracking-[0.28em] text-[#eef2ff]/30">
           Core Capabilities
         </p>
         <h2
-          className="font-zentry text-5xl font-black uppercase leading-none text-[#eef2ff] lg:text-6xl xl:text-7xl"
+          className="font-zentry text-4xl font-black uppercase leading-none text-[#eef2ff] sm:text-5xl lg:text-6xl xl:text-7xl"
           style={{ fontFeatureSettings: '"ss01" on' }}
         >
           Forging The{" "}

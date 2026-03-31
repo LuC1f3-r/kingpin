@@ -44,6 +44,36 @@ const About = () => {
 
   useGSAP(
     () => {
+      // Only run the complex pinned animation on md+ screens
+      const isMobile = window.innerWidth < 768;
+
+      if (isMobile) {
+        // On mobile just show everything immediately
+        gsap.set(imageWrapperRef.current, { clipPath: "inset(0% 0% 0% 0% round 10px)" });
+        gsap.set(imageRef.current, { scale: 1 });
+        gsap.set(textRef.current, { opacity: 1, x: 0 });
+        gsap.set(cardsRowRef.current.children, { opacity: 1, y: 0, filter: "blur(0px)" });
+
+        gsap.fromTo(
+          ".protocol-card",
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            duration: 0.6,
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: protocolRef.current,
+              start: "top 80%",
+              end: "top 30%",
+              scrub: 0.6,
+            },
+          },
+        );
+        return;
+      }
+
       // ── Set initial states immediately (useGSAP runs via useLayoutEffect,
       //    so these fire before first paint — no FOUC) ───────────────────────
       gsap.set(imageWrapperRef.current, {
@@ -54,9 +84,6 @@ const About = () => {
       gsap.set(cardsRowRef.current.children, { opacity: 0, y: 22, filter: "blur(12px)" });
 
       // ── Main pinned + scrubbed timeline for the top block ─────────────────
-      // pin: true keeps topBlock fixed while the user scrolls 820px.
-      // scrub: 0.8 links progress to scroll position with a 0.8s lag —
-      //   scroll DOWN = animate forward, scroll UP = animate backward.
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: topBlockRef.current,
@@ -90,7 +117,6 @@ const About = () => {
       );
 
       // Step 3 — all four cards blur in left→right with stagger
-      // Using .children on the ref is explicit and immune to scope/selector issues
       tl.fromTo(
         cardsRowRef.current.children,
         { opacity: 0, y: 22, filter: "blur(12px)" },
@@ -126,12 +152,12 @@ const About = () => {
       id="about"
       className="relative w-screen overflow-hidden bg-[#060d14]"
     >
-      {/* ── TOP BLOCK — pinned full-viewport height ───────────────────────── */}
+      {/* ── TOP BLOCK — pinned full-viewport height on desktop, auto on mobile ── */}
       <div
         ref={topBlockRef}
-        className="relative h-dvh px-10 pb-14 pt-20 md:px-16 lg:px-20"
+        className="relative min-h-[90dvh] px-5 pb-14 pt-24 md:h-dvh md:px-16 lg:px-20"
       >
-        {/* Full-bleed image: GSAP clips centre → right 48% while zooming out */}
+        {/* Full-bleed image: GSAP clips centre → right 48% on desktop, full on mobile */}
         <div ref={imageWrapperRef} className="absolute inset-0 z-10">
           <img
             ref={imageRef}
@@ -141,10 +167,13 @@ const About = () => {
           />
         </div>
 
-        {/* LEFT column — text only, no cards */}
+        {/* Overlay gradient for mobile readability */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#060d14]/60 via-[#060d14]/30 to-[#060d14]/80 md:hidden" />
+
+        {/* LEFT column — text */}
         <div
           ref={textRef}
-          className="relative z-20 max-w-[46%]"
+          className="relative z-20 max-w-full md:max-w-[46%]"
         >
           <div className="mb-8 flex items-center gap-3">
             <div className="h-px w-8 bg-[#4fb7dd]" />
@@ -154,7 +183,7 @@ const About = () => {
           </div>
 
           <h2
-            className="mb-6 font-zentry text-5xl font-black uppercase leading-[1.05] text-[#eef2ff] lg:text-6xl xl:text-[4.5rem]"
+            className="mb-6 font-zentry text-4xl font-black uppercase leading-[1.05] text-[#eef2ff] sm:text-5xl lg:text-6xl xl:text-[4.5rem]"
             style={{ fontFeatureSettings: '"ss01" on' }}
           >
             The Forge: Where
@@ -164,7 +193,7 @@ const About = () => {
             <span className="text-[#4fb7dd]">Infrastructure.</span>
           </h2>
 
-          <p className="max-w-[400px] font-robert text-sm leading-relaxed text-[#eef2ff]/70">
+          <p className="max-w-[90%] font-robert text-sm leading-relaxed text-[#eef2ff]/70 md:max-w-[400px]">
             Every brand and idea begins as raw material. In the Forge, we
             subject these concepts to intense analytical pressure and
             technical refinement. We don't just build websites; we construct
@@ -172,19 +201,21 @@ const About = () => {
           </p>
         </div>
 
-        {/* ALL 4 CARDS — single absolute row at the bottom, full content width.
-            flex-1 on each card guarantees all four are identical width. */}
-        <div ref={cardsRowRef} className="absolute bottom-14 left-10 right-10 z-20 flex gap-4 lg:bottom-16 lg:left-20 lg:right-20">
+        {/* ALL 4 CARDS — grid on mobile, absolute row at bottom on desktop */}
+        <div
+          ref={cardsRowRef}
+          className="relative z-20 mt-8 grid grid-cols-2 gap-3 md:absolute md:bottom-14 md:left-10 md:right-10 md:mt-0 md:flex md:gap-4 lg:bottom-16 lg:left-20 lg:right-20"
+        >
           {/* Refinement */}
           <div
-            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
             style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
           >
             <TbAdjustmentsHorizontal className="mb-2.5 text-[#4fb7dd]" size={20} />
             <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Refinement
             </p>
-            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
+            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
               Stripping away the non-essential to reveal the core competitive
               engine.
             </p>
@@ -192,14 +223,14 @@ const About = () => {
 
           {/* Hardening */}
           <div
-            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
             style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
           >
             <TbShieldCheck className="mb-2.5 text-[#4fb7dd]" size={20} />
             <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Hardening
             </p>
-            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
+            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
               Stress-testing architectures for global scale and high-traffic
               resilience.
             </p>
@@ -207,7 +238,7 @@ const About = () => {
 
           {/* Precise Assembly */}
           <div
-            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
             style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
           >
             <div className="mb-3 flex items-center gap-2">
@@ -220,21 +251,21 @@ const About = () => {
             <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Precise Assembly
             </p>
-            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
+            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
               Component-driven engineering designed for rapid market iteration.
             </p>
           </div>
 
           {/* Data Flow */}
           <div
-            className="feature-card flex-1 rounded-2xl p-5 backdrop-blur-md"
+            className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
             style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
           >
             <TbArrowsExchange2 className="mb-2.5 text-[#4fb7dd]" size={20} />
             <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
               Data Flow
             </p>
-            <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
+            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
               Optimizing conversion pathways through algorithmic precision.
             </p>
           </div>

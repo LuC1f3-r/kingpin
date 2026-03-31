@@ -40,7 +40,7 @@ const Hero = () => {
   );
 
   return (
-    <div className="relative h-dvh min-h-screen w-screen overflow-x-hidden">
+    <div className="relative h-dvh min-h-screen w-screen overflow-x-hidden bg-[#fff]">
       <div
         id="video-frame"
         ref={videoFrameRef}
@@ -51,17 +51,16 @@ const Hero = () => {
 
         {/* ── Hero text + CTA ── */}
         <div className="absolute left-0 top-0 z-40 size-full">
-          <div className="mt-70 px-5 sm:px-10">
+          <div className="mt-28 px-5 sm:mt-44 sm:px-10 md:mt-64 lg:mt-72">
             <h1 className="special-font hero-heading text-blue-100">
               <b>K</b>ingpi<b>n</b>
             </h1>
             <h1 className="special-font subhero-heading bg-gradient-to-r from-[#eef2ff] to-[#4fb7dd] bg-clip-text text-transparent">
               Vision Forge
             </h1>
-            <p className="mb-5 max-w-100 font-robert text-blue-100">
+            <p className="mb-5 max-w-[90%] font-robert text-sm text-blue-100 sm:max-w-100 sm:text-base">
               Reimagining digital infrastructure. The architecture of tomorrow
               begins your business operations,
-              <br />
               transformed into a seamless ecosystem.
             </p>
             <ElectricBorder

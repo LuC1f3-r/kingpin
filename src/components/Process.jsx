@@ -83,15 +83,15 @@ const Process = () => {
     <section
       ref={sectionRef}
       id="process"
-      className="w-screen bg-[#f0f5ff] px-10 pb-28 pt-24 md:px-16 lg:px-20"
+      className="w-screen bg-[#f0f5ff] px-5 pb-16 pt-16 sm:px-10 md:px-16 md:pb-28 md:pt-24 lg:px-20"
     >
       {/* ── Header ─────────────────────────────────────────────────────────── */}
-      <div ref={headerRef} className="mb-20">
+      <div ref={headerRef} className="mb-12 md:mb-20">
         <p className="mb-4 font-general text-[10px] uppercase tracking-[0.28em] text-black/35">
           How We Work
         </p>
         <h2
-          className="font-zentry text-5xl font-black uppercase leading-[1.02] text-black lg:text-6xl xl:text-7xl"
+          className="font-zentry text-4xl font-black uppercase leading-[1.02] text-black sm:text-5xl lg:text-6xl xl:text-7xl"
           style={{ fontFeatureSettings: '"ss01" on' }}
         >
           The Forge
@@ -103,7 +103,7 @@ const Process = () => {
       {/* ── Steps ──────────────────────────────────────────────────────────── */}
       <div
         ref={stepsRef}
-        className="grid grid-cols-1 gap-0 divide-y divide-black/10 md:grid-cols-2 md:divide-x md:divide-y-0 lg:grid-cols-4 lg:divide-y-0"
+        className="grid grid-cols-1 gap-0 divide-y divide-black/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4 lg:divide-y-0"
       >
         {steps.map((step, i) => (
           <div

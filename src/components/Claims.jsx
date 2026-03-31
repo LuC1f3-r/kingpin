@@ -124,7 +124,7 @@ const Claims = () => {
           SECTION 1 — Stats
       ════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-screen overflow-hidden px-10 pb-32 pt-28 md:px-16 lg:px-24"
+        className="relative w-screen overflow-hidden px-5 pb-20 pt-20 sm:px-10 md:px-16 md:pb-32 md:pt-28 lg:px-24"
         style={{
           background:
             "radial-gradient(ellipse 70% 55% at 68% 50%, rgba(79,183,221,0.05) 0%, #060d14 65%)",

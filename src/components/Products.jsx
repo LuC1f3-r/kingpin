@@ -147,11 +147,11 @@ const Products = () => {
       <div className="container mx-auto px-3 md:px-10">
 
         {/* ── Header ─────────────────────────────────────────────────────── */}
-        <div ref={headerRef} className="px-5 py-32">
+        <div ref={headerRef} className="px-5 py-20 sm:px-5 sm:py-32">
           <p className="font-general text-[10px] uppercase tracking-[0.28em] text-[#4fb7dd]/85">
             Our Products
           </p>
-          <p className="mt-4 font-zentry text-4xl font-black uppercase leading-none text-blue-50 md:text-5xl lg:text-6xl"
+          <p className="mt-4 font-zentry text-3xl font-black uppercase leading-none text-blue-50 sm:text-4xl md:text-5xl lg:text-6xl"
             style={{ fontFeatureSettings: '"ss01" on' }}
           >
             Built to <span className="text-[#4fb7dd]">Dominate.</span>
@@ -165,7 +165,7 @@ const Products = () => {
 
         {/* ── Hero card ──────────────────────────────────────────────────── */}
         <div ref={heroCardRef}>
-          <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
+          <BentoTilt className="border-hsla relative mb-7 h-64 w-full overflow-hidden rounded-md sm:h-96 md:h-[65vh]">
             <BentoCard
               src="/videos/feature-1.mp4"
               tag="Flagship"
@@ -178,10 +178,11 @@ const Products = () => {
         {/* ── Bento grid ─────────────────────────────────────────────────── */}
         <div
           ref={gridRef}
-          className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7"
+          className="grid w-full grid-cols-2 gap-4 sm:gap-7"
+          style={{ gridAutoRows: 'minmax(200px, auto)' }}
         >
           {/* KingpiN Vision Forge Nexus — tall left card */}
-          <BentoTilt className="bento-tilt_1 col-span-2 row-span-1 md:col-span-1 md:row-span-2">
+          <BentoTilt className="bento-tilt_1 col-span-2 md:col-span-1 md:row-span-2">
             <BentoCard
               src="/videos/feature-2.mp4"
               tag="SaaS"
@@ -192,7 +193,7 @@ const Products = () => {
           </BentoTilt>
 
           {/* KingpiN Vision Forge Pulse */}
-          <BentoTilt className="bento-tilt_1 col-span-2 row-span-1 ms-32 md:col-span-1 md:ms-0">
+          <BentoTilt className="bento-tilt_1 col-span-2 md:col-span-1">
             <BentoCard
               src="/videos/feature-3.mp4"
               tag="Analytics"
@@ -203,7 +204,7 @@ const Products = () => {
           </BentoTilt>
 
           {/* KingpiN Vision Forge Vault */}
-          <BentoTilt className="bento-tilt_1 col-span-2 me-14 md:col-span-1 md:me-0">
+          <BentoTilt className="bento-tilt_1 col-span-2 md:col-span-1">
             <BentoCard
               src="/videos/feature-4.mp4"
               tag="Collaboration"
@@ -214,7 +215,7 @@ const Products = () => {
           </BentoTilt>
 
           {/* Ambient video tile */}
-          <BentoTilt className="bento-tilt_2">
+          <BentoTilt className="bento-tilt_2 col-span-1">
             <video
               src="/videos/feature-5.mp4"
               loop
@@ -226,7 +227,7 @@ const Products = () => {
           </BentoTilt>
 
           {/* More coming soon */}
-          <BentoTilt className="bento-tilt_2">
+          <BentoTilt className="bento-tilt_2 col-span-1">
             <div className="flex size-full flex-col justify-between bg-[#4fb7dd] p-5">
               <h1
                 className="bento-title special-font max-w-64 text-black"
