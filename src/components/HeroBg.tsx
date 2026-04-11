@@ -1,148 +1,38 @@
-import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
-import { useAspect, useTexture } from '@react-three/drei';
-import { useMemo, useRef, useState, useEffect } from 'react';
-import * as THREE from 'three/webgpu';
-import { bloom } from 'three/examples/jsm/tsl/display/BloomNode.js';
-
-import {
-  abs,
-  blendScreen,
-  float,
-  mod,
-  mx_cell_noise_float,
-  oneMinus,
-  smoothstep,
-  texture,
-  uniform,
-  uv,
-  vec2,
-  vec3,
-  pass,
-} from 'three/tsl';
-
-const TEXTUREMAP = { src: 'https://i.postimg.cc/XYwvXN8D/img-4.png' };
-const DEPTHMAP   = { src: 'https://i.postimg.cc/2SHKQh2q/raw-4.webp' };
-
-extend(THREE as any);
-
-// ── Bloom only, no scan line ──────────────────────────────────────────────────
-const PostProcessing = ({
-  strength  = 1,
-  threshold = 1,
-}: {
-  strength?:  number;
-  threshold?: number;
-}) => {
-  const { gl, scene, camera } = useThree();
-
-  const render = useMemo(() => {
-    const postProcessing  = new THREE.PostProcessing(gl as any);
-    const scenePass       = pass(scene, camera);
-    const scenePassColor  = scenePass.getTextureNode('output');
-    const bloomPass       = bloom(scenePassColor, strength, 0.5, threshold);
-
-    postProcessing.outputNode = scenePassColor.add(bloomPass);
-    return postProcessing;
-  }, [camera, gl, scene, strength, threshold]);
-
-  useFrame(() => {
-    render.renderAsync();
-  }, 1);
-
-  return null;
+const gridStyle = {
+  backgroundImage: `
+    radial-gradient(circle at center, rgba(79, 183, 221, 0.34) 0 1px, transparent 1.6px),
+    linear-gradient(135deg, rgba(79, 183, 221, 0.08), transparent 52%)
+  `,
+  backgroundSize: "24px 24px, 100% 100%",
+  backgroundPosition: "center center, center center",
 };
 
-// ── Blue cellular dot grid ────────────────────────────────────────────────────
-const WIDTH  = 300;
-const HEIGHT = 300;
-
-const Scene = () => {
-  const [rawMap, depthMap] = useTexture([TEXTUREMAP.src, DEPTHMAP.src]);
-  const { viewport } = useThree();
-
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    if (rawMap && depthMap) setVisible(true);
-  }, [rawMap, depthMap]);
-
-  const { material, uniforms } = useMemo(() => {
-    const uPointer  = uniform(new THREE.Vector2(0));
-    const uProgress = uniform(0);
-    const strength  = 0.01;
-
-    const tDepthMap = texture(depthMap);
-    const tMap      = texture(rawMap, uv().add(tDepthMap.r.mul(uPointer).mul(strength)));
-
-    const aspect   = float(WIDTH).div(HEIGHT);
-    const tUv      = vec2(uv().x.mul(aspect), uv().y);
-    const tiling   = vec2(120.0);
-    const tiledUv  = mod(tUv.mul(tiling), 2.0).sub(1.0);
-
-    const brightness = mx_cell_noise_float(tUv.mul(tiling).div(2));
-    const dist       = float(tiledUv.length());
-    const dot        = float(smoothstep(0.5, 0.49, dist)).mul(brightness);
-
-    const depth  = tDepthMap.r;
-    const flow   = oneMinus(smoothstep(0, 0.02, abs(depth.sub(uProgress))));
-
-    // Blue-cyan instead of red
-    const mask  = dot.mul(flow).mul(vec3(0, 4, 10));
-    const final = blendScreen(tMap, mask);
-
-    const mat = new THREE.MeshBasicNodeMaterial({
-      colorNode:   final,
-      transparent: true,
-      opacity:     0,
-    });
-
-    return { material: mat, uniforms: { uPointer, uProgress } };
-  }, [rawMap, depthMap]);
-
-  const [w, h] = useAspect(WIDTH, HEIGHT);
-
-  useFrame(({ clock, pointer }) => {
-    uniforms.uProgress.value = Math.sin(clock.getElapsedTime() * 0.5) * 0.5 + 0.5;
-    uniforms.uPointer.value  = pointer;
-
-    if (meshRef.current) {
-      const mat = meshRef.current.material as any;
-      if ('opacity' in mat) {
-        mat.opacity = THREE.MathUtils.lerp(mat.opacity, visible ? 1 : 0, 0.07);
-      }
-    }
-  });
-
+const HeroBg = ({ className = "absolute inset-0 h-full w-full" }) => {
   return (
-    <mesh
-      ref={meshRef}
-      scale={[w * 0.4, h * 0.4, 1]}
-      position={[viewport.width * 0.27, 0, 0]}
-      material={material}
-    >
-      <planeGeometry />
-    </mesh>
+    <div className={`${className} overflow-hidden bg-[#020609]`}>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(79,183,221,0.18),transparent_32%),radial-gradient(circle_at_78%_34%,rgba(79,183,221,0.16),transparent_24%),linear-gradient(180deg,#020609_0%,#050d14_42%,#020609_100%)]" />
+
+      <div
+        className="absolute inset-0 opacity-55"
+        style={gridStyle}
+      />
+
+      <div className="absolute inset-y-0 right-[8%] w-[38vw] min-w-[220px] bg-[linear-gradient(180deg,rgba(79,183,221,0.06),rgba(79,183,221,0.02)_46%,transparent)] blur-[2px]" />
+
+      <div className="absolute right-[10%] top-[14%] h-44 w-44 rounded-full bg-[#4fb7dd]/18 blur-3xl motion-safe:animate-pulse" />
+      <div
+        className="absolute right-[22%] top-[28%] h-72 w-72 rounded-full border border-[#4fb7dd]/10 bg-[#4fb7dd]/[0.04] blur-2xl motion-safe:animate-pulse"
+        style={{ animationDuration: "8s" }}
+      />
+      <div
+        className="absolute bottom-[12%] right-[16%] h-28 w-[28vw] min-w-[180px] max-w-[360px] rounded-full bg-[linear-gradient(90deg,transparent,rgba(79,183,221,0.24),transparent)] blur-2xl motion-safe:animate-pulse"
+        style={{ animationDuration: "10s" }}
+      />
+
+      <div className="absolute inset-y-0 right-[11%] w-px bg-[linear-gradient(180deg,transparent,rgba(79,183,221,0.34),transparent)] opacity-65" />
+      <div className="absolute right-[8%] top-[16%] h-[62%] w-[34vw] min-w-[200px] max-w-[460px] rounded-[40px] border border-[#4fb7dd]/10 bg-[linear-gradient(180deg,rgba(79,183,221,0.05),rgba(79,183,221,0.01))] shadow-[0_0_90px_rgba(79,183,221,0.07)]" />
+    </div>
   );
 };
-
-// ── Background-only export ────────────────────────────────────────────────────
-const HeroBg = ({ className = "absolute inset-0 h-full w-full" }: { className?: string }) => (
-  <div className={className}>
-    <Canvas
-      flat
-      className="h-full w-full"
-      scene={{ background: new THREE.Color(0x000000) }}
-      gl={async (props) => {
-        const renderer = new THREE.WebGPURenderer(props as any);
-        await renderer.init();
-        return renderer;
-      }}
-    >
-      <PostProcessing />
-      <Scene />
-    </Canvas>
-  </div>
-);
 
 export default HeroBg;

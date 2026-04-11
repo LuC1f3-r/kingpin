@@ -2,43 +2,43 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import ElectricBorder from "./ElectricBorder";
 import { TiLocationArrow } from "react-icons/ti";
-import { useWindowScroll } from "react-use";
 import gsap from "gsap";
 
-const navItems = ["About", "Services", "Products"];
+const navItems = ["About", "Services", "Products", "FAQ"];
 
 const Navbar = () => {
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isIndicatorActive, setIsIndicatorActive] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Refs for audio and navigation container
-  const audioElementRef = useRef(null);
   const navContainerRef = useRef(null);
-
-  const { y: currentScrollY } = useWindowScroll();
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
-    if (!navContainerRef.current) return;
+    const container = navContainerRef.current;
+    if (!container) return;
 
-    if (currentScrollY === 0) {
-      // Topmost position: show navbar without floating-nav
-      setIsNavVisible(true);
-      navContainerRef.current.classList.remove("floating-nav");
-    } else if (currentScrollY > lastScrollY) {
-      // Scrolling down: hide navbar and apply floating-nav
-      setIsNavVisible(false);
-      navContainerRef.current.classList.add("floating-nav");
-    } else if (currentScrollY < lastScrollY) {
-      // Scrolling up: show navbar with floating-nav
-      setIsNavVisible(true);
-      navContainerRef.current.classList.add("floating-nav");
-    }
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-    setLastScrollY(currentScrollY);
-  }, [currentScrollY, lastScrollY]);
+      if (currentScrollY <= 0) {
+        container.classList.remove("floating-nav");
+        setIsNavVisible(true);
+      } else if (currentScrollY > lastScrollYRef.current) {
+        container.classList.add("floating-nav");
+        setIsNavVisible((prev) => (prev ? false : prev));
+      } else {
+        container.classList.add("floating-nav");
+        setIsNavVisible((prev) => (prev ? prev : true));
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     gsap.to(navContainerRef.current, {
@@ -47,20 +47,6 @@ const Navbar = () => {
       duration: 0.2,
     });
   }, [isNavVisible]);
-
-  const toggleAudioIndicator = () => {
-    setIsAudioPlaying((prev) => !prev);
-    setIsIndicatorActive((prev) => !prev);
-  };
-
-  useEffect(() => {
-    if (!audioElementRef.current) return;
-    if (isAudioPlaying) {
-      audioElementRef.current.play();
-    } else {
-      audioElementRef.current.pause();
-    }
-  }, [isAudioPlaying]);
 
   return (
     <>

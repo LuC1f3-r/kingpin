@@ -207,7 +207,7 @@ const Testimonials = () => {
     } else {
       gsap.to(trackRef.current, { x, duration: 0.85, ease: "power2.inOut" });
     }
-  }, [activeIndex]);   // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeIndex]);
 
   /* Re-center on resize */
   useEffect(() => {
@@ -217,7 +217,7 @@ const Testimonials = () => {
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, [activeIndex]);   // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeIndex]);
 
   /* Auto-advance every 5 s */
   useEffect(() => {

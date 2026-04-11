@@ -28,6 +28,9 @@ const ElectricBorder = ({
   const animationRef     = useRef(null);
   const timeRef          = useRef(0);
   const lastFrameTimeRef = useRef(0);
+  const isVisibleRef     = useRef(true);
+  const isPageVisibleRef = useRef(true);
+  const reduceMotionRef  = useRef(false);
 
   // ── Noise helpers ──────────────────────────────────────────────────────────
   const random = useCallback((x) => (Math.sin(x * 12.9898) * 43758.5453) % 1, []);
@@ -147,7 +150,7 @@ const ElectricBorder = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const octaves      = 10;
+    const octaves      = 7;
     const lacunarity   = 1.6;
     const gain         = 0.9;
     const amplitude    = variant === 'disconnected' ? chaos * 0.7 : chaos;
@@ -155,6 +158,7 @@ const ElectricBorder = ({
     const baseFlatness = 0;
     const displacement = variant === 'disconnected' ? 36 : 60;
     const borderOffset = 60;
+    const targetFrameMs = 1000 / 30;
 
     const updateSize = () => {
       const rect   = container.getBoundingClientRect();
@@ -173,12 +177,16 @@ const ElectricBorder = ({
 
     let { width, height } = updateSize();
 
-    const draw = (currentTime) => {
+    const renderFrame = (currentTime, animate = true) => {
       if (!canvas || !ctx) return;
 
-      const deltaTime = (currentTime - lastFrameTimeRef.current) / 1000;
-      timeRef.current += deltaTime * speed;
-      lastFrameTimeRef.current = currentTime;
+      if (animate) {
+        const deltaTime = lastFrameTimeRef.current
+          ? (currentTime - lastFrameTimeRef.current) / 1000
+          : targetFrameMs / 1000;
+        timeRef.current += deltaTime * speed;
+        lastFrameTimeRef.current = currentTime;
+      }
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -198,7 +206,7 @@ const ElectricBorder = ({
       const radius       = Math.min(borderRadius, maxRadius);
 
       const approxPerimeter = 2 * (borderWidth + borderHeight) + 2 * Math.PI * radius;
-      const sampleCount     = Math.floor(approxPerimeter / 2);
+      const sampleCount     = Math.max(90, Math.min(220, Math.floor(approxPerimeter / 5)));
       const points = [];
 
       for (let i = 0; i <= sampleCount; i++) {
@@ -313,21 +321,102 @@ const ElectricBorder = ({
         ctx.stroke();
       }
 
+    };
+
+    const stopAnimation = () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+      lastFrameTimeRef.current = 0;
+    };
+
+    const draw = (currentTime) => {
+      animationRef.current = null;
+
+      if (!isVisibleRef.current || !isPageVisibleRef.current || reduceMotionRef.current) {
+        renderFrame(currentTime, false);
+        return;
+      }
+
+      if (
+        lastFrameTimeRef.current &&
+        currentTime - lastFrameTimeRef.current < targetFrameMs
+      ) {
+        animationRef.current = requestAnimationFrame(draw);
+        return;
+      }
+
+      renderFrame(currentTime, true);
       animationRef.current = requestAnimationFrame(draw);
+    };
+
+    const startAnimation = () => {
+      if (animationRef.current || !isVisibleRef.current || !isPageVisibleRef.current || reduceMotionRef.current) {
+        return;
+      }
+
+      animationRef.current = requestAnimationFrame(draw);
+    };
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const handleMotionPreference = () => {
+      reduceMotionRef.current = mediaQuery.matches;
+      if (reduceMotionRef.current) {
+        stopAnimation();
+        renderFrame(performance.now(), false);
+      } else {
+        startAnimation();
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      isPageVisibleRef.current = document.visibilityState === 'visible';
+
+      if (isPageVisibleRef.current) {
+        startAnimation();
+      } else {
+        stopAnimation();
+      }
     };
 
     const resizeObserver = new ResizeObserver(() => {
       const s = updateSize();
       width   = s.width;
       height  = s.height;
+      renderFrame(performance.now(), false);
     });
     resizeObserver.observe(container);
 
-    animationRef.current = requestAnimationFrame(draw);
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry?.isIntersecting ?? true;
+
+        if (isVisibleRef.current) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      },
+      { threshold: 0.01 },
+    );
+    intersectionObserver.observe(container);
+
+    mediaQuery.addEventListener?.('change', handleMotionPreference);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    handleMotionPreference();
+    handleVisibilityChange();
+    renderFrame(performance.now(), false);
+    startAnimation();
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      stopAnimation();
       resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      mediaQuery.removeEventListener?.('change', handleMotionPreference);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [color, speed, chaos, variant, borderRadius, noise2D, octavedNoise, getRoundedRectPoint, randomUnit]);
 

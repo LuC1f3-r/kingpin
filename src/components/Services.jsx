@@ -66,26 +66,30 @@ const glowBase = {
   fillOpacity:     0.45,
 };
 
-const CardBody = ({ Icon, title, desc, accent }) => (
-  <div className="relative flex h-full flex-col gap-7 p-[2.2rem]">
-    <div
-      className="absolute inset-y-0 left-0 w-[3px] rounded-l-sm opacity-50"
-      style={{ backgroundColor: accent }}
-    />
-    <Icon size={30} style={{ color: accent }} />
-    <div>
-      <h3
-        className="mb-3 font-zentry text-xl font-black uppercase text-[#eef2ff]"
-        style={{ fontFeatureSettings: '"ss01" on' }}
-      >
-        {title}
-      </h3>
-      <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
-        {desc}
-      </p>
+const CardBody = ({ Icon, title, desc, accent }) => {
+  const ServiceIcon = Icon;
+
+  return (
+    <div className="relative flex h-full flex-col gap-7 p-[2.2rem]">
+      <div
+        className="absolute inset-y-0 left-0 w-[3px] rounded-l-sm opacity-50"
+        style={{ backgroundColor: accent }}
+      />
+      {ServiceIcon ? <ServiceIcon size={30} style={{ color: accent }} /> : null}
+      <div>
+        <h3
+          className="mb-3 font-zentry text-xl font-black uppercase text-[#eef2ff]"
+          style={{ fontFeatureSettings: '"ss01" on' }}
+        >
+          {title}
+        </h3>
+        <p className="font-robert text-sm leading-relaxed text-[#eef2ff]/65">
+          {desc}
+        </p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Services = () => {
   const sectionRef  = useRef(null);

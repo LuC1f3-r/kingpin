@@ -13,6 +13,7 @@ const company = [
   { label: "About Us",  href: "#about"    },
   { label: "Our Work",  href: "#features" },
   { label: "Process",   href: "#process"  },
+  { label: "FAQ",       href: "#faq"      },
   { label: "Careers",   href: "#careers"  },
   { label: "Contact",   href: "#contact"  },
 ];
@@ -80,17 +81,21 @@ const Footer = () => (
 
         {/* Social icons */}
         <div className="mt-2 flex items-center gap-4">
-          {socialLinks.map(({ href, Icon }) => (
-            <a
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/25 transition-colors duration-300 hover:text-white"
-            >
-              <Icon size={15} />
-            </a>
-          ))}
+          {socialLinks.map((link) => {
+            const SocialIcon = link.Icon;
+
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/25 transition-colors duration-300 hover:text-white"
+              >
+                {SocialIcon ? <SocialIcon size={15} /> : null}
+              </a>
+            );
+          })}
         </div>
       </div>
 

@@ -105,7 +105,7 @@ const Process = () => {
         ref={stepsRef}
         className="grid grid-cols-1 gap-0 divide-y divide-black/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4 lg:divide-y-0"
       >
-        {steps.map((step, i) => (
+        {steps.map((step) => (
           <div
             key={step.num}
             className="group flex flex-col justify-between px-0 py-10 md:px-8 md:first:pl-0 lg:py-0"
