@@ -76,6 +76,21 @@
   --kvf-ember-glow: rgba(255, 107, 53, 0.4);
 }
 
+/* ── Lenis smooth-scroll guards (recommended by the library) ──────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 /* 3. Base Styles */
 @layer base {
   html {

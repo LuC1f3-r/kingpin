@@ -12,6 +12,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import Marquee from "./components/Marquee";
 import Navbar from "./components/Navbar";
 import Process from "./components/Process";
+import SmoothScroll, { getLenis } from "./components/SmoothScroll";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
@@ -20,7 +21,11 @@ import NotFound from "./components/NotFound";
 /* ── Scroll-to-section helper used by router-aware nav links ── */
 const scrollToSection = (id) => {
   const el = document.getElementById(id);
-  if (el) {
+  if (!el) return;
+  const lenis = getLenis();
+  if (lenis) {
+    lenis.scrollTo(el, { duration: 1.4 });
+  } else {
     el.scrollIntoView({ behavior: "smooth" });
   }
 };
@@ -113,6 +118,7 @@ const AppRoutes = () => {
 const App = () => (
   <HelmetProvider>
     <BrowserRouter>
+      <SmoothScroll />
       <AppRoutes />
     </BrowserRouter>
   </HelmetProvider>
