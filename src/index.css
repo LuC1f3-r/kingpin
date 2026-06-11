@@ -401,6 +401,61 @@ html.lenis body {
   margin-left: 2rem;
 }
 
+/* ── Footer closer: giant FORGE wordmark with the forge burning through ───
+   The gradient runs ember (base) → steel-cyan → near-dark (top): the
+   letterforms are steel still cooling in the forge bed. background-size
+   is taller than the text so the slow breathe animation can drift the
+   heat without exposing edges. */
+.forge-wordmark {
+  display: block;
+  margin-bottom: -0.14em; /* crop the letter bases below the page edge */
+  text-align: center;
+  font-family: var(--font-zentry);
+  font-feature-settings: "ss01" on;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.85;
+  letter-spacing: 0.01em;
+  font-size: clamp(5.5rem, 23vw, 22rem);
+  background-image:
+    radial-gradient(
+      100% 95% at 50% 102%,
+      var(--kvf-ember-bright) 0%,
+      var(--kvf-ember) 26%,
+      rgba(255, 107, 53, 0.45) 48%,
+      transparent 75%
+    ),
+    linear-gradient(
+      to top,
+      rgba(79, 183, 221, 0.9) 0%,
+      rgba(79, 183, 221, 0.55) 45%,
+      rgba(79, 183, 221, 0.2) 85%
+    );
+  background-size: 100% 130%;
+  background-position: 50% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: forge-breathe 7s ease-in-out infinite;
+  will-change: background-position;
+}
+
+@keyframes forge-breathe {
+  0%,
+  100% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 50% 78%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-wordmark {
+    animation: none;
+  }
+}
+
 /* ── ElectricBorder component styles ─────────────────────────────────────── */
 .eb-root {
   position: relative;

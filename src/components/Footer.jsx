@@ -1,5 +1,11 @@
+import { useRef } from "react";
 import { FaLinkedin, FaInstagram, FaReddit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 /* ── Data ──────────────────────────────────────────────────────────────────── */
 const services = [
@@ -47,8 +53,37 @@ const NavLink = ({ to, children }) => (
 );
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
-const Footer = () => (
-  <footer className="w-screen bg-[#020609]">
+const Footer = () => {
+  const footerRef = useRef(null);
+  const wordRef   = useRef(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+      // wordmark rises out of the page edge as the footer scrolls into view
+      gsap.fromTo(
+        wordRef.current,
+        { yPercent: 42 },
+        {
+          yPercent: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: wordRef.current,
+            start: "top bottom",
+            end: "bottom bottom",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        },
+      );
+    },
+    { scope: footerRef },
+  );
+
+  return (
+  <footer ref={footerRef} className="w-screen overflow-hidden bg-[#020609]">
 
     {/* Top hairline */}
     <div className="h-px w-full bg-white/[0.07]" />
@@ -165,7 +200,25 @@ const Footer = () => (
       </div>
     </div>
 
+    {/* ── Closer: giant FORGE wordmark, forge-glow burning through the
+          letterforms. Bottom edge crops below the fold like cooling steel
+          still sitting in the bed. ─────────────────────────────────────── */}
+    <div className="relative mt-4 select-none" aria-hidden="true">
+      {/* ember bed glow behind the letters */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%]"
+        style={{
+          background:
+            "radial-gradient(60% 90% at 50% 100%, rgba(255,107,53,0.13), transparent 70%)",
+        }}
+      />
+      <h2 ref={wordRef} className="forge-wordmark">
+        Forge
+      </h2>
+    </div>
+
   </footer>
-);
+  );
+};
 
 export default Footer;
