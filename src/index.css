@@ -201,6 +201,42 @@
     0 18px 36px rgba(79, 183, 221, 0.24);
 }
 
+/* ── Forge heat-up: CTA blooms ember under the cursor ─────────────────────
+   --heat-x/--heat-y are set by Button.jsx as the cursor moves. The bloom
+   sits above the cyan base (z-0) but under the label (z-10). */
+.btn-heat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    110px circle at var(--heat-x, 50%) var(--heat-y, 50%),
+    var(--kvf-ember-bright),
+    var(--kvf-ember) 45%,
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.btn-heat:hover::after {
+  opacity: 1;
+}
+
+.btn-heat:hover {
+  box-shadow:
+    0 14px 32px rgba(255, 107, 53, 0.32),
+    0 0 20px rgba(255, 107, 53, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-heat::after {
+    transition: none;
+  }
+}
+
 .absolute-center {
   @apply absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%];
 }

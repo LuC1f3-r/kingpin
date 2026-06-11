@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Magnetic from "./Magnetic";
 import { FaPhone, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 
 const Contact = () => {
@@ -16,10 +17,12 @@ const Contact = () => {
             <br />t<b>h</b>at <b>w</b>in
           </p>
 
-          <Button
-            title="Get in touch"
-            containerClass="cta-transition-btn mt-10 cursor-pointer hover:!bg-blue-50"
-          />
+          <Magnetic className="mt-10">
+            <Button
+              title="Get in touch"
+              containerClass="cta-transition-btn cursor-pointer"
+            />
+          </Magnetic>
 
           {/* ── Contact details ── */}
           <div className="relative z-10 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-8">

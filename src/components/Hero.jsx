@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Button from "./Button";
 import ElectricBorder from "./ElectricBorder";
+import Magnetic from "./Magnetic";
 import HeroBg from "./HeroBg";
 import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
@@ -63,20 +64,22 @@ const Hero = () => {
               tomorrow — turning your business operations into one seamless,
               scalable ecosystem.
             </p>
-            <ElectricBorder
-              color="#4fb7dd"
-              speed={0.2}
-              chaos={0.09}
-              variant="disconnected"
-              borderRadius={9999}
-            >
-              <Button
-                id="watch-trailer"
-                title="Explore More"
-                rightIcon={<TiLocationArrow />}
-                containerClass="cta-transition-btn !bg-[#4fb7dd] !text-[#020609] hover:!bg-[#78c9e5] flex-center gap-1"
-              />
-            </ElectricBorder>
+            <Magnetic>
+              <ElectricBorder
+                color="#4fb7dd"
+                speed={0.2}
+                chaos={0.09}
+                variant="disconnected"
+                borderRadius={9999}
+              >
+                <Button
+                  id="watch-trailer"
+                  title="Explore More"
+                  rightIcon={<TiLocationArrow />}
+                  containerClass="cta-transition-btn !bg-[#4fb7dd] !text-[#020609] flex-center gap-1"
+                />
+              </ElectricBorder>
+            </Magnetic>
           </div>
         </div>
       </div>

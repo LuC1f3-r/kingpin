@@ -137,9 +137,27 @@ const LoadingScreen = ({ onComplete }) => {
     };
     raf = requestAnimationFrame(renderSparks);
 
+    /* ── Failsafe: rAF (and therefore GSAP's ticker) pauses in hidden tabs.
+       If the timeline hasn't finished within wall-clock budget — e.g. the
+       site was opened in a background tab — drop the overlay directly so
+       no visitor is ever trapped behind a frozen preloader. ──────────────── */
+    let done = false;
+    const failsafe = setTimeout(() => {
+      if (done) return;
+      done = true;
+      tl.kill();
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", sizeCanvas);
+      screen.style.opacity = "0";
+      onComplete?.();
+    }, 8000);
+
     /* ── Master timeline: counter climbs while the metal cools ────────────── */
     const tl = gsap.timeline({
       onComplete: () => {
+        if (done) return;
+        done = true;
+        clearTimeout(failsafe);
         cancelAnimationFrame(raf);
         window.removeEventListener("resize", sizeCanvas);
         onComplete?.();
@@ -195,6 +213,7 @@ const LoadingScreen = ({ onComplete }) => {
     });
 
     return () => {
+      clearTimeout(failsafe);
       tl.kill();
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", sizeCanvas);
