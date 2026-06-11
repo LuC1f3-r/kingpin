@@ -157,14 +157,25 @@ const About = () => {
         ref={topBlockRef}
         className="relative min-h-[90dvh] px-5 pb-14 pt-24 md:h-dvh md:px-16 lg:px-20"
       >
-        {/* Full-bleed image: GSAP clips centre → right 48% on desktop, full on mobile */}
-        <div ref={imageWrapperRef} className="absolute inset-0 z-10">
-          <img
+        {/* Full-bleed brand field: GSAP clips centre → right 48% on desktop, full on mobile */}
+        <div ref={imageWrapperRef} className="absolute inset-0 z-10 overflow-hidden">
+          <div
             ref={imageRef}
-            src="/img/about.gif"
-            alt="KingpiN Vision Forge Forge"
-            className="size-full object-cover"
-          />
+            className="size-full"
+            style={{
+              backgroundImage:
+                "radial-gradient(90% 70% at 70% 25%, rgba(79,183,221,0.35), transparent 55%), radial-gradient(80% 80% at 25% 90%, rgba(79,183,221,0.14), transparent 50%), linear-gradient(150deg, #0b1c2a 0%, #07121c 50%, #020609 100%)",
+            }}
+          >
+            {/* Faint grid texture */}
+            <div
+              className="size-full opacity-50"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 52px), repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 52px)",
+              }}
+            />
+          </div>
         </div>
 
         {/* Overlay gradient for mobile readability */}

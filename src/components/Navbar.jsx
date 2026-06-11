@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 import ElectricBorder from "./ElectricBorder";
 import { TiLocationArrow } from "react-icons/ti";
 import gsap from "gsap";
 
-const navItems = ["About", "Services", "Products", "FAQ"];
+/* Each nav item maps to a real route (React Router handles scroll-to-section) */
+const navItems = [
+  { label: "About",    to: "/about"    },
+  { label: "Services", to: "/services" },
+  { label: "Products", to: "/#products" },
+  { label: "FAQ",      to: "/faq"      },
+];
 
 const Navbar = () => {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -36,7 +43,6 @@ const Navbar = () => {
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -56,36 +62,38 @@ const Navbar = () => {
       >
         <header className="absolute top-1/2 w-full -translate-y-1/2">
           <nav className="flex size-full items-center justify-between px-4">
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <img src="/img/logo.png" alt="logo" className="w-8 sm:w-10" />
+            {/* Logo — always goes home */}
+            <Link to="/" className="flex items-center gap-3">
+              <img src="/img/logo.png" alt="KingpiN Vision Forge logo" className="w-8 sm:w-10" />
               <span className="font-zentry text-[10px] uppercase text-white tracking-wider sm:text-xs">
                 Kingpin Vision Forge
               </span>
-            </div>
+            </Link>
 
             {/* Desktop nav */}
             <div className="flex h-full items-center">
               <div className="hidden md:block">
-                {navItems.map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
+                {navItems.map(({ label, to }) => (
+                  <Link
+                    key={label}
+                    to={to}
                     className="nav-hover-btn"
                   >
-                    {item}
-                  </a>
+                    {label}
+                  </Link>
                 ))}
               </div>
 
               <div className="ml-8 hidden md:block">
                 <ElectricBorder color="#4fb7dd" speed={0.2} chaos={0.04} variant="disconnected" borderRadius={9999}>
-                  <Button
-                    id="product-button"
-                    title="Contact Us"
-                    rightIcon={<TiLocationArrow />}
-                    containerClass="cta-transition-btn !bg-[#4fb7dd] !text-[#020609] hover:!bg-[#78c9e5] flex items-center justify-center gap-1"
-                  />
+                  <Link to="/contact">
+                    <Button
+                      id="product-button"
+                      title="Contact Us"
+                      rightIcon={<TiLocationArrow />}
+                      containerClass="cta-transition-btn !bg-[#4fb7dd] !text-[#020609] hover:!bg-[#78c9e5] flex items-center justify-center gap-1"
+                    />
+                  </Link>
                 </ElectricBorder>
               </div>
 
@@ -97,9 +105,7 @@ const Navbar = () => {
               >
                 <span
                   className="block h-[2px] w-6 bg-white transition-all duration-300"
-                  style={{
-                    transform: isMobileMenuOpen ? "rotate(45deg) translateY(7px)" : "none",
-                  }}
+                  style={{ transform: isMobileMenuOpen ? "rotate(45deg) translateY(7px)" : "none" }}
                 />
                 <span
                   className="block h-[2px] w-6 bg-white transition-all duration-300"
@@ -107,9 +113,7 @@ const Navbar = () => {
                 />
                 <span
                   className="block h-[2px] w-6 bg-white transition-all duration-300"
-                  style={{
-                    transform: isMobileMenuOpen ? "rotate(-45deg) translateY(-7px)" : "none",
-                  }}
+                  style={{ transform: isMobileMenuOpen ? "rotate(-45deg) translateY(-7px)" : "none" }}
                 />
               </button>
             </div>
@@ -127,23 +131,23 @@ const Navbar = () => {
         }}
       >
         <div className="flex flex-col gap-1 px-6 pb-8 pt-24">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+          {navItems.map(({ label, to }) => (
+            <Link
+              key={label}
+              to={to}
               onClick={() => setIsMobileMenuOpen(false)}
               className="border-b border-white/5 py-4 font-general text-sm uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-[#4fb7dd]"
             >
-              {item}
-            </a>
+              {label}
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             onClick={() => setIsMobileMenuOpen(false)}
             className="mt-6 w-full rounded-full bg-[#4fb7dd] py-3 text-center font-general text-xs uppercase tracking-widest text-[#020609] font-bold"
           >
             Contact Us
-          </a>
+          </Link>
         </div>
       </div>
     </>

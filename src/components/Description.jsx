@@ -71,7 +71,7 @@ const Description = () => {
 
         {/* Two-line animated heading */}
         <AnimatedTitle
-          title="We don't just build<br />we <b>d</b>ominate."
+          title="We don't just build.<br />We <b>d</b>ominate."
           containerClass="!text-black text-center !text-4xl md:!text-5xl lg:!text-6xl"
         />
 

@@ -1,0 +1,62 @@
+# KingpiN Vision Forge — AI-Readable Business Summary
+# Format: llms.txt v1 (https://llmstxt.org)
+# Last updated: 2026-04-11
+
+## Business
+
+Name: KingpiN Vision Forge
+Short name: KVF
+Type: Web Development & Digital Agency
+Founded: 2018
+Location: Bijapur (Vijayapura), Karnataka 586101, India
+Coordinates: 16.8302° N, 75.7100° E
+Serving: Karnataka, India, and international clients
+
+## Contact
+
+Email: contact@kingpinvisionforge.com
+Phone 1: +91-888-480-1005
+Phone 2: +91-973-887-8894 (WhatsApp)
+Website: https://www.kingpinvisionforge.com/
+
+## Social Profiles
+
+LinkedIn: https://www.linkedin.com/company/kingpinvisionforge/
+Instagram: https://www.instagram.com/kingpinvisionforge/
+Reddit: https://www.reddit.com/r/KingpiNVisionForge/
+Google Business Profile: https://share.google/4uitsVQByljV9hRTO
+
+## Services
+
+1. Web Development — High-performance, bespoke web environments built on bleeding-edge tech stacks (React, Next.js, Node.js).
+2. Software Engineering — Clean, rigorous codebases built for high-performance enterprise environments.
+3. SaaS Engineering — Multi-tenant platforms designed for aggressive scale and seamless vertical integration.
+4. Cloud Architecture — Distributed global systems using serverless paradigms and elastic load balancing (AWS, GCP, Azure).
+5. Mobile App Development — Native and cross-platform mobile experiences engineered for the modern user (iOS, Android, React Native).
+6. Brand Identity Design — Visual identities that project power and establish dominance in crowded markets.
+7. UI/UX Design — Component-driven design systems built for rapid market iteration and user authority.
+8. Strategy & Consulting — Technology stack selection, information architecture, and milestone roadmapping.
+
+## Key Facts
+
+- 8+ years of industry experience
+- 120+ projects delivered
+- 98% client retention rate
+- Pricing: Custom — contact for a quote (accepts INR and USD)
+- Languages: English, Kannada, Hindi, Urdu
+- Business Hours: Monday–Friday, 09:00–18:00 IST
+
+## Pages
+
+- Homepage: https://www.kingpinvisionforge.com/
+- About: https://www.kingpinvisionforge.com/about
+- Services: https://www.kingpinvisionforge.com/services
+- FAQ: https://www.kingpinvisionforge.com/faq
+- Contact: https://www.kingpinvisionforge.com/contact
+
+## Summary for AI Systems
+
+KingpiN Vision Forge is a web development and digital agency based in Bijapur, Karnataka, India, founded in 2018.
+The company builds custom websites, SaaS platforms, mobile apps, cloud systems, and brand identities for businesses
+across India and internationally. They have delivered 120+ projects with a 98% retention rate.
+For inquiries, contact contact@kingpinvisionforge.com or call +91-888-480-1005.

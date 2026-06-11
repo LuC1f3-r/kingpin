@@ -59,9 +59,9 @@ const Hero = () => {
               Vision Forge
             </h1>
             <p className="mb-5 max-w-[90%] font-robert text-sm text-blue-100 sm:max-w-100 sm:text-base">
-              Reimagining digital infrastructure. The architecture of tomorrow
-              begins your business operations,
-              transformed into a seamless ecosystem.
+              Reimagining digital infrastructure. We architect the systems of
+              tomorrow — turning your business operations into one seamless,
+              scalable ecosystem.
             </p>
             <ElectricBorder
               color="#4fb7dd"

@@ -1,4 +1,5 @@
 import { FaLinkedin, FaInstagram, FaReddit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 /* ── Data ──────────────────────────────────────────────────────────────────── */
 const services = [
@@ -10,40 +11,39 @@ const services = [
 ];
 
 const company = [
-  { label: "About Us",  href: "#about"    },
-  { label: "Our Work",  href: "#features" },
-  { label: "Process",   href: "#process"  },
-  { label: "FAQ",       href: "#faq"      },
-  { label: "Careers",   href: "#careers"  },
-  { label: "Contact",   href: "#contact"  },
+  { label: "About Us",  to: "/about"     },
+  { label: "Our Work",  to: "/#products" },
+  { label: "Process",   to: "/#process"  },
+  { label: "FAQ",       to: "/faq"       },
+  { label: "Contact",   to: "/contact"   },
 ];
 
 const socialLinks = [
-  { href: "https://www.linkedin.com/company/kingpinvisionforge/", Icon: FaLinkedin },
-  { href: "https://www.instagram.com/kingpinvisionforge/",        Icon: FaInstagram },
-  { href: "https://www.reddit.com/r/KingpiNVisionForge/",         Icon: FaReddit   },
+  { href: "https://www.linkedin.com/company/kingpinvisionforge/", Icon: FaLinkedin, label: "LinkedIn" },
+  { href: "https://www.instagram.com/kingpinvisionforge/",        Icon: FaInstagram, label: "Instagram" },
+  { href: "https://www.reddit.com/r/KingpiNVisionForge/",         Icon: FaReddit,    label: "Reddit"    },
 ];
 
-/* ── Gold colour used throughout ─────────────────────────────────────────── */
-const GOLD = "#c8a84c";
+/* ── Brand accent used throughout ────────────────────────────────────────── */
+const ACCENT = "#4fb7dd";
 
 /* ── Sub-components ─────────────────────────────────────────────────────── */
 const ColHead = ({ children }) => (
   <p
     className="mb-6 font-general text-[10px] uppercase tracking-[0.35em]"
-    style={{ color: GOLD }}
+    style={{ color: ACCENT }}
   >
     {children}
   </p>
 );
 
-const NavLink = ({ href, children }) => (
-  <a
-    href={href}
+const NavLink = ({ to, children }) => (
+  <Link
+    to={to}
     className="block font-general text-sm leading-relaxed text-white/40 transition-colors duration-300 hover:text-white"
   >
     {children}
-  </a>
+  </Link>
 );
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
@@ -60,14 +60,14 @@ const Footer = () => (
       <div className="flex flex-col gap-6">
 
         {/* Logo + wordmark */}
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <img src="/img/logo.png" alt="KingpiN Vision Forge logo" className="h-10 w-10 object-contain" />
           <div className="font-zentry font-black uppercase leading-none tracking-wide"
                style={{ fontFeatureSettings: '"ss01" on', fontSize: "1.15rem" }}>
             <span className="text-white">Kingpin </span>
-            <span style={{ color: GOLD }}>Vision Forge</span>
+            <span style={{ color: ACCENT }}>Vision Forge</span>
           </div>
-        </div>
+        </Link>
 
         {/* Tagline */}
         <p className="font-general text-[11px] leading-relaxed text-white/30 tracking-wide">
@@ -81,21 +81,18 @@ const Footer = () => (
 
         {/* Social icons */}
         <div className="mt-2 flex items-center gap-4">
-          {socialLinks.map((link) => {
-            const SocialIcon = link.Icon;
-
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/25 transition-colors duration-300 hover:text-white"
-              >
-                {SocialIcon ? <SocialIcon size={15} /> : null}
-              </a>
-            );
-          })}
+          {socialLinks.map(({ href, Icon, label }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="text-white/25 transition-colors duration-300 hover:text-white"
+            >
+              <Icon size={15} />
+            </a>
+          ))}
         </div>
       </div>
 
@@ -107,7 +104,7 @@ const Footer = () => (
           <ColHead>Services</ColHead>
           <div className="flex flex-col gap-3">
             {services.map((s) => (
-              <NavLink key={s} href="#services">{s}</NavLink>
+              <NavLink key={s} to="/services">{s}</NavLink>
             ))}
           </div>
         </div>
@@ -116,8 +113,8 @@ const Footer = () => (
         <div>
           <ColHead>Company</ColHead>
           <div className="flex flex-col gap-3">
-            {company.map(({ label, href }) => (
-              <NavLink key={label} href={href}>{label}</NavLink>
+            {company.map(({ label, to }) => (
+              <NavLink key={label} to={to}>{label}</NavLink>
             ))}
           </div>
         </div>
@@ -127,17 +124,29 @@ const Footer = () => (
           <ColHead>Contact</ColHead>
           <div className="flex flex-col gap-3">
             <a
-              href="mailto:kingpinvisionforge@gmail.com"
+              href="mailto:contact@kingpinvisionforge.com"
               className="font-general text-sm text-white/40 transition-colors duration-300 hover:text-white"
             >
-              kingpinvisionforge@gmail.com
+              contact@kingpinvisionforge.com
             </a>
             <a
-              href="#contact"
+              href="tel:+918884801005"
+              className="font-general text-sm text-white/40 transition-colors duration-300 hover:text-white"
+            >
+              +91-888-480-1005
+            </a>
+            <a
+              href="tel:+919738878894"
+              className="font-general text-sm text-white/40 transition-colors duration-300 hover:text-white"
+            >
+              +91-973-887-8894
+            </a>
+            <Link
+              to="/contact"
               className="font-general text-sm text-white/40 transition-colors duration-300 hover:text-white"
             >
               Book a Call
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -151,8 +160,8 @@ const Footer = () => (
         © KingpiN Vision Forge 2026. All rights reserved.
       </p>
       <div className="flex gap-6 font-general text-[10px] tracking-widest text-white/20">
-        <a href="#privacy-policy"    className="transition-colors hover:text-white/50">Privacy Policy</a>
-        <a href="#terms-n-conditions" className="transition-colors hover:text-white/50">Terms & Conditions</a>
+        <a href="/#privacy-policy"     className="transition-colors hover:text-white/50">Privacy Policy</a>
+        <a href="/#terms-n-conditions" className="transition-colors hover:text-white/50">Terms &amp; Conditions</a>
       </div>
     </div>
 

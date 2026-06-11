@@ -38,19 +38,32 @@ const BentoTilt = ({ children, className = "" }) => {
   );
 };
 
-/* ── Bento card ───────────────────────────────────────────────────────────── */
-const BentoCard = ({ src, title, description, tag, isComingSoon }) => (
+/* ── On-brand gradient backgrounds (replaces template video footage) ───────── */
+const cardGradients = {
+  flagship:
+    "radial-gradient(120% 90% at 80% 15%, rgba(79,183,221,0.30), transparent 55%), radial-gradient(90% 80% at 10% 100%, rgba(79,183,221,0.12), transparent 50%), linear-gradient(150deg, #0b1a26 0%, #060d14 55%, #020609 100%)",
+  a: "radial-gradient(100% 80% at 50% 0%, rgba(79,183,221,0.26), transparent 60%), linear-gradient(165deg, #0a1722 0%, #050b11 100%)",
+  b: "radial-gradient(120% 100% at 100% 100%, rgba(79,183,221,0.24), transparent 55%), linear-gradient(150deg, #081420 0%, #04090e 100%)",
+  c: "radial-gradient(110% 90% at 0% 0%, rgba(79,183,221,0.22), transparent 55%), linear-gradient(160deg, #0a1620 0%, #04090e 100%)",
+};
+
+const gridOverlay =
+  "repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 44px), repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 44px)";
+
+const BentoCard = ({ variant = "a", title, description, tag, isComingSoon }) => (
   <div className="relative size-full">
-    <video
-      src={src}
-      loop
-      muted
-      autoPlay
-      playsInline
-      className="absolute left-0 top-0 size-full object-cover object-center"
+    {/* Brand gradient field */}
+    <div
+      className="absolute inset-0"
+      style={{ backgroundImage: cardGradients[variant] }}
     />
-    {/* dark gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-[#020609]/80 via-[#020609]/20 to-transparent" />
+    {/* Faint grid texture */}
+    <div
+      className="absolute inset-0 opacity-60"
+      style={{ backgroundImage: gridOverlay }}
+    />
+    {/* Bottom fade for text legibility */}
+    <div className="absolute inset-0 bg-gradient-to-t from-[#020609]/70 via-transparent to-transparent" />
 
     <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
       <div>
@@ -167,7 +180,7 @@ const Products = () => {
         <div ref={heroCardRef}>
           <BentoTilt className="border-hsla relative mb-7 h-64 w-full overflow-hidden rounded-md sm:h-96 md:h-[65vh]">
             <BentoCard
-              src="/videos/feature-1.mp4"
+              variant="flagship"
               tag="Flagship"
               title={<>KingpiN Vision Forge <b>F</b>orge</>}
               description="Our all-in-one delivery platform — from architecture to launch, every project runs through a single unified pipeline built for zero compromise."
@@ -184,7 +197,7 @@ const Products = () => {
           {/* KingpiN Vision Forge Nexus — tall left card */}
           <BentoTilt className="bento-tilt_1 col-span-2 md:col-span-1 md:row-span-2">
             <BentoCard
-              src="/videos/feature-2.mp4"
+              variant="a"
               tag="SaaS"
               title={<>KingpiN Vision Forge <b>N</b>exus</>}
               description="A modular SaaS infrastructure kit — multi-tenant, auto-scaling, and wired for enterprise from day one."
@@ -195,7 +208,7 @@ const Products = () => {
           {/* KingpiN Vision Forge Pulse */}
           <BentoTilt className="bento-tilt_1 col-span-2 md:col-span-1">
             <BentoCard
-              src="/videos/feature-3.mp4"
+              variant="b"
               tag="Analytics"
               title={<>KingpiN Vision Forge <b>P</b>ulse</>}
               description="Real-time performance intelligence — monitor, alert, and optimise across your entire digital stack."
@@ -206,7 +219,7 @@ const Products = () => {
           {/* KingpiN Vision Forge Vault */}
           <BentoTilt className="bento-tilt_1 col-span-2 md:col-span-1">
             <BentoCard
-              src="/videos/feature-4.mp4"
+              variant="c"
               tag="Collaboration"
               title={<>KingpiN Vision Forge <b>V</b>ault</>}
               description="A secure client portal for seamless handoffs, live previews, and encrypted asset delivery."
@@ -214,16 +227,18 @@ const Products = () => {
             />
           </BentoTilt>
 
-          {/* Ambient video tile */}
+          {/* Ambient brand tile */}
           <BentoTilt className="bento-tilt_2 col-span-1">
-            <video
-              src="/videos/feature-5.mp4"
-              loop
-              muted
-              autoPlay
-              playsInline
-              className="size-full object-cover object-center"
-            />
+            <div className="relative size-full overflow-hidden">
+              <div
+                className="absolute inset-0"
+                style={{ backgroundImage: cardGradients.flagship }}
+              />
+              <div
+                className="absolute inset-0 opacity-60"
+                style={{ backgroundImage: gridOverlay }}
+              />
+            </div>
           </BentoTilt>
 
           {/* More coming soon */}
