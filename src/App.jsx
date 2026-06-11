@@ -15,6 +15,7 @@ import Process from "./components/Process";
 import SmoothScroll, { getLenis } from "./components/SmoothScroll";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
+import Work from "./components/Work";
 import FAQ from "./components/FAQ";
 import NotFound from "./components/NotFound";
 
@@ -51,6 +52,7 @@ const Homepage = ({ loading, setLoading }) => (
     <About />
     <Services />
     <Marquee />
+    <Work />
     <Process />
     <Products />
     <Claims />
@@ -95,6 +97,16 @@ const AppRoutes = () => {
           <>
             <Homepage loading={loading} setLoading={setLoading} />
             <SectionRoute sectionId="contact" />
+          </>
+        }
+      />
+
+      <Route
+        path="/work"
+        element={
+          <>
+            <Homepage loading={loading} setLoading={setLoading} />
+            <SectionRoute sectionId="work" />
           </>
         }
       />

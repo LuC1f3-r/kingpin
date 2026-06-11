@@ -401,6 +401,51 @@ html.lenis body {
   margin-left: 2rem;
 }
 
+/* ── Work section: 3D coverflow ───────────────────────────────────────────
+   Mobile default is a scroll-snap row (pure CSS). When the GSAP desktop
+   branch activates it adds .coverflow-active, which re-stages the track
+   as a 3D perspective scene with absolutely-centered cards that GSAP
+   then fans out. */
+.work-track.coverflow-active {
+  position: relative;
+  display: block;
+  height: 58vh;
+  min-height: 420px;
+  overflow: visible;
+  padding: 0;
+  perspective: 1400px;
+}
+
+.coverflow-active .work-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.work-card {
+  --active: 0;
+  border: 1px solid rgba(79, 183, 221, 0.12);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+  position: relative;
+}
+
+/* ember rim that ignites on the centered card */
+.work-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(255, 107, 53, 0.45);
+  box-shadow:
+    0 0 26px rgba(255, 107, 53, 0.22),
+    0 0 60px rgba(255, 107, 53, 0.1);
+  opacity: var(--active);
+  transition: opacity 0.2s linear;
+}
+
 /* ── Footer closer: giant FORGE wordmark with the forge burning through ───
    The gradient runs ember (base) → steel-cyan → near-dark (top): the
    letterforms are steel still cooling in the forge bed. background-size

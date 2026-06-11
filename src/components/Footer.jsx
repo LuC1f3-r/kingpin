@@ -18,7 +18,7 @@ const services = [
 
 const company = [
   { label: "About Us",  to: "/about"     },
-  { label: "Our Work",  to: "/#products" },
+  { label: "Our Work",  to: "/work"      },
   { label: "Process",   to: "/#process"  },
   { label: "FAQ",       to: "/faq"       },
   { label: "Contact",   to: "/contact"   },
