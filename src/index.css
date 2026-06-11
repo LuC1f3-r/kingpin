@@ -65,6 +65,15 @@
   --kvf-border: rgba(79, 183, 221, 0.08);
   --kvf-border-subtle: rgba(255, 255, 255, 0.05);
   --kvf-border-glow: rgba(79, 183, 221, 0.22);
+
+  /* ── Forge heat accent (the "hot" half of the heat→cool duality) ──
+     Used surgically for moments of creation/energy: preloader, hero
+     sparks, CTA heat-up. Cyan (--kvf-accent) remains the cooled, finished base. */
+  --kvf-ember: #ff6b35; /* core ember / amber */
+  --kvf-ember-bright: #ff9e4f; /* hotter highlight */
+  --kvf-ember-white: #fff1d6; /* white-hot tip */
+  --kvf-ember-soft: rgba(255, 107, 53, 0.14);
+  --kvf-ember-glow: rgba(255, 107, 53, 0.4);
 }
 
 /* 3. Base Styles */
