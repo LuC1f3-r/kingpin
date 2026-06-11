@@ -33,6 +33,7 @@ const projects = [
     desc: "End-to-end school operations — admissions, attendance, fees, exams, and parent communication on one platform.",
     image: null,
     monogram: "S",
+    wip: true,
     stack: ["SaaS", "Dashboard", "Mobile"],
   },
   {
@@ -42,7 +43,35 @@ const projects = [
     desc: "A women's health companion — period tracking, cycle insights, and private-by-design health data.",
     image: null,
     monogram: "V",
+    wip: true,
     stack: ["Mobile App", "Health", "Privacy"],
+  },
+  {
+    id: "crucible",
+    title: "Crucible",
+    tag: "Product · Analytics",
+    desc: "Business intelligence forged from raw data streams — live dashboards, anomaly alerts, and revenue insight in one pane.",
+    image: null,
+    monogram: "C",
+    stack: ["Data", "Dashboard", "AI"],
+  },
+  {
+    id: "anvil",
+    title: "Anvil CRM",
+    tag: "Product · Sales",
+    desc: "A heavyweight CRM for lean teams — pipeline, invoicing, and follow-up automation that never lets a lead go cold.",
+    image: null,
+    monogram: "A",
+    stack: ["SaaS", "Automation", "CRM"],
+  },
+  {
+    id: "embercart",
+    title: "Embercart",
+    tag: "Product · E-Commerce",
+    desc: "A storefront engine with a white-hot checkout — sub-second pages, abandoned-cart recovery, and built-in upsells.",
+    image: null,
+    monogram: "E",
+    stack: ["Storefront", "Payments", "Performance"],
   },
 ];
 
@@ -80,9 +109,11 @@ const WorkCard = ({ p, cardRef }) => {
             >
               {p.monogram}
             </span>
-            <span className="absolute bottom-4 right-5 rounded-full border border-white/15 px-3 py-1 font-general text-[9px] uppercase tracking-widest text-white/50">
-              In development
-            </span>
+            {p.wip && (
+              <span className="absolute bottom-4 right-5 rounded-full border border-white/15 px-3 py-1 font-general text-[9px] uppercase tracking-widest text-white/50">
+                In development
+              </span>
+            )}
           </div>
         )}
         {/* bottom fade into caption bar */}
@@ -175,7 +206,7 @@ const Work = () => {
             scrollTrigger: {
               trigger: stageRef.current,
               start: "top top",
-              end: "+=" + ((n - 1) * 420 + 200),
+              end: "+=" + ((n - 1) * 340 + 160),
               pin: true,
               scrub: 0.7,
               snap: {

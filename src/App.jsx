@@ -5,7 +5,6 @@ import About from "./components/About";
 import Claims from "./components/Claims";
 import Contact from "./components/Contact";
 import Description from "./components/Description";
-import Products from "./components/Products";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import LoadingScreen from "./components/LoadingScreen";
@@ -54,7 +53,6 @@ const Homepage = ({ loading, setLoading }) => (
     <Marquee />
     <Work />
     <Process />
-    <Products />
     <Claims />
     <Testimonials />
     <FAQ />

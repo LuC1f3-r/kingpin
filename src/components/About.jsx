@@ -88,7 +88,7 @@ const About = () => {
         scrollTrigger: {
           trigger: topBlockRef.current,
           start: "top top",
-          end: "+=820",
+          end: "+=600",
           pin: true,
           scrub: 0.8,
           invalidateOnRefresh: true,

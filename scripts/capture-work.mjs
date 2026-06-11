@@ -15,12 +15,12 @@ const workTop = await page.evaluate(() => {
   return el.getBoundingClientRect().top + window.scrollY;
 });
 
-// the pin gives the section (n-1)*420+200 = 1460px of scroll depth
+// the pin gives the section (n-1)*340+160 px of scroll depth (n=7 → 2200)
 const stops = [
   ["work-p0", workTop + 20],
-  ["work-p1", workTop + 440],
-  ["work-p2", workTop + 880],
-  ["work-p3", workTop + 1380],
+  ["work-p1", workTop + 700],
+  ["work-p2", workTop + 1400],
+  ["work-p3", workTop + 2100],
 ];
 
 for (const [name, y] of stops) {
