@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Button from "./Button";
 import ElectricBorder from "./ElectricBorder";
 import Magnetic from "./Magnetic";
-import HeroBg from "./HeroBg";
+import EmberField from "./EmberField";
 import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -47,8 +47,8 @@ const Hero = () => {
         ref={videoFrameRef}
         className="relative z-10 h-dvh w-screen overflow-hidden bg-[#020609]"
       >
-        {/* ── Futuristic blue cellular dot grid background ── */}
-        <HeroBg />
+        {/* ── Forge ember field: heat→cool particles over the engineered grid ── */}
+        <EmberField />
 
         {/* ── Hero text + CTA ── */}
         <div className="absolute left-0 top-0 z-40 size-full">
