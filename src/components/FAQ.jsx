@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const GOLD = "#c8a84c";
+const GOLD = "#e8a33d";
 
 const faqs = [
   {
@@ -71,7 +71,7 @@ const FAQItem = ({ q, a, index }) => {
 
 /* ── FAQ section ────────────────────────────────────────────────────────── */
 const FAQ = () => (
-  <section id="faq" className="w-screen bg-[#020609] px-6 py-24 sm:px-10 lg:px-20">
+  <section id="faq" className="w-screen bg-[#070502] px-6 py-24 sm:px-10 lg:px-20">
 
     {/* FAQPage JSON-LD — boosts AI Overview & LLM citation */}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -119,14 +119,14 @@ const FAQ = () => (
         <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <a
             href="tel:+918884801005"
-            className="font-general text-sm font-bold text-white transition-colors hover:text-[#4fb7dd]"
+            className="font-general text-sm font-bold text-white transition-colors hover:text-[#e8a33d]"
           >
             +91-888-480-1005
           </a>
           <span className="hidden text-white/20 sm:inline">·</span>
           <a
             href="mailto:contact@kingpinvisionforge.com"
-            className="font-general text-sm font-bold text-white transition-colors hover:text-[#4fb7dd]"
+            className="font-general text-sm font-bold text-white transition-colors hover:text-[#e8a33d]"
           >
             contact@kingpinvisionforge.com
           </a>

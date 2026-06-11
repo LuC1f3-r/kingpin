@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
-import ElectricBorder from "./ElectricBorder";
+import LavaBorder from "./LavaBorder";
 import { TiLocationArrow } from "react-icons/ti";
 import gsap from "gsap";
 
@@ -85,16 +85,16 @@ const Navbar = () => {
               </div>
 
               <div className="ml-8 hidden md:block">
-                <ElectricBorder color="#4fb7dd" speed={0.2} chaos={0.04} variant="disconnected" borderRadius={9999}>
+                <LavaBorder>
                   <Link to="/contact">
                     <Button
                       id="product-button"
                       title="Contact Us"
                       rightIcon={<TiLocationArrow />}
-                      containerClass="cta-transition-btn !bg-[#4fb7dd] !text-[#020609] hover:!bg-[#78c9e5] flex items-center justify-center gap-1"
+                      containerClass="cta-transition-btn !bg-[#e8a33d] !text-[#070502] flex items-center justify-center gap-1"
                     />
                   </Link>
-                </ElectricBorder>
+                </LavaBorder>
               </div>
 
               {/* Mobile hamburger */}
@@ -127,7 +127,7 @@ const Navbar = () => {
         style={{
           maxHeight: isMobileMenuOpen ? "100dvh" : "0",
           overflow: "hidden",
-          borderBottom: isMobileMenuOpen ? "1px solid rgba(79,183,221,0.1)" : "none",
+          borderBottom: isMobileMenuOpen ? "1px solid rgba(232,163,61,0.1)" : "none",
         }}
       >
         <div className="flex flex-col gap-1 px-6 pb-8 pt-24">
@@ -136,7 +136,7 @@ const Navbar = () => {
               key={label}
               to={to}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="border-b border-white/5 py-4 font-general text-sm uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-[#4fb7dd]"
+              className="border-b border-white/5 py-4 font-general text-sm uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-[#e8a33d]"
             >
               {label}
             </Link>
@@ -144,7 +144,7 @@ const Navbar = () => {
           <Link
             to="/contact"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="mt-6 w-full rounded-full bg-[#4fb7dd] py-3 text-center font-general text-xs uppercase tracking-widest text-[#020609] font-bold"
+            className="mt-6 w-full rounded-full bg-[#e8a33d] py-3 text-center font-general text-xs uppercase tracking-widest text-[#070502] font-bold"
           >
             Contact Us
           </Link>

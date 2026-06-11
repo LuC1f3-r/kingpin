@@ -150,7 +150,7 @@ const About = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="relative w-screen overflow-hidden bg-[#060d14]"
+      className="relative w-screen overflow-hidden bg-[#0d0a05]"
     >
       {/* ── TOP BLOCK — pinned full-viewport height on desktop, auto on mobile ── */}
       <div
@@ -164,7 +164,7 @@ const About = () => {
             className="size-full"
             style={{
               backgroundImage:
-                "radial-gradient(90% 70% at 70% 25%, rgba(79,183,221,0.35), transparent 55%), radial-gradient(80% 80% at 25% 90%, rgba(79,183,221,0.14), transparent 50%), linear-gradient(150deg, #0b1c2a 0%, #07121c 50%, #020609 100%)",
+                "radial-gradient(90% 70% at 70% 25%, rgba(232,163,61,0.35), transparent 55%), radial-gradient(80% 80% at 25% 90%, rgba(232,163,61,0.14), transparent 50%), linear-gradient(150deg, #1c1409 0%, #130d06 50%, #070502 100%)",
             }}
           >
             {/* Faint grid texture */}
@@ -179,7 +179,7 @@ const About = () => {
         </div>
 
         {/* Overlay gradient for mobile readability */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#060d14]/60 via-[#060d14]/30 to-[#060d14]/80 md:hidden" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0d0a05]/60 via-[#0d0a05]/30 to-[#0d0a05]/80 md:hidden" />
 
         {/* LEFT column — text */}
         <div
@@ -187,24 +187,24 @@ const About = () => {
           className="relative z-20 max-w-full md:max-w-[46%]"
         >
           <div className="mb-8 flex items-center gap-3">
-            <div className="h-px w-8 bg-[#4fb7dd]" />
-            <span className="font-general text-[10px] uppercase tracking-[0.22em] text-[#4fb7dd]">
+            <div className="h-px w-8 bg-[#e8a33d]" />
+            <span className="font-general text-[10px] uppercase tracking-[0.22em] text-[#e8a33d]">
               Foundation Protocol
             </span>
           </div>
 
           <h2
-            className="mb-6 font-zentry text-4xl font-black uppercase leading-[1.05] text-[#eef2ff] sm:text-5xl lg:text-6xl xl:text-[4.5rem]"
+            className="mb-6 font-zentry text-4xl font-black uppercase leading-[1.05] text-[#f5efe6] sm:text-5xl lg:text-6xl xl:text-[4.5rem]"
             style={{ fontFeatureSettings: '"ss01" on' }}
           >
             The Forge: Where
             <br />
             Vision Becomes
             <br />
-            <span className="text-[#4fb7dd]">Infrastructure.</span>
+            <span className="text-[#e8a33d]">Infrastructure.</span>
           </h2>
 
-          <p className="max-w-[90%] font-robert text-sm leading-relaxed text-[#eef2ff]/70 md:max-w-[400px]">
+          <p className="max-w-[90%] font-robert text-sm leading-relaxed text-[#f5efe6]/70 md:max-w-[400px]">
             Every brand and idea begins as raw material. In the Forge, we
             subject these concepts to intense analytical pressure and
             technical refinement. We don't just build websites; we construct
@@ -220,13 +220,13 @@ const About = () => {
           {/* Refinement */}
           <div
             className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
-            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+            style={{ border: '1px solid rgba(232,163,61,0.08)', backgroundColor: 'rgba(232,163,61,0.03)' }}
           >
-            <TbAdjustmentsHorizontal className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
+            <TbAdjustmentsHorizontal className="mb-2.5 text-[#e8a33d]" size={20} />
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#f5efe6]/70">
               Refinement
             </p>
-            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
+            <p className="font-robert text-xs leading-relaxed text-[#f5efe6]/65 sm:text-sm">
               Stripping away the non-essential to reveal the core competitive
               engine.
             </p>
@@ -235,13 +235,13 @@ const About = () => {
           {/* Hardening */}
           <div
             className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
-            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+            style={{ border: '1px solid rgba(232,163,61,0.08)', backgroundColor: 'rgba(232,163,61,0.03)' }}
           >
-            <TbShieldCheck className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
+            <TbShieldCheck className="mb-2.5 text-[#e8a33d]" size={20} />
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#f5efe6]/70">
               Hardening
             </p>
-            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
+            <p className="font-robert text-xs leading-relaxed text-[#f5efe6]/65 sm:text-sm">
               Stress-testing architectures for global scale and high-traffic
               resilience.
             </p>
@@ -250,19 +250,19 @@ const About = () => {
           {/* Precise Assembly */}
           <div
             className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
-            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+            style={{ border: '1px solid rgba(232,163,61,0.08)', backgroundColor: 'rgba(232,163,61,0.03)' }}
           >
             <div className="mb-3 flex items-center gap-2">
-              <TbTerminal2 className="text-[#4fb7dd]" size={13} />
-              <span className="font-general text-[10px] uppercase tracking-widest text-[#eef2ff]/60">
+              <TbTerminal2 className="text-[#e8a33d]" size={13} />
+              <span className="font-general text-[10px] uppercase tracking-widest text-[#f5efe6]/60">
                 System Core Active.exe
               </span>
             </div>
-            <TbCpu className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
+            <TbCpu className="mb-2.5 text-[#e8a33d]" size={20} />
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#f5efe6]/70">
               Precise Assembly
             </p>
-            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
+            <p className="font-robert text-xs leading-relaxed text-[#f5efe6]/65 sm:text-sm">
               Component-driven engineering designed for rapid market iteration.
             </p>
           </div>
@@ -270,13 +270,13 @@ const About = () => {
           {/* Data Flow */}
           <div
             className="feature-card rounded-2xl p-4 backdrop-blur-md md:flex-1 md:p-5"
-            style={{ border: '1px solid rgba(79,183,221,0.08)', backgroundColor: 'rgba(79,183,221,0.03)' }}
+            style={{ border: '1px solid rgba(232,163,61,0.08)', backgroundColor: 'rgba(232,163,61,0.03)' }}
           >
-            <TbArrowsExchange2 className="mb-2.5 text-[#4fb7dd]" size={20} />
-            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#eef2ff]/70">
+            <TbArrowsExchange2 className="mb-2.5 text-[#e8a33d]" size={20} />
+            <p className="mb-1 font-general text-[11px] uppercase tracking-widest text-[#f5efe6]/70">
               Data Flow
             </p>
-            <p className="font-robert text-xs leading-relaxed text-[#eef2ff]/65 sm:text-sm">
+            <p className="font-robert text-xs leading-relaxed text-[#f5efe6]/65 sm:text-sm">
               Optimizing conversion pathways through algorithmic precision.
             </p>
           </div>
@@ -287,25 +287,25 @@ const About = () => {
       <div
         ref={protocolRef}
         className="border-t px-10 pb-24 pt-14 md:px-16 lg:px-20"
-        style={{ borderColor: 'rgba(79,183,221,0.08)' }}
+        style={{ borderColor: 'rgba(232,163,61,0.08)' }}
       >
-        <div className="grid grid-cols-1 divide-y divide-[#4fb7dd]/[0.06] md:grid-cols-3 md:divide-x md:divide-y-0">
+        <div className="grid grid-cols-1 divide-y divide-[#e8a33d]/[0.06] md:grid-cols-3 md:divide-x md:divide-y-0">
           {bottomCards.map((card) => (
             <div
               key={card.index}
               className="protocol-card flex flex-col justify-between px-8 py-10 opacity-0 first:pl-0 last:pr-0"
             >
               <div>
-                <p className="mb-5 font-general text-[10px] uppercase tracking-[0.22em] text-[#eef2ff]/55">
+                <p className="mb-5 font-general text-[10px] uppercase tracking-[0.22em] text-[#f5efe6]/55">
                   {card.index} / {card.category}
                 </p>
                 <h3
-                  className="mb-4 font-zentry text-2xl font-black uppercase leading-tight text-[#eef2ff] lg:text-[1.6rem]"
+                  className="mb-4 font-zentry text-2xl font-black uppercase leading-tight text-[#f5efe6] lg:text-[1.6rem]"
                   style={{ fontFeatureSettings: '"ss01" on' }}
                 >
                   {card.title}
                 </h3>
-                <p className="max-w-xs font-robert text-sm leading-relaxed text-[#eef2ff]/65">
+                <p className="max-w-xs font-robert text-sm leading-relaxed text-[#f5efe6]/65">
                   {card.desc}
                 </p>
               </div>

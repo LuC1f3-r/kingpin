@@ -17,7 +17,7 @@ import { useEffect, useRef } from "react";
 
 const HOT  = [255, 241, 214]; // --kvf-ember-white
 const WARM = [255, 107, 53];  // --kvf-ember
-const COOL = [79, 183, 221];  // --kvf-accent
+const COOL = [232, 163, 61];  // --kvf-accent
 
 /** t=0 → white-hot, t=1 → cooled steel-cyan */
 const heatColor = (t) => {
@@ -151,7 +151,7 @@ const EmberField = ({ className = "absolute inset-0 h-full w-full" }) => {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(70% 55% at 18% 12%, rgba(79,183,221,0.10), transparent 60%)",
+            "radial-gradient(70% 55% at 18% 12%, rgba(232,163,61,0.10), transparent 60%)",
         }}
       />
 

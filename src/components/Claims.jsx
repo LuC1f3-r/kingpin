@@ -127,7 +127,7 @@ const Claims = () => {
         className="relative w-screen overflow-hidden px-5 pb-20 pt-20 sm:px-10 md:px-16 md:pb-32 md:pt-28 lg:px-24"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 68% 50%, rgba(79,183,221,0.05) 0%, #060d14 65%)",
+            "radial-gradient(ellipse 70% 55% at 68% 50%, rgba(232,163,61,0.05) 0%, #0d0a05 65%)",
         }}
       >
         {/* PROOF label */}
@@ -135,11 +135,11 @@ const Claims = () => {
           ref={proofRef}
           className="mb-10 flex items-center justify-center gap-5"
         >
-          <div className="h-px w-14 bg-[#4fb7dd]/60" />
-          <span className="font-general text-[10px] uppercase tracking-[0.45em] text-[#4fb7dd]">
+          <div className="h-px w-14 bg-[#e8a33d]/60" />
+          <span className="font-general text-[10px] uppercase tracking-[0.45em] text-[#e8a33d]">
             Proof
           </span>
-          <div className="h-px w-14 bg-[#4fb7dd]/60" />
+          <div className="h-px w-14 bg-[#e8a33d]/60" />
         </div>
 
         {/* Heading */}
@@ -148,7 +148,7 @@ const Claims = () => {
           className="mb-24 flex flex-col items-center text-center"
         >
           <span
-            className="block font-zentry font-black uppercase leading-[0.9] text-[#eef2ff]"
+            className="block font-zentry font-black uppercase leading-[0.9] text-[#f5efe6]"
             style={{
               fontFeatureSettings: '"ss01" on',
               fontSize: "clamp(3.8rem, 9.5vw, 8.5rem)",
@@ -157,7 +157,7 @@ const Claims = () => {
             The Numbers
           </span>
           <span
-            className="block font-zentry font-black uppercase leading-[0.9] text-[#4fb7dd]"
+            className="block font-zentry font-black uppercase leading-[0.9] text-[#e8a33d]"
             style={{
               fontFeatureSettings: '"ss01" on',
               fontSize: "clamp(3.8rem, 9.5vw, 8.5rem)",
@@ -170,7 +170,7 @@ const Claims = () => {
         {/* Stats row */}
         <div
           ref={statsRef}
-          className="grid grid-cols-1 divide-y divide-[#4fb7dd]/[0.08] md:grid-cols-3 md:divide-x md:divide-y-0"
+          className="grid grid-cols-1 divide-y divide-[#e8a33d]/[0.08] md:grid-cols-3 md:divide-x md:divide-y-0"
         >
           {stats.map((stat, i) => (
             <div
@@ -179,7 +179,7 @@ const Claims = () => {
             >
               {/* Giant number */}
               <div
-                className="flex items-start font-zentry font-black leading-none text-[#eef2ff]"
+                className="flex items-start font-zentry font-black leading-none text-[#f5efe6]"
                 style={{
                   fontFeatureSettings: '"ss01" on',
                   fontSize: "clamp(4.5rem, 11vw, 9.5rem)",
@@ -188,7 +188,7 @@ const Claims = () => {
                 <span ref={(el) => (countRefs.current[i] = el)}>0</span>
                 {stat.suffix && (
                   <span
-                    className="text-[#4fb7dd]"
+                    className="text-[#e8a33d]"
                     style={{ fontSize: "0.45em", marginTop: "0.18em" }}
                   >
                     {stat.suffix}
@@ -197,7 +197,7 @@ const Claims = () => {
               </div>
 
               {/* Label */}
-              <p className="font-general text-[12px] uppercase tracking-[0.3em] text-[#eef2ff]/65">
+              <p className="font-general text-[12px] uppercase tracking-[0.3em] text-[#f5efe6]/65">
                 {stat.label}
               </p>
             </div>
@@ -208,9 +208,9 @@ const Claims = () => {
       {/* ════════════════════════════════════════════════════════
           SECTION 2 — Client strip
       ════════════════════════════════════════════════════════ */}
-      <section className="relative w-screen bg-[#060d14]" style={{ borderTop: '1px solid rgba(79,183,221,0.06)' }}>
+      <section className="relative w-screen bg-[#0d0a05]" style={{ borderTop: '1px solid rgba(232,163,61,0.06)' }}>
         {/* Left accent bar */}
-        <div className="absolute left-0 top-0 h-full bg-[#4fb7dd]/35" />
+        <div className="absolute left-0 top-0 h-full bg-[#e8a33d]/35" />
 
         <div
           ref={clientRef}
@@ -219,7 +219,7 @@ const Claims = () => {
           {clients.map((name) => (
             <span
               key={name}
-              className="font-zentry text-[24px] uppercase tracking-[0.55em] text-[#eef2ff]/20 transition-colors duration-500 hover:text-[#eef2ff]/55"
+              className="font-zentry text-[24px] uppercase tracking-[0.55em] text-[#f5efe6]/20 transition-colors duration-500 hover:text-[#f5efe6]/55"
             >
               {name}
             </span>

@@ -2,279 +2,169 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 /**
- * LoadingScreen — "The Forge" preloader.
+ * LoadingScreen — ApeChain-style kinetic preloader on the brand field.
  *
- * Narrative: raw vision is forged into infrastructure. A counter climbs
- * 0 → 100 while the metal it represents COOLS from white-hot → amber →
- * steel-cyan. A molten progress bar throws sparks from its leading edge.
- * When the forge reaches 100 (fully cooled, finished steel) the overlay
- * lifts to reveal the hero.
+ * A full molten-gold screen. "KINGPIN" springs up letter-by-letter from a
+ * squashed state (elastic ease), a counter runs 0→100 in the corner, then
+ * the entire screen wipes upward to reveal the hero.
  *
- * Respects prefers-reduced-motion: skips the spark canvas + long cool and
- * does a short, static fade instead.
+ * prefers-reduced-motion: letters shown static, short fade instead.
+ * Failsafe: if GSAP's rAF ticker is paused (hidden/background tab) the
+ * overlay force-clears after 8s so nobody is trapped behind it.
  */
 
-/* ── Heat → cool colour ramp (white-hot → amber → steel-cyan) ─────────────── */
-const HOT  = [255, 241, 214]; // --kvf-ember-white
-const WARM = [255, 107, 53];  // --kvf-ember
-const COOL = [79, 183, 221];  // --kvf-accent
-
-/** Interpolate the heat ramp. t=0 → white-hot, t=1 → cooled steel-cyan. */
-const heatColor = (t) => {
-  const lerp = (a, b, k) => Math.round(a + (b - a) * k);
-  let from, to, k;
-  if (t < 0.5) {
-    from = HOT;  to = WARM; k = t / 0.5;
-  } else {
-    from = WARM; to = COOL; k = (t - 0.5) / 0.5;
-  }
-  return [
-    lerp(from[0], to[0], k),
-    lerp(from[1], to[1], k),
-    lerp(from[2], to[2], k),
-  ];
-};
-const rgb = ([r, g, b], a = 1) =>
-  a === 1 ? `rgb(${r},${g},${b})` : `rgba(${r},${g},${b},${a})`;
+const LETTERS = "KINGPIN".split("");
 
 const LoadingScreen = ({ onComplete }) => {
-  const screenRef = useRef(null);
-  const numberRef = useRef(null);
-  const trackRef  = useRef(null);
-  const fillRef   = useRef(null);
-  const canvasRef = useRef(null);
-  const logoRef   = useRef(null);
-  const labelRef  = useRef(null);
+  const screenRef  = useRef(null);
+  const lettersRef = useRef([]);
+  const counterRef = useRef(null);
+  const labelRef   = useRef(null);
 
   useEffect(() => {
     const screen = screenRef.current;
-    const number = numberRef.current;
-    const fill   = fillRef.current;
-    if (!screen || !number || !fill) return;
+    const letters = lettersRef.current.filter(Boolean);
+    const counter = counterRef.current;
+    if (!screen || letters.length === 0) return;
 
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    /* ── Reduced-motion path: short, static reveal ────────────────────────── */
+    /* ── Reduced motion: static wordmark, quick fade ─────────────────────── */
     if (reduced) {
-      number.textContent = "100";
-      const c = rgb(COOL);
-      number.style.color = c;
-      fill.style.width = "100%";
-      fill.style.background = c;
+      if (counter) counter.textContent = "100";
       const tl = gsap.timeline({ onComplete: () => onComplete?.() });
-      tl.to({}, { duration: 0.4 });
-      tl.to(screen, { opacity: 0, duration: 0.5, ease: "power2.inOut" });
+      tl.to({}, { duration: 0.5 });
+      tl.to(screen, { opacity: 0, duration: 0.45, ease: "power2.inOut" });
       return () => tl.kill();
     }
 
-    /* ── Spark system (canvas, capped, emits from the bar's leading edge) ─── */
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let sparks = [];
-    let raf = 0;
-    const progressRef = { v: 0 }; // 0 → 1, shared with the GSAP tween
-
-    const sizeCanvas = () => {
-      if (!canvas) return;
-      canvas.width = canvas.offsetWidth * dpr;
-      canvas.height = canvas.offsetHeight * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    sizeCanvas();
-    window.addEventListener("resize", sizeCanvas);
-
-    const spawnSparks = () => {
-      if (!canvas || !fill) return;
-      const heat = 1 - progressRef.v;          // hotter early → more sparks
-      const rate = Math.round(heat * 3 + 0.5); // 0–3 per frame
-      const canvasBox = canvas.getBoundingClientRect();
-      const fillBox = fill.getBoundingClientRect();
-      // leading edge of the molten fill, in canvas-local coords
-      const ex = fillBox.right - canvasBox.left;
-      const ey = fillBox.top + fillBox.height / 2 - canvasBox.top;
-      for (let i = 0; i < rate; i++) {
-        sparks.push({
-          x: ex,
-          y: ey,
-          vx: (Math.random() - 0.35) * 2.4,
-          vy: -(Math.random() * 3 + 1.2),
-          life: 1,
-          decay: Math.random() * 0.03 + 0.02,
-          size: Math.random() * 1.8 + 0.6,
-        });
-      }
-      if (sparks.length > 260) sparks = sparks.slice(-260);
-    };
-
-    const renderSparks = () => {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
-      spawnSparks();
-      for (const s of sparks) {
-        s.x += s.vx;
-        s.y += s.vy;
-        s.vy += 0.08; // gravity
-        s.vx *= 0.99;
-        s.life -= s.decay;
-        if (s.life <= 0) continue;
-        // sparks glow amber→white at the tip, fading as they fall
-        const a = Math.max(0, s.life);
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255,${Math.round(140 + 90 * a)},${Math.round(
-          60 * a,
-        )},${a})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "rgba(255,140,50,0.9)";
-        ctx.arc(s.x, s.y, s.size * a, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.shadowBlur = 0;
-      sparks = sparks.filter((s) => s.life > 0);
-      raf = requestAnimationFrame(renderSparks);
-    };
-    raf = requestAnimationFrame(renderSparks);
-
-    /* ── Failsafe: rAF (and therefore GSAP's ticker) pauses in hidden tabs.
-       If the timeline hasn't finished within wall-clock budget — e.g. the
-       site was opened in a background tab — drop the overlay directly so
-       no visitor is ever trapped behind a frozen preloader. ──────────────── */
+    /* ── Failsafe for hidden tabs (rAF paused → timeline frozen) ─────────── */
     let done = false;
     const failsafe = setTimeout(() => {
       if (done) return;
       done = true;
       tl.kill();
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", sizeCanvas);
-      screen.style.opacity = "0";
+      screen.style.transform = "translateY(-100%)";
       onComplete?.();
     }, 8000);
 
-    /* ── Master timeline: counter climbs while the metal cools ────────────── */
     const tl = gsap.timeline({
       onComplete: () => {
         if (done) return;
         done = true;
         clearTimeout(failsafe);
-        cancelAnimationFrame(raf);
-        window.removeEventListener("resize", sizeCanvas);
         onComplete?.();
       },
     });
 
-    // entrance: logo + bar settle in
-    gsap.set([logoRef.current, labelRef.current], { opacity: 0, y: 12 });
-    tl.to([logoRef.current, labelRef.current], {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: 0.12,
+    /* letters start squashed flat at the baseline */
+    gsap.set(letters, {
+      scaleY: 0.04,
+      scaleX: 1.25,
+      yPercent: 46,
+      opacity: 0,
+      transformOrigin: "50% 100%",
+    });
+    gsap.set(labelRef.current, { opacity: 0, y: 10 });
+
+    /* counter 0 → 100 runs under the letter springs */
+    const progress = { v: 0 };
+    tl.to(progress, {
+      v: 100,
+      duration: 2.2,
+      ease: "power1.inOut",
+      onUpdate: () => {
+        if (counter)
+          counter.textContent = String(Math.round(progress.v)).padStart(2, "0");
+      },
     });
 
-    // forge: progress 0 → 1, drives number, bar width, and heat colour
+    /* each letter springs from squashed to full height, elastic */
     tl.to(
-      progressRef,
+      letters,
       {
-        v: 1,
-        duration: 2.4,
-        ease: "power1.inOut",
-        onUpdate: () => {
-          const p = progressRef.v;
-          const col = heatColor(p);
-          number.textContent = String(Math.round(p * 100)).padStart(2, "0");
-          number.style.color = rgb(col);
-          number.style.textShadow = `0 0 ${28 * (1 - p) + 6}px ${rgb(
-            col,
-            0.55,
-          )}`;
-          fill.style.width = `${p * 100}%`;
-          fill.style.background = `linear-gradient(90deg, ${rgb(
-            heatColor(Math.max(0, p - 0.25)),
-            0.65,
-          )}, ${rgb(col)})`;
-          fill.style.boxShadow = `0 0 ${22 * (1 - p) + 8}px ${rgb(col, 0.8)}`;
-        },
+        scaleY: 1,
+        scaleX: 1,
+        yPercent: 0,
+        opacity: 1,
+        duration: 1.1,
+        ease: "elastic.out(1, 0.42)",
+        stagger: 0.085,
       },
-      "-=0.2",
+      0.25,
     );
 
-    // hold the finished, cooled mark briefly
-    tl.to({}, { duration: 0.35 });
+    /* eyebrow settles in once the name has landed */
+    tl.to(labelRef.current, { opacity: 1, y: 0, duration: 0.45 }, "-=0.7");
 
-    // fade the label, then lift the whole overlay to reveal the hero
-    tl.to(labelRef.current, { opacity: 0, duration: 0.3 }, "<");
+    /* brief hold on the finished mark */
+    tl.to({}, { duration: 0.4 });
+
+    /* the wipe: whole screen slides up like a curtain */
     tl.to(screen, {
-      opacity: 0,
-      duration: 0.7,
-      ease: "power2.inOut",
+      yPercent: -100,
+      duration: 0.85,
+      ease: "power4.inOut",
     });
 
     return () => {
       clearTimeout(failsafe);
       tl.kill();
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", sizeCanvas);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div
       ref={screenRef}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#020609]"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#e8a33d] will-change-transform"
     >
-      {/* ambient forge glow rising from below */}
+      {/* faint hot-spot behind the wordmark */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2"
+        className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(80% 100% at 50% 100%, rgba(255,107,53,0.10), transparent 70%)",
+            "radial-gradient(60% 45% at 50% 52%, rgba(255,210,138,0.55), transparent 70%)",
         }}
       />
 
-      {/* logo mark */}
-      <img
-        ref={logoRef}
-        src="/img/logo.png"
-        alt="KingpiN Vision Forge"
-        className="mb-10 h-14 w-14 object-contain"
-      />
-
-      {/* the cooling counter */}
+      {/* KINGPIN — kinetic letters */}
       <div
-        ref={numberRef}
-        className="font-zentry text-7xl font-black tabular-nums sm:text-8xl"
-        style={{ fontFeatureSettings: '"ss01" on', color: rgb(HOT) }}
+        className="relative flex items-end"
+        style={{ fontFeatureSettings: '"ss01" on' }}
+        aria-label="Kingpin"
+        role="img"
+      >
+        {LETTERS.map((ch, i) => (
+          <span
+            key={i}
+            ref={(el) => (lettersRef.current[i] = el)}
+            className="inline-block font-zentry font-black uppercase leading-[0.85] text-[#140d04]"
+            style={{ fontSize: "clamp(3.2rem, 15vw, 11rem)" }}
+            aria-hidden="true"
+          >
+            {ch}
+          </span>
+        ))}
+      </div>
+
+      {/* eyebrow */}
+      <p
+        ref={labelRef}
+        className="mt-6 font-general text-[10px] uppercase tracking-[0.38em] text-[#140d04]/70"
+      >
+        Vision Forge — commands crafted for conquerors
+      </p>
+
+      {/* counter, bottom-right like a forge gauge */}
+      <div
+        ref={counterRef}
+        className="absolute bottom-8 right-8 font-zentry text-3xl font-black tabular-nums text-[#140d04]/80 sm:bottom-10 sm:right-12 sm:text-4xl"
+        style={{ fontFeatureSettings: '"ss01" on' }}
       >
         00
       </div>
-
-      {/* molten progress bar + spark canvas */}
-      <div className="relative mt-8 w-[min(420px,72vw)]">
-        <div
-          ref={trackRef}
-          className="h-[3px] w-full overflow-hidden rounded-full"
-          style={{ background: "rgba(255,255,255,0.06)" }}
-        >
-          <div ref={fillRef} className="h-full w-0 rounded-full" />
-        </div>
-        {/* sparks render above the bar's leading edge */}
-        <canvas
-          ref={canvasRef}
-          className="pointer-events-none absolute left-0 h-24 w-full"
-          style={{ bottom: "-2px" }}
-        />
-      </div>
-
-      {/* tagline */}
-      <p
-        ref={labelRef}
-        className="mt-7 font-general text-[10px] uppercase tracking-[0.32em] text-white/35"
-      >
-        Forging vision into infrastructure
-      </p>
     </div>
   );
 };

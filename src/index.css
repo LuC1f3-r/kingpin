@@ -42,29 +42,29 @@
   --font-zentry: "giblastine", "valty", sans-serif;
 
   /* Colors — unified blue/black system */
-  --color-blue-50: #eef2ff; /* cool near-white (primary text on dark) */
-  --color-blue-75: #eef2ff;
-  --color-blue-100: #eef2ff;
+  --color-blue-50: #f5efe6; /* cool near-white (primary text on dark) */
+  --color-blue-75: #f5efe6;
+  --color-blue-100: #f5efe6;
   --color-blue-200: #010101;
-  --color-blue-300: #4fb7dd; /* single accent blue */
+  --color-blue-300: #e8a33d; /* single accent blue */
 }
 
 /* ── KingpiN Vision Forge elevation tokens ──────────────────────────────────────────────────── */
 :root {
-  --kvf-root: #020609; /* Hero, Products, Footer */
-  --kvf-section: #060d14; /* About, Services, Claims, Testimonials */
-  --kvf-card: #0d1825; /* Service cards, Testimonial cards */
-  --kvf-surface: #132035; /* Hover / elevated */
+  --kvf-root: #070502; /* Hero, Products, Footer */
+  --kvf-section: #0d0a05; /* About, Services, Claims, Testimonials */
+  --kvf-card: #171107; /* Service cards, Testimonial cards */
+  --kvf-surface: #221808; /* Hover / elevated */
 
-  --kvf-accent: #4fb7dd;
-  --kvf-accent-soft: rgba(79, 183, 221, 0.12);
-  --kvf-accent-dim: rgba(79, 183, 221, 0.35);
-  --kvf-accent-glow: rgba(79, 183, 221, 0.08);
+  --kvf-accent: #e8a33d;
+  --kvf-accent-soft: rgba(232, 163, 61, 0.12);
+  --kvf-accent-dim: rgba(232, 163, 61, 0.35);
+  --kvf-accent-glow: rgba(232, 163, 61, 0.08);
 
-  --kvf-text-primary: #eef2ff;
-  --kvf-border: rgba(79, 183, 221, 0.08);
+  --kvf-text-primary: #f5efe6;
+  --kvf-border: rgba(232, 163, 61, 0.08);
   --kvf-border-subtle: rgba(255, 255, 255, 0.05);
-  --kvf-border-glow: rgba(79, 183, 221, 0.22);
+  --kvf-border-glow: rgba(232, 163, 61, 0.22);
 
   /* ── Forge heat accent (the "hot" half of the heat→cool duality) ──
      Used surgically for moments of creation/energy: preloader, hero
@@ -100,20 +100,20 @@ html.lenis body {
   body {
     @apply font-circular-web;
     width: 100dvw;
-    background-color: #020609;
+    background-color: #070502;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #4fb7dd;
-    color: #020609;
+    background-color: #e8a33d;
+    color: #070502;
   }
 }
 
 /* Use @utility to register it properly for @apply */
 @utility border-hsla {
   @apply border;
-  border-color: rgba(79, 183, 221, 0.08);
+  border-color: rgba(232, 163, 61, 0.08);
 }
 
 .nav-shell {
@@ -121,10 +121,10 @@ html.lenis body {
 }
 
 .nav-shell:hover {
-  border-color: rgba(79, 183, 221, 0.16);
+  border-color: rgba(232, 163, 61, 0.16);
   box-shadow:
     0 18px 42px rgba(0, 0, 0, 0.42),
-    0 0 28px rgba(79, 183, 221, 0.1);
+    0 0 28px rgba(232, 163, 61, 0.1);
 }
 
 .nav-hover-btn {
@@ -142,8 +142,8 @@ html.lenis body {
   transform-origin: bottom right;
   background: linear-gradient(
     90deg,
-    rgba(79, 183, 221, 0.1),
-    rgba(79, 183, 221, 0.95)
+    rgba(232, 163, 61, 0.1),
+    rgba(232, 163, 61, 0.95)
   );
   opacity: 0.8;
   transition:
@@ -152,7 +152,7 @@ html.lenis body {
 }
 
 .nav-hover-btn:hover {
-  color: #4fb7dd;
+  color: #e8a33d;
   transform: translateY(-2px);
 }
 
@@ -164,21 +164,21 @@ html.lenis body {
 
 .nav-hover-btn:focus-visible {
   outline: none;
-  color: #4fb7dd;
+  color: #e8a33d;
 }
 
 .floating-nav {
   @apply rounded-lg backdrop-blur-xl;
-  border: 1px solid rgba(79, 183, 221, 0.1);
+  border: 1px solid rgba(232, 163, 61, 0.1);
   background-color: rgba(2, 6, 9, 0.78);
   box-shadow:
-    0 0 40px rgba(79, 183, 221, 0.04),
+    0 0 40px rgba(232, 163, 61, 0.04),
     0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .cta-transition-btn {
   @apply relative isolate transition-[transform,box-shadow,background-color,color] duration-300 ease-[cubic-bezier(0.22_1_0.36_1)] will-change-transform;
-  box-shadow: 0 10px 24px rgba(79, 183, 221, 0.16);
+  box-shadow: 0 10px 24px rgba(232, 163, 61, 0.16);
 }
 
 .cta-transition-btn::before {
@@ -201,7 +201,7 @@ html.lenis body {
 
 .cta-transition-btn:hover {
   transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 18px 36px rgba(79, 183, 221, 0.24);
+  box-shadow: 0 18px 36px rgba(232, 163, 61, 0.24);
 }
 
 .cta-transition-btn:hover::before {
@@ -212,8 +212,105 @@ html.lenis body {
   outline: none;
   box-shadow:
     0 0 0 2px rgba(2, 6, 9, 0.92),
-    0 0 0 4px rgba(79, 183, 221, 0.34),
-    0 18px 36px rgba(79, 183, 221, 0.24);
+    0 0 0 4px rgba(232, 163, 61, 0.34),
+    0 18px 36px rgba(232, 163, 61, 0.24);
+}
+
+/* ── Forge card: Services capability cards — CSS-only hover, no JS ───────── */
+.forge-card {
+  background-color: var(--kvf-card);
+  border: 1px solid rgba(232, 163, 61, 0.1);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.forge-card:hover {
+  border-color: rgba(232, 163, 61, 0.35);
+  box-shadow:
+    0 14px 38px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(232, 163, 61, 0.1);
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-card,
+  .forge-card:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── LavaBorder: molten conic ring circling CTAs ──────────────────────────
+   Two layers share one slow rotation: a sharp 2px ring of churning
+   gold/ember, and a blurred copy beneath it as heat haze. The rotating
+   element is an oversized square so the conic sweep covers pill shapes. */
+.lava-border {
+  position: relative;
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 2px;
+  isolation: isolate;
+}
+
+.lava-border-ring,
+.lava-border-haze {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.lava-border-ring::before,
+.lava-border-haze::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    #e8a33d 0deg,
+    #ffd28a 55deg,
+    #ff6b35 120deg,
+    #7a3a10 180deg,
+    #e8a33d 235deg,
+    #ff9e4f 300deg,
+    #7a3a10 340deg,
+    #e8a33d 360deg
+  );
+  animation: lava-churn 7s linear infinite;
+}
+
+.lava-border-haze {
+  inset: -8px;
+  filter: blur(14px);
+  opacity: 0.45;
+}
+
+/* hollow out the ring: only the 2px padding band shows the gradient */
+.lava-border-ring {
+  z-index: 0;
+}
+.lava-border > .relative {
+  border-radius: inherit;
+}
+
+@keyframes lava-churn {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lava-border-ring::before,
+  .lava-border-haze::before {
+    animation: none;
+  }
 }
 
 /* ── Forge heat-up: CTA blooms ember under the cursor ─────────────────────
@@ -374,8 +471,8 @@ html.lenis body {
 .marquee-wrap {
   overflow: hidden;
   width: 100%;
-  background-color: #020609;
-  border-bottom: 1px solid rgba(79, 183, 221, 0.08);
+  background-color: #070502;
+  border-bottom: 1px solid rgba(232, 163, 61, 0.08);
   padding: 18px 0;
 }
 
@@ -397,7 +494,7 @@ html.lenis body {
 }
 
 .marquee-sep {
-  color: #4fb7dd;
+  color: #e8a33d;
   margin-left: 2rem;
 }
 
@@ -426,7 +523,7 @@ html.lenis body {
 
 .work-card {
   --active: 0;
-  border: 1px solid rgba(79, 183, 221, 0.12);
+  border: 1px solid rgba(232, 163, 61, 0.12);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
   position: relative;
 }
@@ -472,9 +569,9 @@ html.lenis body {
     ),
     linear-gradient(
       to top,
-      rgba(79, 183, 221, 0.9) 0%,
-      rgba(79, 183, 221, 0.55) 45%,
-      rgba(79, 183, 221, 0.2) 85%
+      rgba(232, 163, 61, 0.9) 0%,
+      rgba(232, 163, 61, 0.55) 45%,
+      rgba(232, 163, 61, 0.2) 85%
     );
   background-size: 100% 130%;
   background-position: 50% 100%;
@@ -501,75 +598,6 @@ html.lenis body {
   }
 }
 
-/* ── ElectricBorder component styles ─────────────────────────────────────── */
-.eb-root {
-  position: relative;
-  overflow: visible;
-  isolation: isolate;
-  display: inline-flex;
-}
-
-.eb-canvas-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.eb-canvas {
-  display: block;
-}
-
-.eb-content {
-  position: relative;
-  border-radius: inherit;
-  z-index: 2;
-}
-
-.eb-layers {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.eb-glow-1,
-.eb-glow-2,
-.eb-background-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  box-sizing: border-box;
-}
-
-.eb-glow-1 {
-  border: 2px solid
-    color-mix(in oklch, var(--electric-border-color) 60%, transparent);
-  filter: blur(1px);
-}
-
-.eb-glow-2 {
-  border: 2px solid var(--electric-border-color);
-  filter: blur(4px);
-}
-
-.eb-background-glow {
-  z-index: -1;
-  transform: scale(1.1);
-  filter: blur(28px);
-  opacity: 0.28;
-  background: linear-gradient(
-    -30deg,
-    var(--electric-border-color),
-    transparent,
-    var(--electric-border-color)
-  );
-}
-
 /* Keep your custom keyframes at the bottom */
 @keyframes indicator-line {
   0% {
@@ -586,166 +614,11 @@ html.lenis body {
   }
 }
 
-/* ── BorderGlow component styles ──────────────────────────────────────────── */
-.bg-glow-card {
-  --edge-proximity: 0;
-  --cursor-angle: 45deg;
-  --edge-sensitivity: 30;
-  --color-sensitivity: calc(var(--edge-sensitivity) + 20);
-  --border-radius: 4px;
-  --glow-padding: 40px;
-  --cone-spread: 25;
-
-  position: relative;
-  border-radius: var(--border-radius);
-  isolation: isolate;
-  transform: translate3d(0, 0, 0.01px);
-  display: grid;
-  border: 1px solid rgb(255 255 255 / 10%);
-  background: var(--card-bg, #131315);
-  overflow: visible;
-}
-
-.bg-glow-card::before,
-.bg-glow-card::after,
-.bg-glow-card > .bg-edge-light {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  transition: opacity 0.25s ease-out;
-  z-index: -1;
-}
-
-.bg-glow-card:not(:hover):not(.bg-sweep-active)::before,
-.bg-glow-card:not(:hover):not(.bg-sweep-active)::after,
-.bg-glow-card:not(:hover):not(.bg-sweep-active) > .bg-edge-light {
-  opacity: 0;
-  transition: opacity 0.75s ease-in-out;
-}
-
-/* mesh-gradient colored border */
-.bg-glow-card::before {
-  border: 1px solid transparent;
-  background:
-    linear-gradient(var(--card-bg, #131315) 0 100%) padding-box,
-    linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,
-    var(--gradient-one) border-box,
-    var(--gradient-two) border-box,
-    var(--gradient-three) border-box,
-    var(--gradient-four) border-box,
-    var(--gradient-five) border-box,
-    var(--gradient-six) border-box,
-    var(--gradient-seven) border-box,
-    var(--gradient-base) border-box;
-
-  opacity: calc(
-    (var(--edge-proximity) - var(--color-sensitivity)) /
-      (100 - var(--color-sensitivity))
-  );
-
-  mask-image: conic-gradient(
-    from var(--cursor-angle) at center,
-    black calc(var(--cone-spread) * 1%),
-    transparent calc((var(--cone-spread) + 15) * 1%),
-    transparent calc((100 - var(--cone-spread) - 15) * 1%),
-    black calc((100 - var(--cone-spread)) * 1%)
-  );
-}
-
-/* mesh-gradient background fill */
-.bg-glow-card::after {
-  border: 1px solid transparent;
-  background:
-    var(--gradient-one) padding-box,
-    var(--gradient-two) padding-box,
-    var(--gradient-three) padding-box,
-    var(--gradient-four) padding-box,
-    var(--gradient-five) padding-box,
-    var(--gradient-six) padding-box,
-    var(--gradient-seven) padding-box,
-    var(--gradient-base) padding-box;
-
-  mask-image:
-    linear-gradient(to bottom, black, black),
-    radial-gradient(ellipse at 50% 50%, black 40%, transparent 65%),
-    radial-gradient(ellipse at 66% 66%, black 5%, transparent 40%),
-    radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%),
-    radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%),
-    radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%),
-    conic-gradient(
-      from var(--cursor-angle) at center,
-      transparent 5%,
-      black 15%,
-      black 85%,
-      transparent 95%
-    );
-
-  mask-composite: subtract, add, add, add, add, add;
-  opacity: calc(
-    var(--fill-opacity, 0.5) *
-      (var(--edge-proximity) - var(--color-sensitivity)) /
-      (100 - var(--color-sensitivity))
-  );
-  mix-blend-mode: soft-light;
-}
-
-/* outer glow layer */
-.bg-glow-card > .bg-edge-light {
-  inset: calc(var(--glow-padding) * -1);
-  pointer-events: none;
-  z-index: 1;
-
-  mask-image: conic-gradient(
-    from var(--cursor-angle) at center,
-    black 2.5%,
-    transparent 10%,
-    transparent 90%,
-    black 97.5%
-  );
-
-  opacity: calc(
-    (var(--edge-proximity) - var(--edge-sensitivity)) /
-      (100 - var(--edge-sensitivity))
-  );
-  mix-blend-mode: plus-lighter;
-}
-
-.bg-glow-card > .bg-edge-light::before {
-  content: "";
-  position: absolute;
-  inset: var(--glow-padding);
-  border-radius: inherit;
-  box-shadow:
-    inset 0 0 0 1px var(--glow-color, hsl(40deg 80% 80% / 100%)),
-    inset 0 0 1px 0 var(--glow-color-60, hsl(40deg 80% 80% / 60%)),
-    inset 0 0 3px 0 var(--glow-color-50, hsl(40deg 80% 80% / 50%)),
-    inset 0 0 6px 0 var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
-    inset 0 0 15px 0 var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
-    inset 0 0 25px 2px var(--glow-color-20, hsl(40deg 80% 80% / 20%)),
-    inset 0 0 50px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%)),
-    0 0 1px 0 var(--glow-color-60, hsl(40deg 80% 80% / 60%)),
-    0 0 3px 0 var(--glow-color-50, hsl(40deg 80% 80% / 50%)),
-    0 0 6px 0 var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
-    0 0 15px 0 var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
-    0 0 25px 2px var(--glow-color-20, hsl(40deg 80% 80% / 20%)),
-    0 0 50px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%));
-}
-
-.bg-glow-inner {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: visible;
-  z-index: 1;
-  height: 100%;
-}
-
 /* Subtle blue dot-grid texture for dark sections */
 .dot-grid-bg {
   background-image: radial-gradient(
     circle,
-    rgba(79, 183, 221, 0.06) 1px,
+    rgba(232, 163, 61, 0.06) 1px,
     transparent 1px
   );
   background-size: 28px 28px;
@@ -755,7 +628,7 @@ html.lenis body {
 .three-body {
   --uib-size: 35px;
   --uib-speed: 0.8s;
-  --uib-color: #4fb7dd;
+  --uib-color: #e8a33d;
   position: relative;
   display: inline-block;
   height: var(--uib-size);

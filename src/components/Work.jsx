@@ -77,7 +77,7 @@ const projects = [
 
 /* gradient visual for products that don't have a public screenshot yet */
 const monogramBg =
-  "radial-gradient(110% 90% at 75% 10%, rgba(79,183,221,0.28), transparent 55%), radial-gradient(90% 80% at 15% 95%, rgba(255,107,53,0.10), transparent 50%), linear-gradient(150deg, #0b1a26 0%, #060d14 55%, #020609 100%)";
+  "radial-gradient(110% 90% at 75% 10%, rgba(232,163,61,0.28), transparent 55%), radial-gradient(90% 80% at 15% 95%, rgba(255,107,53,0.10), transparent 50%), linear-gradient(150deg, #1a1208 0%, #0d0a05 55%, #070502 100%)";
 
 const WorkCard = ({ p, cardRef }) => {
   const Tag = p.url ? "a" : "div";
@@ -87,7 +87,7 @@ const WorkCard = ({ p, cardRef }) => {
       {...(p.url
         ? { href: p.url, target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className="work-card group block w-[80vw] shrink-0 snap-center overflow-hidden rounded-xl bg-[#060d14] sm:w-[62vw] md:w-[min(48vw,560px)]"
+      className="work-card group block w-[80vw] shrink-0 snap-center overflow-hidden rounded-xl bg-[#0d0a05] sm:w-[62vw] md:w-[min(48vw,560px)]"
     >
       {/* visual */}
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -104,7 +104,7 @@ const WorkCard = ({ p, cardRef }) => {
             style={{ backgroundImage: monogramBg }}
           >
             <span
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-zentry text-[7rem] font-black uppercase text-[#4fb7dd]/70 md:text-[9rem]"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-zentry text-[7rem] font-black uppercase text-[#e8a33d]/70 md:text-[9rem]"
               style={{ fontFeatureSettings: '"ss01" on' }}
             >
               {p.monogram}
@@ -117,29 +117,29 @@ const WorkCard = ({ p, cardRef }) => {
           </div>
         )}
         {/* bottom fade into caption bar */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#060d14] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0d0a05] to-transparent" />
       </div>
 
       {/* caption */}
       <div className="flex items-start justify-between gap-4 p-5">
         <div>
-          <p className="mb-1 font-general text-[9px] uppercase tracking-[0.22em] text-[#4fb7dd]/80">
+          <p className="mb-1 font-general text-[9px] uppercase tracking-[0.22em] text-[#e8a33d]/80">
             {p.tag}
           </p>
           <h3
-            className="font-zentry text-xl font-black uppercase leading-tight text-[#eef2ff] md:text-2xl"
+            className="font-zentry text-xl font-black uppercase leading-tight text-[#f5efe6] md:text-2xl"
             style={{ fontFeatureSettings: '"ss01" on' }}
           >
             {p.title}
           </h3>
-          <p className="mt-2 max-w-[40ch] font-robert text-xs leading-relaxed text-[#eef2ff]/55">
+          <p className="mt-2 max-w-[40ch] font-robert text-xs leading-relaxed text-[#f5efe6]/55">
             {p.desc}
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {p.stack.map((s) => (
               <span
                 key={s}
-                className="rounded-full border border-[#4fb7dd]/15 px-2.5 py-0.5 font-general text-[9px] uppercase tracking-widest text-[#eef2ff]/45"
+                className="rounded-full border border-[#e8a33d]/15 px-2.5 py-0.5 font-general text-[9px] uppercase tracking-widest text-[#f5efe6]/45"
               >
                 {s}
               </span>
@@ -147,7 +147,7 @@ const WorkCard = ({ p, cardRef }) => {
           </div>
         </div>
         {p.url && (
-          <TiLocationArrow className="mt-1 shrink-0 text-[#4fb7dd] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={20} />
+          <TiLocationArrow className="mt-1 shrink-0 text-[#e8a33d] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={20} />
         )}
       </div>
     </Tag>
@@ -240,27 +240,27 @@ const Work = () => {
     <section
       ref={sectionRef}
       id="work"
-      className="relative w-screen overflow-hidden bg-[#020609]"
+      className="relative w-screen overflow-hidden bg-[#070502]"
     >
       <div ref={stageRef} className="flex min-h-dvh flex-col justify-center py-16 md:py-0">
         {/* ── Header ── */}
         <div className="mb-10 flex items-end justify-between px-5 md:px-16 lg:px-20">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-8 bg-[#4fb7dd]" />
-              <span className="font-general text-[10px] uppercase tracking-[0.22em] text-[#4fb7dd]">
+              <div className="h-px w-8 bg-[#e8a33d]" />
+              <span className="font-general text-[10px] uppercase tracking-[0.22em] text-[#e8a33d]">
                 Selected Work
               </span>
             </div>
             <h2
-              className="font-zentry text-4xl font-black uppercase leading-none text-[#eef2ff] sm:text-5xl lg:text-6xl"
+              className="font-zentry text-4xl font-black uppercase leading-none text-[#f5efe6] sm:text-5xl lg:text-6xl"
               style={{ fontFeatureSettings: '"ss01" on' }}
             >
-              Forged &amp; <span className="text-[#4fb7dd]">Shipped.</span>
+              Forged &amp; <span className="text-[#e8a33d]">Shipped.</span>
             </h2>
           </div>
-          <p className="hidden font-general text-sm tracking-[0.3em] text-[#eef2ff]/40 md:block">
-            <span ref={counterRef} className="text-[#4fb7dd]">01</span>
+          <p className="hidden font-general text-sm tracking-[0.3em] text-[#f5efe6]/40 md:block">
+            <span ref={counterRef} className="text-[#e8a33d]">01</span>
             {" / "}
             {String(projects.length).padStart(2, "0")}
           </p>

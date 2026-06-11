@@ -31,7 +31,7 @@ const socialLinks = [
 ];
 
 /* ── Brand accent used throughout ────────────────────────────────────────── */
-const ACCENT = "#4fb7dd";
+const ACCENT = "#e8a33d";
 
 /* ── Sub-components ─────────────────────────────────────────────────────── */
 const ColHead = ({ children }) => (
@@ -83,7 +83,7 @@ const Footer = () => {
   );
 
   return (
-  <footer ref={footerRef} className="w-screen overflow-hidden bg-[#020609]">
+  <footer ref={footerRef} className="w-screen overflow-hidden bg-[#070502]">
 
     {/* Top hairline */}
     <div className="h-px w-full bg-white/[0.07]" />
@@ -194,9 +194,10 @@ const Footer = () => {
       <p className="font-general text-[10px] tracking-widest text-white/20">
         © KingpiN Vision Forge 2026. All rights reserved.
       </p>
-      <div className="flex gap-6 font-general text-[10px] tracking-widest text-white/20">
-        <a href="/#privacy-policy"     className="transition-colors hover:text-white/50">Privacy Policy</a>
-        <a href="/#terms-n-conditions" className="transition-colors hover:text-white/50">Terms &amp; Conditions</a>
+      <div className="flex flex-wrap justify-center gap-6 font-general text-[10px] tracking-widest text-white/20">
+        <Link to="/terms-and-conditions" className="transition-colors hover:text-white/50">Terms &amp; Conditions</Link>
+        <Link to="/privacy-policy"       className="transition-colors hover:text-white/50">Privacy Policy</Link>
+        <Link to="/cookie-policy"        className="transition-colors hover:text-white/50">Cookie Policy</Link>
       </div>
     </div>
 

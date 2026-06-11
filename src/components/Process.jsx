@@ -83,7 +83,7 @@ const Process = () => {
     <section
       ref={sectionRef}
       id="process"
-      className="w-screen bg-[#f0f5ff] px-5 pb-16 pt-16 sm:px-10 md:px-16 md:pb-28 md:pt-24 lg:px-20"
+      className="w-screen bg-[#f7f1e6] px-5 pb-16 pt-16 sm:px-10 md:px-16 md:pb-28 md:pt-24 lg:px-20"
     >
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <div ref={headerRef} className="mb-12 md:mb-20">
@@ -96,7 +96,7 @@ const Process = () => {
         >
           The Forge
           <br />
-          <span className="text-[#4fb7dd]">Process.</span>
+          <span className="text-[#e8a33d]">Process.</span>
         </h2>
       </div>
 
@@ -112,7 +112,7 @@ const Process = () => {
           >
             {/* Number */}
             <span
-              className="mb-8 block font-zentry text-[5rem] font-black leading-none text-black/10 transition-colors duration-500 group-hover:text-[#4fb7dd]/30 lg:text-[6rem]"
+              className="mb-8 block font-zentry text-[5rem] font-black leading-none text-black/10 transition-colors duration-500 group-hover:text-[#e8a33d]/30 lg:text-[6rem]"
               style={{ fontFeatureSettings: '"ss01" on' }}
             >
               {step.num}
@@ -133,7 +133,7 @@ const Process = () => {
               </h3>
 
               {/* Divider */}
-              <div className="mb-4 h-px w-8 bg-[#4fb7dd]" />
+              <div className="mb-4 h-px w-8 bg-[#e8a33d]" />
 
               {/* Description */}
               <p className="font-robert text-sm leading-relaxed text-black/50">

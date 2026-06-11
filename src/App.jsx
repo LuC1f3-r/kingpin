@@ -17,6 +17,7 @@ import Testimonials from "./components/Testimonials";
 import Work from "./components/Work";
 import FAQ from "./components/FAQ";
 import NotFound from "./components/NotFound";
+import LegalPage from "./components/LegalPage";
 
 /* ── Scroll-to-section helper used by router-aware nav links ── */
 const scrollToSection = (id) => {
@@ -118,6 +119,11 @@ const AppRoutes = () => {
           </>
         }
       />
+
+      {/* Legal pages */}
+      <Route path="/privacy-policy"       element={<LegalPage pageKey="privacy-policy" />} />
+      <Route path="/terms-and-conditions" element={<LegalPage pageKey="terms-and-conditions" />} />
+      <Route path="/cookie-policy"        element={<LegalPage pageKey="cookie-policy" />} />
 
       {/* 404 catch-all */}
       <Route path="*" element={<NotFound />} />

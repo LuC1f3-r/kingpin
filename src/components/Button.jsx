@@ -1,4 +1,4 @@
-const Button = ({ title, id, rightIcon, leftIcon, containerClass }) => {
+const Button = ({ title, id, rightIcon, leftIcon, containerClass, onClick }) => {
   /* Heat bloom follows the cursor: expose its position as CSS vars
      consumed by .btn-heat::after in index.css */
   const handleMove = (e) => {
@@ -10,8 +10,9 @@ const Button = ({ title, id, rightIcon, leftIcon, containerClass }) => {
   return (
     <button
       id={id}
+      onClick={onClick}
       onMouseMove={handleMove}
-      className={`btn-heat group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-[#4fb7dd] px-5 py-3 text-black ${containerClass}`}
+      className={`btn-heat group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-[#e8a33d] px-5 py-3 text-black ${containerClass}`}
     >
       {leftIcon && <span className="relative z-10">{leftIcon}</span>}
       <span className="relative z-10 inline-flex overflow-hidden font-general text-xs uppercase">

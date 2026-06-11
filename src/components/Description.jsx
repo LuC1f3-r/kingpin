@@ -57,7 +57,7 @@ const Description = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-screen bg-[#f0f5ff] py-16 md:py-24"
+      className="w-screen bg-[#f7f1e6] py-16 md:py-24"
     >
       <div className="mx-auto flex max-w-4xl flex-col items-center px-6 text-center">
 

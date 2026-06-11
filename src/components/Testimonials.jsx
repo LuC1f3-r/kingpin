@@ -100,13 +100,13 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
   const blurPx  = distance === 0 ? 0   : distance === 1 ? 3   : 7;
   const opacity = distance === 0 ? 1   : distance === 1 ? 0.4 : 0.18;
   const bdrClr  = isActive
-    ? "rgba(79,183,221,0.50)"
-    : "rgba(79,183,221,0.06)";
+    ? "rgba(232,163,61,0.50)"
+    : "rgba(232,163,61,0.06)";
   const bgClr   = isActive
     ? "rgba(13,24,37,0.95)"
     : "rgba(6,13,20,0.80)";
   const shadow  = isActive
-    ? "0 0 50px rgba(79,183,221,0.22), 0 0 16px rgba(79,183,221,0.12)"
+    ? "0 0 50px rgba(232,163,61,0.22), 0 0 16px rgba(232,163,61,0.12)"
     : "none";
 
   return (
@@ -133,7 +133,7 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
         className="block font-zentry text-6xl font-black leading-none"
         style={{
           fontFeatureSettings: '"ss01" on',
-          color:   "#4fb7dd",
+          color:   "#e8a33d",
           opacity: isActive ? 0.9 : 0.3,
           transition: "opacity 0.65s ease",
         }}
@@ -142,7 +142,7 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
       </span>
 
       {/* Quote text */}
-      <p className="mt-4 flex-1 font-circular-web text-[15px] leading-relaxed text-[#eef2ff]/80">
+      <p className="mt-4 flex-1 font-circular-web text-[15px] leading-relaxed text-[#f5efe6]/80">
         {quote}
       </p>
 
@@ -150,7 +150,7 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
       <div
         className="my-6 h-px w-full"
         style={{
-          backgroundColor: isActive ? "rgba(79,183,221,0.35)" : "rgba(255,255,255,0.07)",
+          backgroundColor: isActive ? "rgba(232,163,61,0.35)" : "rgba(255,255,255,0.07)",
           transition: "background-color 0.65s ease",
         }}
       />
@@ -160,7 +160,7 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
         <div
           className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-zentry text-sm font-black text-black"
           style={{
-            background:  isActive ? "#4fb7dd" : "rgba(79,183,221,0.35)",
+            background:  isActive ? "#e8a33d" : "rgba(232,163,61,0.35)",
             transition:  "background 0.65s ease",
             fontFeatureSettings: '"ss01" on',
           }}
@@ -168,10 +168,10 @@ const TiltCard = ({ quote, name, role, initial, distance }) => {
           {initial}
         </div>
         <div>
-          <p className="font-general text-[12px] font-semibold uppercase tracking-wider text-[#eef2ff]/80">
+          <p className="font-general text-[12px] font-semibold uppercase tracking-wider text-[#f5efe6]/80">
             {name}
           </p>
-          <p className="font-general text-[11px] tracking-wide text-[#eef2ff]/65">
+          <p className="font-general text-[11px] tracking-wide text-[#f5efe6]/65">
             {role}
           </p>
         </div>
@@ -232,17 +232,17 @@ const Testimonials = () => {
     <section
       ref={sectionRef}
       id="testimonials"
-      className="flex min-h-dvh flex-col justify-between overflow-hidden bg-[#060d14] pb-14 pt-20"
+      className="flex min-h-dvh flex-col justify-between overflow-hidden bg-[#0d0a05] pb-14 pt-20"
     >
       {/* ── Header ───────────────────────────────────────────────────────── */}
       <div className="px-5 sm:px-10 md:px-16 lg:px-20">
-        <p className="mb-3 font-general text-[10px] uppercase tracking-[0.28em] text-[#eef2ff]/30">
+        <p className="mb-3 font-general text-[10px] uppercase tracking-[0.28em] text-[#f5efe6]/30">
           Client Voices
         </p>
         <AnimatedTitle
           title="What our cl<b>i</b>ents <br /> are say<b>i</b>ng"
           sectionId="#testimonials"
-          containerClass="text-[#eef2ff]"
+          containerClass="text-[#f5efe6]"
         />
       </div>
 
@@ -265,7 +265,7 @@ const Testimonials = () => {
             width:    `${CARD_W * 1.4}px`,
             height:   `${CARD_H * 1.4}px`,
             background:
-              "radial-gradient(ellipse at center, rgba(79,183,221,0.10) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(232,163,61,0.10) 0%, transparent 70%)",
             filter: "blur(18px)",
           }}
         />
@@ -297,7 +297,7 @@ const Testimonials = () => {
               height:          "6px",
               width:           i === activeIndex ? "2rem" : "6px",
               backgroundColor: i === activeIndex
-                ? "#4fb7dd"
+                ? "#e8a33d"
                 : "rgba(255,255,255,0.18)",
             }}
           />

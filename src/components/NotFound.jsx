@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
 const NotFound = () => (
-  <main className="relative flex min-h-screen w-screen flex-col items-center justify-center overflow-hidden bg-[#020609] px-6 text-center">
+  <main className="relative flex min-h-screen w-screen flex-col items-center justify-center overflow-hidden bg-[#070502] px-6 text-center">
 
     {/* Glowing background orb */}
     <div
       className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-10 blur-[120px]"
-      style={{ background: "radial-gradient(circle, #4fb7dd 0%, transparent 70%)" }}
+      style={{ background: "radial-gradient(circle, #e8a33d 0%, transparent 70%)" }}
     />
 
     {/* 404 number */}
@@ -30,7 +30,7 @@ const NotFound = () => (
     <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
       <Link
         to="/"
-        className="rounded-full bg-[#4fb7dd] px-8 py-3 font-general text-xs font-bold uppercase tracking-widest text-[#020609] transition-colors hover:bg-[#78c9e5]"
+        className="rounded-full bg-[#e8a33d] px-8 py-3 font-general text-xs font-bold uppercase tracking-widest text-[#070502] transition-colors hover:bg-[#f5c66d]"
       >
         ← Back to Home
       </Link>
